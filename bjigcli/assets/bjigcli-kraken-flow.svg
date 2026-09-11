@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 350" width="1200" height="350">
+  <defs>
+    <style>
+      .bg { fill: #f8f9fa; }
+      .step-box-1 { fill: #4a90a4; }
+      .step-box-2 { fill: #0f4c81; }
+      .step-box-3 { fill: #5B9BC4; }
+      .text-white { fill: white; font-family: Arial, sans-serif; }
+      .text-title { font-size: 22px; font-weight: 700; }
+      .text-body { font-size: 14px; font-weight: 400; }
+      .arrow { fill: none; stroke: #95a5a6; stroke-width: 4; marker-end: url(#arrowhead-gray); }
+      .icon-bg { fill: white; opacity: 0.15; }
+      .icon-element { fill: white; }
+      .icon-stroke { fill: none; stroke: white; stroke-width: 2; stroke-linecap: round; }
+    </style>
+    <marker id="arrowhead-gray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#95a5a6" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect class="bg" width="1200" height="350" rx="0"/>
+
+  <!-- Step 1: BraveJIGで集める -->
+  <g id="step1">
+    <rect class="step-box-1" x="30" y="60" width="320" height="220" rx="8"/>
+
+    <!-- Icon: Sensors (positioned at top, will be behind text) -->
+    <g transform="translate(100, 85)">
+      <circle class="icon-bg" cx="30" cy="30" r="32"/>
+      <!-- Temperature icon -->
+      <rect class="icon-element" x="24" y="12" width="4" height="28" rx="2"/>
+      <circle class="icon-element" cx="26" cy="43" r="6"/>
+      <rect fill="#e74c3c" x="25" y="36" width="2" height="10"/>
+
+      <!-- Wireless signal -->
+      <g transform="translate(42, 18)">
+        <path class="icon-stroke" d="M -7,13 Q 0,6 7,13" stroke-width="1.5"/>
+        <path class="icon-stroke" d="M -10,17 Q 0,2 10,17" stroke-width="1.5"/>
+      </g>
+    </g>
+
+    <!-- Text (positioned after icons to appear on top) -->
+    <text class="text-white text-title" x="190" y="160" text-anchor="middle">1. BraveJIGで集める</text>
+    <text class="text-white text-body" x="190" y="190" text-anchor="middle">現場の温湿度、照度、加速度、</text>
+    <text class="text-white text-body" x="190" y="210" text-anchor="middle">接点状態などを</text>
+    <text class="text-white text-body" x="190" y="230" text-anchor="middle">BraveJIGセンサーで収集</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <line class="arrow" x1="360" y1="170" x2="420" y2="170"/>
+
+  <!-- Step 2: BraveJIG CLIでつなぐ -->
+  <g id="step2">
+    <rect class="step-box-2" x="440" y="60" width="320" height="220" rx="8"/>
+
+    <!-- Icon: Terminal/CLI (positioned at top, will be behind text) -->
+    <g transform="translate(510, 85)">
+      <circle class="icon-bg" cx="30" cy="30" r="32"/>
+      <!-- Terminal window -->
+      <rect class="icon-element" x="12" y="18" width="36" height="26" rx="2"/>
+      <rect fill="#1e1e1e" x="14" y="22" width="32" height="20" rx="1"/>
+      <line stroke="#4ec9b0" stroke-width="1.5" x1="17" y1="28" x2="21" y2="33"/>
+      <line stroke="#4ec9b0" stroke-width="1.5" x1="21" y1="33" x2="30" y2="27"/>
+      <line stroke="#4ec9b0" stroke-width="2" x1="32" y1="33" x2="42" y2="33"/>
+    </g>
+
+    <!-- Text (positioned after icons to appear on top) -->
+    <text class="text-white text-title" x="600" y="160" text-anchor="middle">2. BraveJIG CLIでつなぐ</text>
+    <text class="text-white text-body" x="600" y="190" text-anchor="middle">BraveJIG CLIが</text>
+    <text class="text-white text-body" x="600" y="210" text-anchor="middle">センサーデータをリアルタイム監視し、</text>
+    <text class="text-white text-body" x="600" y="230" text-anchor="middle">Kraken Collectorへ送信</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <line class="arrow" x1="770" y1="170" x2="830" y2="170"/>
+
+  <!-- Step 3: Krakenで活かす -->
+  <g id="step3">
+    <rect class="step-box-3" x="850" y="60" width="320" height="220" rx="8"/>
+
+    <!-- Icon: Workflow/Processing (positioned at top, will be behind text) -->
+    <g transform="translate(920, 85)">
+      <circle class="icon-bg" cx="30" cy="30" r="32"/>
+      <!-- Gear/Processing icon -->
+      <circle fill="none" stroke="white" stroke-width="2.5" cx="30" cy="30" r="11"/>
+      <circle class="icon-element" cx="30" cy="30" r="4"/>
+      <g transform="translate(30, 30)">
+        <rect class="icon-element" x="-2.5" y="-17" width="5" height="5" rx="1"/>
+        <rect class="icon-element" x="-2.5" y="12" width="5" height="5" rx="1"/>
+        <rect class="icon-element" x="12" y="-2.5" width="5" height="5" rx="1"/>
+        <rect class="icon-element" x="-17" y="-2.5" width="5" height="5" rx="1"/>
+      </g>
+    </g>
+
+    <!-- Text (positioned after icons to appear on top) -->
+    <text class="text-white text-title" x="1010" y="160" text-anchor="middle">3. Krakenで活かす</text>
+    <text class="text-white text-body" x="1010" y="190" text-anchor="middle">Kraken Brokerがデータを</text>
+    <text class="text-white text-body" x="1010" y="210" text-anchor="middle">InfluxDB保存、Slack通知、</text>
+    <text class="text-white text-body" x="1010" y="230" text-anchor="middle">外部API連携などの業務ワークフローへ展開</text>
+  </g>
+
+  <!-- Bottom tagline -->
+  <text fill="#2c3e50" font-family="Arial, sans-serif" font-size="15" font-weight="600" x="600" y="320" text-anchor="middle">
+    センサーデータ収集から業務活用まで、一貫したワークフローで構築
+  </text>
+</svg>

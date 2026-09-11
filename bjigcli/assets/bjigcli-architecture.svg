@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 400" width="1400" height="400">
+  <defs>
+    <style>
+      .bg { fill: #f8f9fa; }
+      .bravejig-box { fill: #4a90a4; }
+      .cli-box { fill: #0f4c81; }
+      .kraken-box { fill: #5B9BC4; }
+      .text-white { fill: white; font-family: Arial, sans-serif; font-weight: 500; }
+      .text-label { fill: white; font-family: Arial, sans-serif; font-size: 18px; font-weight: 600; }
+      .text-sub { fill: white; font-family: Arial, sans-serif; font-size: 14px; }
+      .arrow { fill: none; stroke: #5B9BC4; stroke-width: 3; marker-end: url(#arrowhead); }
+      .device-icon { fill: #4a6c7d; }
+      .server-front { fill: #5f7d8f; }
+      .server-side { fill: #4a6c7d; }
+      .server-top { fill: #7a9aad; }
+      .terminal-bg { fill: #1e1e1e; }
+      .terminal-text { fill: #4ec9b0; font-family: 'Courier New', monospace; font-size: 12px; }
+      .db-icon { fill: #4a6c7d; }
+      .notification-icon { fill: #f39c12; }
+      .app-icon { fill: #5B9BC4; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#5B9BC4" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect class="bg" width="1400" height="400" rx="0"/>
+
+  <!-- BraveJIG Devices Section -->
+  <g id="bravejig-devices">
+    <!-- Temperature Sensor Icon -->
+    <g transform="translate(40, 140)">
+      <rect class="device-icon" x="0" y="20" width="8" height="60" rx="4"/>
+      <circle class="device-icon" cx="4" cy="85" r="10"/>
+      <rect fill="#e74c3c" x="2" y="70" width="4" height="20"/>
+    </g>
+
+    <!-- BraveJIG Router Icon -->
+    <g transform="translate(85, 150)">
+      <rect class="device-icon" x="0" y="0" width="50" height="35" rx="3"/>
+      <circle fill="#27ae60" cx="10" cy="10" r="3"/>
+      <circle fill="#f39c12" cx="20" cy="10" r="3"/>
+      <line stroke="white" stroke-width="2" x1="5" y1="23" x2="15" y2="23"/>
+      <line stroke="white" stroke-width="2" x1="20" y1="23" x2="30" y2="23"/>
+      <line stroke="white" stroke-width="2" x1="35" y1="23" x2="45" y2="23"/>
+      <!-- Antenna -->
+      <g transform="translate(25, -10)">
+        <line stroke="#4a6c7d" stroke-width="2" x1="0" y1="10" x2="0" y2="0"/>
+        <circle fill="none" stroke="#4a6c7d" stroke-width="1.5" cx="0" cy="0" r="5"/>
+        <circle fill="none" stroke="#4a6c7d" stroke-width="1.5" cx="0" cy="0" r="8"/>
+      </g>
+    </g>
+
+    <!-- Motion Sensor Icon -->
+    <g transform="translate(50, 220)">
+      <rect class="device-icon" x="0" y="0" width="30" height="30" rx="15"/>
+      <circle fill="white" cx="15" cy="15" r="8"/>
+      <circle class="device-icon" cx="15" cy="15" r="4"/>
+    </g>
+
+    <!-- Label Box -->
+    <rect class="bravejig-box" x="20" y="270" width="160" height="70" rx="4"/>
+    <text class="text-label" x="100" y="295" text-anchor="middle">BraveJIG Devices</text>
+    <text class="text-sub" x="100" y="315" text-anchor="middle">11 Sensor Modules</text>
+  </g>
+
+  <!-- Arrow 1: BraveJIG to CLI -->
+  <line class="arrow" x1="190" y1="195" x2="260" y2="195"/>
+
+  <!-- BraveJIG CLI Section -->
+  <g id="bravejig-cli">
+    <!-- Terminal/CLI Icon -->
+    <g transform="translate(280, 140)">
+      <rect class="terminal-bg" x="0" y="0" width="110" height="80" rx="4"/>
+      <circle fill="#ff5f56" cx="10" cy="10" r="4"/>
+      <circle fill="#ffbd2e" cx="22" cy="10" r="4"/>
+      <circle fill="#27c93f" cx="34" cy="10" r="4"/>
+      <text class="terminal-text" x="8" y="35">$ bjig monitor</text>
+      <text class="terminal-text" x="8" y="52">{"device_id":</text>
+      <text class="terminal-text" x="8" y="68">"2468..."}</text>
+    </g>
+
+    <!-- Label Box -->
+    <rect class="cli-box" x="260" y="270" width="150" height="70" rx="4"/>
+    <text class="text-label" x="335" y="295" text-anchor="middle">BraveJIG CLI</text>
+    <text class="text-sub" x="335" y="315" text-anchor="middle">Business Automation</text>
+  </g>
+
+  <!-- Arrow 2: CLI to Kraken Collector -->
+  <line class="arrow" x1="420" y1="195" x2="490" y2="195"/>
+
+  <!-- Kraken Collector Section -->
+  <g id="kraken-collector">
+    <!-- Server Icon with Kraken Logo -->
+    <g transform="translate(510, 145)">
+      <!-- Server body (3D perspective) -->
+      <polygon class="server-top" points="0,0 100,0 105,5 5,5"/>
+      <rect class="server-front" x="5" y="5" width="100" height="65"/>
+      <polygon class="server-side" points="105,5 105,70 100,65 100,0"/>
+
+      <!-- Server details -->
+      <line stroke="#4a6c7d" stroke-width="1" x1="5" y1="25" x2="105" y2="25"/>
+      <line stroke="#4a6c7d" stroke-width="1" x1="5" y1="45" x2="105" y2="45"/>
+      <circle fill="#27ae60" cx="15" cy="15" r="2.5"/>
+      <circle fill="#f39c12" cx="25" cy="15" r="2.5"/>
+      <circle fill="#27ae60" cx="15" cy="35" r="2.5"/>
+      <circle fill="#27ae60" cx="15" cy="55" r="2.5"/>
+
+      <!-- Kraken logo placeholder -->
+      <path fill="white" opacity="0.9" d="M 50,35 Q 45,25 50,20 Q 55,25 50,35 M 45,40 Q 40,45 42,50 M 55,40 Q 60,45 58,50 M 50,42 L 50,52"/>
+    </g>
+
+    <!-- Label Box -->
+    <rect class="kraken-box" x="490" y="270" width="150" height="70" rx="4"/>
+    <text class="text-label" x="565" y="295" text-anchor="middle">Kraken Collector</text>
+    <text class="text-sub" x="565" y="315" text-anchor="middle">Data Collection</text>
+  </g>
+
+  <!-- Arrow 3: Collector to Broker (gRPC) -->
+  <g>
+    <line class="arrow" x1="650" y1="195" x2="720" y2="195"/>
+    <text fill="#5B9BC4" font-family="Arial, sans-serif" font-size="16" font-weight="600" x="685" y="185" text-anchor="middle">gRPC</text>
+  </g>
+
+  <!-- Kraken Broker Section -->
+  <g id="kraken-broker">
+    <!-- Server Icon with Kraken Logo -->
+    <g transform="translate(740, 145)">
+      <!-- Server body (3D perspective) -->
+      <polygon class="server-top" points="0,0 100,0 105,5 5,5"/>
+      <rect class="server-front" x="5" y="5" width="100" height="65"/>
+      <polygon class="server-side" points="105,5 105,70 100,65 100,0"/>
+
+      <!-- Server details -->
+      <line stroke="#4a6c7d" stroke-width="1" x1="5" y1="25" x2="105" y2="25"/>
+      <line stroke="#4a6c7d" stroke-width="1" x1="5" y1="45" x2="105" y2="45"/>
+      <circle fill="#27ae60" cx="15" cy="15" r="2.5"/>
+      <circle fill="#27ae60" cx="25" cy="15" r="2.5"/>
+      <circle fill="#27ae60" cx="15" cy="35" r="2.5"/>
+      <circle fill="#27ae60" cx="15" cy="55" r="2.5"/>
+
+      <!-- Kraken logo placeholder -->
+      <path fill="white" opacity="0.9" d="M 50,35 Q 45,25 50,20 Q 55,25 50,35 M 45,40 Q 40,45 42,50 M 55,40 Q 60,45 58,50 M 50,42 L 50,52"/>
+    </g>
+
+    <!-- Label Box -->
+    <rect class="kraken-box" x="720" y="270" width="150" height="70" rx="4"/>
+    <text class="text-label" x="795" y="295" text-anchor="middle">Kraken Broker</text>
+    <text class="text-sub" x="795" y="315" text-anchor="middle">Processing &amp; Workflow</text>
+  </g>
+
+  <!-- Arrows to outputs -->
+  <line class="arrow" x1="880" y1="180" x2="970" y2="155"/>
+  <line class="arrow" x1="880" y1="195" x2="1020" y2="195"/>
+  <line class="arrow" x1="880" y1="210" x2="1070" y2="235"/>
+
+  <!-- Output Icons Section -->
+  <g id="outputs">
+    <!-- Database Icon -->
+    <g transform="translate(990, 130)">
+      <ellipse class="db-icon" cx="30" cy="10" rx="30" ry="10"/>
+      <rect class="db-icon" x="0" y="10" width="60" height="30"/>
+      <ellipse class="db-icon" cx="30" cy="40" rx="30" ry="10"/>
+      <line stroke="#2c3e50" stroke-width="1" x1="0" y1="20" x2="60" y2="20"/>
+      <line stroke="#2c3e50" stroke-width="1" x1="0" y1="30" x2="60" y2="30"/>
+    </g>
+    <text class="text-label" fill="#4a6c7d" x="1020" y="195" text-anchor="middle">DB</text>
+
+    <!-- Notification Bell Icon -->
+    <g transform="translate(1040, 175)">
+      <path class="notification-icon" d="M 15,5 Q 10,5 10,10 L 10,20 Q 10,25 5,30 L 25,30 Q 20,25 20,20 L 20,10 Q 20,5 15,5 M 12,32 Q 12,35 15,35 Q 18,35 18,32"/>
+      <circle fill="#e74c3c" cx="22" cy="8" r="4"/>
+    </g>
+    <text class="text-label" fill="#4a6c7d" x="1055" y="225" text-anchor="middle">Notify</text>
+
+    <!-- Mobile App Icon -->
+    <g transform="translate(1090, 210)">
+      <rect class="app-icon" x="0" y="0" width="35" height="55" rx="4"/>
+      <rect fill="#ecf0f1" x="3" y="8" width="29" height="40" rx="2"/>
+      <circle fill="#95a5a6" cx="17.5" cy="4" r="1.5"/>
+      <rect fill="#95a5a6" x="14" y="51" width="7" height="2" rx="1"/>
+    </g>
+    <text class="text-label" fill="#4a6c7d" x="1107" y="280" text-anchor="middle">Apps</text>
+  </g>
+
+  <!-- Title/Description at bottom -->
+  <text fill="#2c3e50" font-family="Arial, sans-serif" font-size="14" x="700" y="370" text-anchor="middle" opacity="0.7">
+    BraveJIG Devices → BraveJIG CLI → Kraken Collector → Kraken Broker → Business Workflow
+  </text>
+</svg>

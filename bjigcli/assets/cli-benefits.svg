@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500">
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .card-bg { fill: #f8f9fa; }
+      .card-border { fill: none; stroke: #e0e6ea; stroke-width: 2; }
+      .icon-circle { fill: #0f4c81; }
+      .icon-element { fill: white; }
+      .icon-stroke { fill: none; stroke: white; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .text-title { fill: #2c3e50; font-family: Arial, sans-serif; font-size: 18px; font-weight: 700; }
+      .text-body { fill: #636e72; font-family: Arial, sans-serif; font-size: 13px; line-height: 1.5; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect class="bg" width="1200" height="500"/>
+
+  <!-- Card 1: 業務プロセスの自動化 -->
+  <g id="card1">
+    <rect class="card-bg" x="20" y="20" width="220" height="220" rx="8"/>
+    <rect class="card-border" x="20" y="20" width="220" height="220" rx="8"/>
+
+    <!-- Icon: Automation (gear with play button) -->
+    <circle class="icon-circle" cx="130" cy="80" r="30"/>
+    <g transform="translate(130, 80)">
+      <!-- Gear -->
+      <circle class="icon-stroke" cx="0" cy="0" r="12"/>
+      <circle class="icon-element" cx="0" cy="0" r="5"/>
+      <rect class="icon-element" x="-2" y="-18" width="4" height="4"/>
+      <rect class="icon-element" x="-2" y="14" width="4" height="4"/>
+      <rect class="icon-element" x="14" y="-2" width="4" height="4"/>
+      <rect class="icon-element" x="-18" y="-2" width="4" height="4"/>
+      <!-- Play button -->
+      <polygon class="icon-element" points="-3,-8 -3,8 8,0"/>
+    </g>
+
+    <text class="text-title" x="130" y="140" text-anchor="middle">業務プロセスの自動化</text>
+    <text class="text-body" x="130" y="165" text-anchor="middle">定型作業をスクリプト化し、</text>
+    <text class="text-body" x="130" y="182" text-anchor="middle">人的ミスを削減。</text>
+    <text class="text-body" x="130" y="199" text-anchor="middle">業務効率を大幅に向上</text>
+  </g>
+
+  <!-- Card 2: 複数デバイスの一括管理 -->
+  <g id="card2">
+    <rect class="card-bg" x="260" y="20" width="220" height="220" rx="8"/>
+    <rect class="card-border" x="260" y="20" width="220" height="220" rx="8"/>
+
+    <!-- Icon: Multiple devices -->
+    <circle class="icon-circle" cx="370" cy="80" r="30"/>
+    <g transform="translate(370, 80)">
+      <!-- Three server icons -->
+      <rect class="icon-element" x="-18" y="-10" width="12" height="16" rx="2"/>
+      <rect class="icon-element" x="-3" y="-10" width="12" height="16" rx="2"/>
+      <rect class="icon-element" x="12" y="-10" width="12" height="16" rx="2"/>
+      <circle class="icon-element" cx="-12" cy="-5" r="1.5"/>
+      <circle class="icon-element" cx="3" cy="-5" r="1.5"/>
+      <circle class="icon-element" cx="18" cy="-5" r="1.5"/>
+      <line class="icon-stroke" x1="-12" y1="10" x2="-12" y2="15"/>
+      <line class="icon-stroke" x1="3" y1="10" x2="3" y2="15"/>
+      <line class="icon-stroke" x1="18" y1="10" x2="18" y2="15"/>
+      <line class="icon-stroke" x1="-18" y1="15" x2="24" y2="15"/>
+    </g>
+
+    <text class="text-title" x="370" y="140" text-anchor="middle">複数デバイスの一括管理</text>
+    <text class="text-body" x="370" y="165" text-anchor="middle">複数のBraveJIGデバイスを</text>
+    <text class="text-body" x="370" y="182" text-anchor="middle">一括で制御・監視。</text>
+    <text class="text-body" x="370" y="199" text-anchor="middle">管理コストを削減</text>
+  </g>
+
+  <!-- Card 3: 他システムとの連携 -->
+  <g id="card3">
+    <rect class="card-bg" x="500" y="20" width="220" height="220" rx="8"/>
+    <rect class="card-border" x="500" y="20" width="220" height="220" rx="8"/>
+
+    <!-- Icon: Integration (connected boxes) -->
+    <circle class="icon-circle" cx="610" cy="80" r="30"/>
+    <g transform="translate(610, 80)">
+      <!-- Three connected boxes -->
+      <rect class="icon-element" x="-20" y="-8" width="14" height="14" rx="2"/>
+      <rect class="icon-element" x="6" y="-8" width="14" height="14" rx="2"/>
+      <rect class="icon-element" x="-7" y="6" width="14" height="14" rx="2"/>
+      <!-- Connection lines -->
+      <line class="icon-stroke" x1="-6" y1="0" x2="6" y2="0"/>
+      <line class="icon-stroke" x1="-13" y1="6" x2="0" y2="13"/>
+      <line class="icon-stroke" x1="13" y1="6" x2="0" y2="13"/>
+    </g>
+
+    <text class="text-title" x="610" y="140" text-anchor="middle">他システムとの連携</text>
+    <text class="text-body" x="610" y="165" text-anchor="middle">Kraken IoTプラットフォームを</text>
+    <text class="text-body" x="610" y="182" text-anchor="middle">はじめ、既存システムと</text>
+    <text class="text-body" x="610" y="199" text-anchor="middle">シームレスに連携</text>
+  </g>
+
+  <!-- Card 4: 確実な運用 -->
+  <g id="card4">
+    <rect class="card-bg" x="740" y="20" width="220" height="220" rx="8"/>
+    <rect class="card-border" x="740" y="20" width="220" height="220" rx="8"/>
+
+    <!-- Icon: 24/7 Operation (clock with checkmark) -->
+    <circle class="icon-circle" cx="850" cy="80" r="30"/>
+    <g transform="translate(850, 80)">
+      <!-- Clock -->
+      <circle class="icon-stroke" cx="0" cy="0" r="14"/>
+      <line class="icon-stroke" x1="0" y1="0" x2="0" y2="-8"/>
+      <line class="icon-stroke" x1="0" y1="0" x2="6" y2="6"/>
+      <!-- Checkmark -->
+      <g transform="translate(8, -12)">
+        <circle class="icon-element" cx="0" cy="0" r="6"/>
+        <polyline class="icon-stroke" stroke-width="1.5" points="-2,0 -1,2 3,-2"/>
+      </g>
+    </g>
+
+    <text class="text-title" x="850" y="140" text-anchor="middle">確実な運用</text>
+    <text class="text-body" x="850" y="165" text-anchor="middle">安定したCLI制御により、</text>
+    <text class="text-body" x="850" y="182" text-anchor="middle">24時間365日の</text>
+    <text class="text-body" x="850" y="199" text-anchor="middle">無人運用が可能</text>
+  </g>
+
+  <!-- Card 5: スケーラブルな拡張 -->
+  <g id="card5">
+    <rect class="card-bg" x="980" y="20" width="220" height="220" rx="8"/>
+    <rect class="card-border" x="980" y="20" width="220" height="220" rx="8"/>
+
+    <!-- Icon: Scalability (growing chart) -->
+    <circle class="icon-circle" cx="1090" cy="80" r="30"/>
+    <g transform="translate(1090, 80)">
+      <!-- Growing bars -->
+      <rect class="icon-element" x="-15" y="5" width="6" height="10" rx="1"/>
+      <rect class="icon-element" x="-5" y="0" width="6" height="15" rx="1"/>
+      <rect class="icon-element" x="5" y="-8" width="6" height="23" rx="1"/>
+      <!-- Up arrow -->
+      <polyline class="icon-stroke" stroke-width="2" points="8,-12 15,-12 15,-5"/>
+      <polygon class="icon-element" points="15,-15 18,-10 12,-10"/>
+    </g>
+
+    <text class="text-title" x="1090" y="140" text-anchor="middle">スケーラブルな拡張</text>
+    <text class="text-body" x="1090" y="165" text-anchor="middle">小規模導入から始めて、</text>
+    <text class="text-body" x="1090" y="182" text-anchor="middle">ビジネス成長に合わせて</text>
+    <text class="text-body" x="1090" y="199" text-anchor="middle">段階的に拡張可能</text>
+  </g>
+
+  <!-- Bottom Section: Additional Benefits -->
+  <g id="bottom-benefits">
+    <rect fill="#e6f0fa" x="20" y="270" width="1160" height="200" rx="8"/>
+
+    <!-- Icon: Terminal -->
+    <g transform="translate(80, 320)">
+      <rect fill="#0f4c81" x="0" y="0" width="60" height="45" rx="4"/>
+      <circle fill="#ff5f56" cx="8" cy="8" r="3"/>
+      <circle fill="#ffbd2e" cx="18" cy="8" r="3"/>
+      <circle fill="#27c93f" cx="28" cy="8" r="3"/>
+      <text fill="#4ec9b0" font-family="'Courier New', monospace" font-size="9" x="5" y="25">&gt; bjig</text>
+      <text fill="#4ec9b0" font-family="'Courier New', monospace" font-size="9" x="5" y="38">monitor</text>
+    </g>
+
+    <text fill="#2c3e50" font-family="Arial, sans-serif" font-size="20" font-weight="700" x="170" y="330">
+      コマンドライン操作で、高度な制御と柔軟な自動化を実現
+    </text>
+
+    <g transform="translate(170, 350)">
+      <circle fill="#00b894" cx="0" cy="6" r="4"/>
+      <text class="text-body" x="15" y="10">スクリプト化による繰り返し作業の効率化</text>
+    </g>
+
+    <g transform="translate(170, 380)">
+      <circle fill="#00b894" cx="0" cy="6" r="4"/>
+      <text class="text-body" x="15" y="10">リモート操作とバッチ処理に対応</text>
+    </g>
+
+    <g transform="translate(170, 410)">
+      <circle fill="#00b894" cx="0" cy="6" r="4"/>
+      <text class="text-body" x="15" y="10">業務システムやワークフローツールとの統合が容易</text>
+    </g>
+
+    <g transform="translate(650, 350)">
+      <circle fill="#00b894" cx="0" cy="6" r="4"/>
+      <text class="text-body" x="15" y="10">定期的な監視や自動実行をスケジュール実行</text>
+    </g>
+
+    <g transform="translate(650, 380)">
+      <circle fill="#00b894" cx="0" cy="6" r="4"/>
+      <text class="text-body" x="15" y="10">ネットワーク経由での遠隔制御</text>
+    </g>
+
+    <g transform="translate(650, 410)">
+      <circle fill="#00b894" cx="0" cy="6" r="4"/>
+      <text class="text-body" x="15" y="10">人的ミスを削減し、確実な業務運用を実現</text>
+    </g>
+  </g>
+</svg>

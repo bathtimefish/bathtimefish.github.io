@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BraveJIG CLI is a paid CLI product for business automation using BraveJIG. Full support for all 11 BraveJIG sensor modules.">
+    <title>BraveJIG CLI - Smarter and More Reliable BraveJIG Operations</title>
+    <link rel="canonical" href="https://www.bathtimefish.com/bjigcli/en.html">
+    <link rel="alternate" hreflang="ja" href="https://www.bathtimefish.com/bjigcli/">
+    <link rel="alternate" hreflang="en" href="https://www.bathtimefish.com/bjigcli/en.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.bathtimefish.com/bjigcli/">
+    <link rel="icon" type="image/svg+xml" href="/bathtimefish.svg">
+    <link rel="alternate icon" type="image/png" href="/bathtimefish.png">
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="bjigcli.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container site-header-inner">
+    <a class="site-brand" href="/">
+      <img src="/bathtimefish.svg" alt="" width="32" height="32">
+      <span class="site-brand-name">BathTimeFish, K.K.</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Site navigation">
+      <ul class="site-nav-list">
+        <li>
+          <details class="nav-dropdown">
+            <summary>Products</summary>
+            <ul class="nav-dropdown-menu">
+              <li><a href="/kraken/">Kraken<small>Open-source IoT data router</small></a></li>
+              <li><a href="/bjigcli/">BraveJIG CLI<small>CLI tool for BraveJIG</small></a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/company.html">Company</a></li>
+        <li><a href="https://zenn.dev/bathtimefish" target="_blank" rel="noopener">Zenn</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-nav">
+  <div class="container page-nav-inner">
+    <a class="page-nav-brand" href="./"><img src="assets/bjigcli-logo.png" alt=""><span>BraveJIG CLI</span></a>
+    <nav class="page-nav-links" aria-label="BraveJIG CLI">
+      <a href="#cli-intro">What is CLI?</a>
+      <a href="#cli-benefits">CLI Benefits</a>
+      <a href="#modules">Modules</a>
+      <a href="#kraken">Kraken Integration</a>
+      <a href="#use-cases">Use Cases</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="nav-cta">Contact Us</a>
+    </nav>
+    <a class="lang-switch" href="index.html" lang="ja" hreflang="ja">日本語</a>
+  </div>
+</div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1 class="hero-title">Smarter and More Reliable BraveJIG Operations.</h1>
+                    <p class="hero-text">
+                        BraveJIG CLI is a paid CLI product for business automation using BraveJIG.<br>
+                        Full support for all 11 BraveJIG sensor modules. Provides all the functions you need for BraveJIG operations, including device control, real-time monitoring, and firmware updates (DFU). Additionally, seamless integration with the Kraken IoT platform developed by BathTimeFish enables you to connect sensor data collected by BraveJIG to your business workflows.
+                    </p>
+                    <p class="notice">
+                        <strong>BraveJIG is a product of Braveridge Corporation. Separate purchase required.</strong>
+                    </p>
+                    <p class="hero-note">
+                        BathTimeFish, as a <strong>BraveJIG Integration Partner</strong>, provides comprehensive support from BraveJIG deployment to operation.
+                    </p>
+                    <div class="btn-group">
+                        <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener">Consult About Deployment</a>
+                        <a href="#cli-intro" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <img src="assets/bjigcli-architecture.svg" alt="BraveJIG CLI System Architecture">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLI Intro Section -->
+    <section id="cli-intro" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What is CLI (Command Line Interface)?</h2>
+            </div>
+            <div class="cli-intro-content">
+                <p class="section-lead">
+                    CLI (Command Line Interface) is a method of operating a computer through text input from a keyboard. Unlike the typical mouse-driven GUI (Graphical User Interface), CLI allows for more advanced and flexible control by entering commands (instruction statements).
+                </p>
+                <div class="grid-auto grid-auto-sm">
+                    <div class="card card-hover card-center">
+                        <div class="card-icon">⚙️</div>
+                        <h3 class="card-title">Easy Automation</h3>
+                        <p class="card-text">Script repetitive tasks for efficiency</p>
+                    </div>
+                    <div class="card card-hover card-center">
+                        <div class="card-icon">📦</div>
+                        <h3 class="card-title">Batch Processing</h3>
+                        <p class="card-text">Control multiple devices simultaneously</p>
+                    </div>
+                    <div class="card card-hover card-center">
+                        <div class="card-icon">🌐</div>
+                        <h3 class="card-title">Remote Operations</h3>
+                        <p class="card-text">Remote control over network</p>
+                    </div>
+                    <div class="card card-hover card-center">
+                        <div class="card-icon">🔗</div>
+                        <h3 class="card-title">System Integration</h3>
+                        <p class="card-text">Easy integration with business systems and workflow tools</p>
+                    </div>
+                    <div class="card card-hover card-center">
+                        <div class="card-icon">⏰</div>
+                        <h3 class="card-title">Scheduled Execution</h3>
+                        <p class="card-text">Enable periodic monitoring and automated execution</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is BraveJIG CLI Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Full BraveJIG Functionality for Business Automation.</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        BraveJIG CLI is a CLI tool that controls BraveJIG USB Router and all 11 sensor modules.
+                        Provides all functions needed for BraveJIG operations: router control, sensor data acquisition, parameter configuration, firmware updates (DFU), and real-time monitoring. Furthermore, integration with the Kraken IoT platform provided by BathTimeFish enables you to build workflows that connect BraveJIG sensor data to preprocessing, storage, notification, and external integration.
+                    </p>
+                </div>
+                <div class="about-diagram">
+                    <p class="diagram-caption">Data Flow</p>
+                    <div class="flow">
+                        <div class="flow-step">BraveJIG Devices</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step flow-step-highlight">BraveJIG CLI</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">Kraken Collector</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">Kraken Broker</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">DB / Notification / Apps</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLI Benefits Section -->
+    <section id="cli-benefits" class="section section-highlight">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Business Automation Value with BraveJIG CLI</h2>
+                <p class="section-lead">BraveJIG CLI strongly supports business automation through flexible control from the command line.</p>
+            </div>
+            <div class="grid-auto">
+                <div class="card card-hover">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="20" fill="#0f4c81" opacity="0.1"/>
+                            <path d="M24 14v10l7 4" stroke="#0f4c81" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="24" cy="24" r="10" stroke="#0f4c81" stroke-width="2"/>
+                            <polygon points="32,18 35,15 35,21" fill="#0f4c81"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">1. Business Process Automation</h3>
+                    <p class="card-text">
+                        Script routine tasks and reduce human errors. Significantly improve operational efficiency by automating monitoring, control, and data collection.
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="20" fill="#0f4c81" opacity="0.1"/>
+                            <rect x="14" y="18" width="6" height="12" rx="1" fill="#0f4c81"/>
+                            <rect x="21" y="18" width="6" height="12" rx="1" fill="#0f4c81"/>
+                            <rect x="28" y="18" width="6" height="12" rx="1" fill="#0f4c81"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">2. Batch Device Management</h3>
+                    <p class="card-text">
+                        Control and monitor multiple BraveJIG devices in batch, reducing management costs even in large-scale deployment environments.
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="20" fill="#0f4c81" opacity="0.1"/>
+                            <rect x="12" y="16" width="8" height="8" rx="1" fill="#0f4c81"/>
+                            <rect x="28" y="16" width="8" height="8" rx="1" fill="#0f4c81"/>
+                            <rect x="20" y="24" width="8" height="8" rx="1" fill="#0f4c81"/>
+                            <line x1="16" y1="24" x2="20" y2="28" stroke="#0f4c81" stroke-width="2"/>
+                            <line x1="32" y1="24" x2="28" y2="28" stroke="#0f4c81" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">3. System Integration</h3>
+                    <p class="card-text">
+                        Seamlessly integrate with the Kraken IoT platform and existing business systems and workflow tools. Enable data-driven business improvement.
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="20" fill="#0f4c81" opacity="0.1"/>
+                            <circle cx="24" cy="24" r="10" stroke="#0f4c81" stroke-width="2"/>
+                            <path d="M24 14v10" stroke="#0f4c81" stroke-width="2"/>
+                            <path d="M24 24l7 4" stroke="#0f4c81" stroke-width="2"/>
+                            <circle cx="32" cy="18" r="4" fill="#00b894"/>
+                            <path d="M30 18l1 1.5 2-3" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">4. Reliable Operations</h3>
+                    <p class="card-text">
+                        Stable CLI control enables 24/7 unattended operation. Quick response to troubles can also be executed via command.
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="20" fill="#0f4c81" opacity="0.1"/>
+                            <rect x="14" y="28" width="4" height="8" fill="#0f4c81"/>
+                            <rect x="20" y="24" width="4" height="12" fill="#0f4c81"/>
+                            <rect x="26" y="18" width="4" height="18" fill="#0f4c81"/>
+                            <path d="M28 16l4 0 0 4" stroke="#0f4c81" stroke-width="2"/>
+                            <polygon points="32,14 35,16 29,16" fill="#0f4c81"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">5. Scalable Expansion</h3>
+                    <p class="card-text">
+                        Start small and scale gradually as your business grows. No wasted investment.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Section -->
+    <section id="modules" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Full Support for All 11 Sensor Modules.</h2>
+                <p class="section-lead">
+                    BraveJIG CLI provides full support for all 11 sensor modules offered by BraveJIG, delivering comprehensive functionality from device control to firmware updates.
+                </p>
+            </div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sensor ID</th>
+                            <th>Module Name</th>
+                            <th>Instant Uplink</th>
+                            <th>Get/Set Parameters</th>
+                            <th>DFU</th>
+                            <th>Control Commands</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0x0121</td>
+                            <td>Illuminance Sensor</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>0x0122</td>
+                            <td>Accelerometer</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>0x0123</td>
+                            <td>Temperature/Humidity</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>0x0124</td>
+                            <td>Barometric Pressure</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>0x0125</td>
+                            <td>Distance Sensor</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>0x0126</td>
+                            <td>Dry Contact Input</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅ Count Clear</td>
+                        </tr>
+                        <tr>
+                            <td>0x0127</td>
+                            <td>Wet Contact Input</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅ Count Clear</td>
+                        </tr>
+                        <tr>
+                            <td>0x0128</td>
+                            <td>Contact Output</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅ Output Control</td>
+                        </tr>
+                        <tr>
+                            <td>0x0129</td>
+                            <td>Thermocouple</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>0x012A</td>
+                            <td>4-20mA Current</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>0x012B</td>
+                            <td>ADC</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid-auto mt-lg">
+                <div class="card card-alt">
+                    <h3 class="card-title">Router Control</h3>
+                    <ul class="check-list is-muted">
+                        <li>Version info, start/stop, keepalive</li>
+                        <li>Scan mode configuration, get/delete registered module IDs</li>
+                        <li>Router firmware update (DFU)</li>
+                    </ul>
+                </div>
+                <div class="card card-alt">
+                    <h3 class="card-title">Module Control</h3>
+                    <ul class="check-list is-muted">
+                        <li>Instant uplink (immediate sensor data retrieval)</li>
+                        <li>Get/set parameters</li>
+                        <li>Module firmware update (DFU)</li>
+                        <li>Module-specific control (contact clear, output control)</li>
+                    </ul>
+                </div>
+                <div class="card card-alt">
+                    <h3 class="card-title">Real-time Monitoring</h3>
+                    <ul class="check-list is-muted">
+                        <li>Stream all sensor uplink notifications in NDJSON format</li>
+                        <li>Background reception support</li>
+                        <li>Compatible with JSON tools like jq</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kraken Integration Section -->
+    <section id="kraken" class="section section-band">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Collect with BraveJIG, Utilize with Kraken.</h2>
+                <p class="section-lead">
+                    BraveJIG CLI seamlessly integrates with the Kraken IoT platform provided by BathTimeFish.<br>
+                    Connect sensor data collected by BraveJIG to Kraken Collector via BraveJIG CLI, then build end-to-end workflows with Kraken Broker for preprocessing, storage, notification, and external integration.
+                </p>
+            </div>
+
+            <div class="kraken-flow">
+                <img src="assets/bjigcli-kraken-flow.svg" alt="BraveJIG × Kraken Integration Flow" class="kraken-flow-img">
+            </div>
+
+            <div class="kraken-benefits">
+                <h3 class="kraken-benefits-title">Integration Benefits</h3>
+                <div class="kraken-benefits-grid">
+                    <div class="kraken-benefit-item">
+                        <span class="kraken-benefit-icon">✓</span>
+                        <p>Build consistent workflows from sensor data collection to business utilization</p>
+                    </div>
+                    <div class="kraken-benefit-item">
+                        <span class="kraken-benefit-icon">✓</span>
+                        <p>BathTimeFish, as a BraveJIG integration partner, provides consistent support from deployment to operation</p>
+                    </div>
+                    <div class="kraken-benefit-item">
+                        <span class="kraken-benefit-icon">✓</span>
+                        <p>Kraken's open-source foundation enables flexible customization and extension</p>
+                    </div>
+                    <div class="kraken-benefit-item">
+                        <span class="kraken-benefit-icon">✓</span>
+                        <p>Not limited to cloud - on-premises, closed networks, and edge-complete configurations are also available</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kraken-cta">
+                <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener">Consult About BraveJIG × Kraken Integration</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strengths Section -->
+    <section id="strengths" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose BraveJIG CLI</h2>
+            </div>
+            <div class="grid-auto">
+                <div class="card card-alt card-accent">
+                    <h3 class="card-title">All 11 Sensor Modules Supported</h3>
+                    <p class="card-text">
+                        Full support for all sensor modules offered by BraveJIG. Illuminance, temperature/humidity, acceleration, contact, and more meet all field needs.
+                    </p>
+                </div>
+                <div class="card card-alt card-accent">
+                    <h3 class="card-title">Comprehensive Feature Set</h3>
+                    <p class="card-text">
+                        Provides all functions needed for BraveJIG operations: device control, sensor data acquisition, parameter configuration, firmware updates (DFU), and real-time monitoring.
+                    </p>
+                </div>
+                <div class="card card-alt card-accent">
+                    <h3 class="card-title">Value Expansion with Kraken Integration</h3>
+                    <p class="card-text">
+                        Integration with the Kraken IoT platform provided by BathTimeFish enables end-to-end construction from sensor data collection to business workflows.
+                    </p>
+                </div>
+                <div class="card card-alt card-accent">
+                    <h3 class="card-title">Stable Operations</h3>
+                    <p class="card-text">
+                        Reliable operation enables 24/7 unattended operations. Supports business reliability.
+                    </p>
+                </div>
+                <div class="card card-alt card-accent">
+                    <h3 class="card-title">Comprehensive Support by BathTimeFish</h3>
+                    <p class="card-text">
+                        BathTimeFish, as a BraveJIG integration partner, provides consistent support from BraveJIG deployment, BraveJIG CLI provision, Kraken integration, to operational support.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="use-cases" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">BraveJIG CLI in Action</h2>
+            </div>
+            <div class="grid-auto grid-auto-lg">
+                <div class="card card-hover">
+                    <div class="card-icon">🏭</div>
+                    <h3 class="card-title">Real-time Factory Equipment Monitoring</h3>
+                    <p class="card-text">
+                        Monitor equipment temperature, humidity, vibration, and contact status in real-time with BraveJIG sensors. Automate anomaly detection with BraveJIG CLI and notification/recording with Kraken.
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">🌍</div>
+                    <h3 class="card-title">Multi-site Batch Management</h3>
+                    <p class="card-text">
+                        Efficiently manage and monitor multiple BraveJIG devices. Centralized visibility of all sites from headquarters.
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">🔧</div>
+                    <h3 class="card-title">Automated Periodic Maintenance</h3>
+                    <p class="card-text">
+                        Automate firmware updates and parameter changes to reduce maintenance workload.
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">🌙</div>
+                    <h3 class="card-title">24/7 Monitoring System</h3>
+                    <p class="card-text">
+                        Enable 24/7 unattended monitoring. Automatically send notifications through Kraken when anomalies are detected.
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">⚡</div>
+                    <h3 class="card-title">Field Equipment Control via Contact Output</h3>
+                    <p class="card-text">
+                        Control BraveJIG contact output modules with BraveJIG CLI to automatically operate field equipment (relays, alarms, control panels) based on sensor data.
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">🚀</div>
+                    <h3 class="card-title">IoT Infrastructure with BraveJIG + Kraken Integration</h3>
+                    <p class="card-text">
+                        Connect sensor data collected by BraveJIG to Kraken Collector via BraveJIG CLI, then build workflows with Kraken Broker including preprocessing, InfluxDB storage, Slack notifications, and external API integration.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deployment Models Section -->
+    <section id="deployment" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Flexible Deployment for Different Use Cases and Scales</h2>
+            </div>
+            <div class="grid-auto">
+                <div class="card">
+                    <div class="badge">Standalone</div>
+                    <h3 class="card-title">Standalone Use</h3>
+                    <p class="card-text">
+                        Focused on BraveJIG device control and monitoring. Ideal for small-scale deployments or sites that don't require integration with existing systems.
+                    </p>
+                </div>
+                <div class="card card-highlight">
+                    <div class="badge">Small-Scale Integration</div>
+                    <h3 class="card-title">Small-Scale Kraken Integration</h3>
+                    <p class="card-text">
+                        Build BraveJIG CLI + Kraken Collector on a single Raspberry Pi or Mini PC. Start with minimal configuration from sensor data collection to business workflows for a single site.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="badge">Large-Scale Integration</div>
+                    <h3 class="card-title">Large-Scale Kraken Integration</h3>
+                    <p class="card-text">
+                        Collect BraveJIG devices from multiple sites with BraveJIG CLI, aggregate and process with Kraken Broker. Build full-scale IoT infrastructure including InfluxDB storage, Slack notifications, and external system integration.
+                    </p>
+                </div>
+            </div>
+            <p class="section-note">
+                BraveJIG CLI flexibly applies from standalone use to Kraken integration according to deployment scale. Gradual deployment starting small and expanding as needed is also possible.
+            </p>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Paid Product Ensures Continuous Support and Quality</h2>
+            </div>
+            <div class="pricing-content">
+                <div class="pricing-intro">
+                    <p>
+                        BraveJIG CLI is a <strong>paid CLI product</strong> developed and provided by BathTimeFish.<br>
+                        Developed to enable efficient and stable BraveJIG operations. As a paid product, we provide continuous feature additions, bug fixes, and technical support.
+                    </p>
+                    <p class="notice">
+                        <strong>BraveJIG is a product of Braveridge Corporation. Separate purchase required.</strong>
+                    </p>
+                </div>
+                <div class="grid-auto grid-auto-lg pricing-grid">
+                    <div class="card">
+                        <h3 class="card-title pricing-card-title">License Model</h3>
+                        <ul class="check-list">
+                            <li><strong>One CLI license required per BraveJIG USB Router</strong></li>
+                            <li>License sales only (not subscription-based)</li>
+                        </ul>
+                        <p class="pricing-note-small">
+                            *For specific pricing, please inquire during deployment consultation.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title pricing-card-title">Support Services</h3>
+                        <ul class="check-list">
+                            <li>Deployment support & technical support</li>
+                            <li>Bug fixes & feature additions</li>
+                            <li>Firmware update support</li>
+                            <li>Kraken integration support</li>
+                            <li>Custom development</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bathtimefish-value">
+                    <h3 class="bathtimefish-value-title">BathTimeFish Value Proposition</h3>
+                    <p>BathTimeFish, as a BraveJIG integration partner, provides the following comprehensive support.</p>
+                    <div class="value-grid">
+                        <div class="value-item">
+                            <span class="value-icon">✓</span>
+                            <span>BraveJIG device deployment support</span>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">✓</span>
+                            <span>BraveJIG CLI provision & technical support</span>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">✓</span>
+                            <span>Kraken integration design & implementation support</span>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">✓</span>
+                            <span>Operations & maintenance support</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener">Consult About Deployment & Purchasing</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q1. Is BraveJIG CLI free to use?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>No. BraveJIG CLI is a <strong>paid CLI product</strong> provided by BathTimeFish. It is paid to provide continuous support and quality.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q2. Do I need to purchase BraveJIG hardware separately?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. BraveJIG is a product of Braveridge Corporation. BraveJIG hardware must be purchased separately. BathTimeFish provides deployment support as a BraveJIG integration partner.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q3. What is CLI? Can non-technical users use it?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>CLI (Command Line Interface) is a method of operating computers through text input. It is ideal for business automation as scripting and automation are easy. It can be used with basic command operation knowledge.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q4. Which sensor modules are supported?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Full support for all 11 sensor modules offered by BraveJIG. Supports illuminance, accelerometer, temperature/humidity, barometric pressure, distance, dry contact, wet contact, contact output, thermocouple, 4-20mA current, and ADC.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q5. Is Kraken integration mandatory?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>No. BraveJIG CLI can also be used for standalone BraveJIG device control and monitoring. Kraken integration is an option for connecting sensor data to business workflows.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q6. How do I integrate with Kraken?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Output sensor data in NDJSON format using BraveJIG CLI's real-time monitoring feature and send to Kraken Collector. Build workflows with Kraken Broker including preprocessing, DB storage, notifications, and external integration. For integration design, please consult BathTimeFish.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q7. Which platforms does it run on?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Runs on macOS, Linux, and Windows. Stable operation on small PCs and embedded environments.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q8. Is technical support provided?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. As a paid product, we provide continuous support including deployment support, technical support, bug fixes, feature additions, and firmware update support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="contact" class="section section-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Smarter and More Reliable BraveJIG Operations. Start with a Deployment Consultation.</h2>
+                <p class="cta-text">
+                    BraveJIG CLI is a paid CLI product for business automation using BraveJIG.<br>
+                    During the deployment consultation, we will carefully explain configuration proposals, price estimates, and Kraken integration feasibility according to your specific use case.
+                </p>
+                <p class="notice notice-inverse">
+                    <strong>BraveJIG is a product of Braveridge Corporation. Separate purchase required.</strong>
+                </p>
+                <div class="cta-box">
+                    <h3>What You'll Learn from Deployment Consultation</h3>
+                    <ul class="check-list">
+                        <li>Specific examples of business automation achievable with BraveJIG CLI</li>
+                        <li>Specific price estimates and license model</li>
+                        <li>Kraken integration feasibility and approach</li>
+                        <li>Rough deployment steps and support details</li>
+                        <li>BraveJIG hardware purchase support</li>
+                    </ul>
+                </div>
+                <div class="btn-group is-center">
+                    <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary btn-large" target="_blank" rel="noopener">Consult About Deployment & Purchasing</a>
+                    <a href="#" class="btn btn-secondary btn-large">Back to Top</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer-grid">
+      <div class="site-footer-brand">
+        <img src="/bathtimefish.svg" alt="" width="40" height="40">
+        <p class="site-footer-name">BathTimeFish, K.K.<span>株式会社BathTimeFish</span></p>
+        <p class="site-footer-address">3-3-13 Nishiyama-cho, Nagata-ku, Kobe, Hyogo, Japan</p>
+      </div>
+      <div>
+        <h4>Products</h4>
+        <ul>
+          <li><a href="/kraken/">Kraken</a></li>
+          <li><a href="/bjigcli/">BraveJIG CLI</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/company.html">Company</a></li>
+          <li><a href="https://zenn.dev/bathtimefish" target="_blank" rel="noopener">Zenn</a></li>
+          <li><a href="https://github.com/bathtimefish" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://forms.gle/X2RKJqLNiJXBfnKW8" target="_blank" rel="noopener">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p>&copy; BathTimeFish, K.K. All rights reserved.</p>
+      <p>BraveJIG is a product of Braveridge Corporation. BraveJIG CLI is a paid product developed by BathTimeFish.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BraveJIG CLIは、BraveJIGを活用したビジネス自動化を実現する有償CLI製品です。11種類すべてのBraveJIGセンサーモジュールに完全対応。">
+    <title>BraveJIG CLI - BraveJIGを、もっとかしこく、確実に。</title>
+    <link rel="canonical" href="https://www.bathtimefish.com/bjigcli/">
+    <link rel="alternate" hreflang="ja" href="https://www.bathtimefish.com/bjigcli/">
+    <link rel="alternate" hreflang="en" href="https://www.bathtimefish.com/bjigcli/en.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.bathtimefish.com/bjigcli/">
+    <link rel="icon" type="image/svg+xml" href="/bathtimefish.svg">
+    <link rel="alternate icon" type="image/png" href="/bathtimefish.png">
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="bjigcli.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container site-header-inner">
+    <a class="site-brand" href="/">
+      <img src="/bathtimefish.svg" alt="" width="32" height="32">
+      <span class="site-brand-name">株式会社BathTimeFish</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="サイトナビゲーション">
+      <ul class="site-nav-list">
+        <li>
+          <details class="nav-dropdown">
+            <summary>製品情報</summary>
+            <ul class="nav-dropdown-menu">
+              <li><a href="/kraken/">Kraken<small>OSS IoTデータルーター</small></a></li>
+              <li><a href="/bjigcli/">BraveJIG CLI<small>BraveJIG向けCLIツール</small></a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/company.html">会社概要</a></li>
+        <li><a href="https://zenn.dev/bathtimefish" target="_blank" rel="noopener">Zenn</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-nav">
+  <div class="container page-nav-inner">
+    <a class="page-nav-brand" href="./"><img src="assets/bjigcli-logo.png" alt=""><span>BraveJIG CLI</span></a>
+    <nav class="page-nav-links" aria-label="BraveJIG CLI">
+      <a href="#cli-intro">CLIとは</a>
+      <a href="#cli-benefits">CLIの利点</a>
+      <a href="#modules">対応モジュール</a>
+      <a href="#kraken">Kraken統合</a>
+      <a href="#use-cases">ユースケース</a>
+      <a href="#pricing">価格</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="nav-cta">相談する</a>
+    </nav>
+    <a class="lang-switch" href="en.html" lang="en" hreflang="en">English</a>
+  </div>
+</div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1 class="hero-title">BraveJIGを、もっとかしこく、確実に。</h1>
+                    <p class="hero-text">
+                        BraveJIG CLIは、BraveJIGを活用したビジネス自動化を実現するコマンドラインツールです。<br>
+                        11種類すべてのBraveJIGセンサーモジュールに完全対応。デバイス制御、リアルタイム監視、ファームウェア更新(DFU)まで、BraveJIG運用に必要なすべての機能を提供します。さらに、BathTimeFishが開発するKraken IoTプラットフォームとの統合により、BraveJIGで集めたセンサーデータを業務ワークフローへ接続できます。
+                    </p>
+                    <p class="notice">
+                        <strong>BraveJIGはBraveridge社の製品です。別途購入いただく必要があります。</strong>
+                    </p>
+                    <p class="hero-note">
+                        BathTimeFishは <strong>BraveJIG組み込みパートナー</strong> として、BraveJIG導入から運用まで包括的にサポートします。
+                    </p>
+                    <div class="btn-group">
+                        <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener">導入・購入を相談する</a>
+                        <a href="#cli-intro" class="btn btn-secondary">詳しく見る</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <img src="assets/bjigcli-architecture.svg" alt="BraveJIG CLI システム構成図">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLI Intro Section -->
+    <section id="cli-intro" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">CLI(コマンドラインインターフェース)とは?</h2>
+            </div>
+            <div class="cli-intro-content">
+                <p class="section-lead">
+                    CLI(Command Line Interface = コマンドラインインターフェース)とは、キーボードからのテキスト入力でコンピュータを操作する方式です。一般的なマウス操作のGUI(グラフィカルユーザーインターフェース)とは異なり、コマンド(命令文)を入力することで、より高度で柔軟な制御が可能になります。
+                </p>
+                <div class="grid-auto grid-auto-sm">
+                    <div class="card card-hover card-center">
+                        <div class="card-icon">⚙️</div>
+                        <h3 class="card-title">自動化が容易</h3>
+                        <p class="card-text">繰り返し作業をスクリプト化して効率化</p>
+                    </div>
+                    <div class="card card-hover card-center">
+                        <div class="card-icon">📦</div>
+                        <h3 class="card-title">バッチ処理に対応</h3>
+                        <p class="card-text">複数のデバイスを一括制御</p>
+                    </div>
+                    <div class="card card-hover card-center">
+                        <div class="card-icon">🌐</div>
+                        <h3 class="card-title">リモート操作に最適</h3>
+                        <p class="card-text">ネットワーク経由での遠隔制御</p>
+                    </div>
+                    <div class="card card-hover card-center">
+                        <div class="card-icon">🔗</div>
+                        <h3 class="card-title">他システムとの連携</h3>
+                        <p class="card-text">業務システムやワークフローツールとの統合が容易</p>
+                    </div>
+                    <div class="card card-hover card-center">
+                        <div class="card-icon">⏰</div>
+                        <h3 class="card-title">スケジュール実行</h3>
+                        <p class="card-text">定期的な監視や自動実行が可能</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is BraveJIG CLI Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">BraveJIGの全機能を、ビジネス自動化に。</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        BraveJIG CLIは、BraveJIG USB Routerおよび11種類すべてのセンサーモジュールを制御するCLIツールです。
+                        ルーター制御、センサーデータ取得、パラメータ設定、ファームウェア更新(DFU)、リアルタイム監視まで、BraveJIG運用に必要なすべての機能を提供します。さらに、BathTimeFish提供のKraken IoTプラットフォームとの統合により、BraveJIGセンサーデータを前処理・蓄積・通知・外部連携へつなぐワークフローを構築できます。
+                    </p>
+                </div>
+                <div class="about-diagram">
+                    <p class="diagram-caption">データフロー</p>
+                    <div class="flow">
+                        <div class="flow-step">BraveJIG USB Router</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step flow-step-highlight">BraveJIG CLI</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">Kraken Collector</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">Kraken Broker</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">DB / Notification / Apps</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLI Benefits Section -->
+    <section id="cli-benefits" class="section section-highlight">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">BraveJIG CLIで実現する、ビジネス自動化の価値</h2>
+                <p class="section-lead">BraveJIG CLIは、コマンドラインからの柔軟な制御により、ビジネス自動化を強力にサポートします。</p>
+            </div>
+            <div class="grid-auto">
+                <div class="card card-hover">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="20" fill="#0f4c81" opacity="0.1"/>
+                            <path d="M24 14v10l7 4" stroke="#0f4c81" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="24" cy="24" r="10" stroke="#0f4c81" stroke-width="2"/>
+                            <polygon points="32,18 35,15 35,21" fill="#0f4c81"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">1. 業務プロセスの自動化</h3>
+                    <p class="card-text">
+                        定型作業をスクリプト化し、人的ミスを削減。監視・制御・データ収集を自動化することで、業務効率を大幅に向上させます。
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="20" fill="#0f4c81" opacity="0.1"/>
+                            <rect x="14" y="18" width="6" height="12" rx="1" fill="#0f4c81"/>
+                            <rect x="21" y="18" width="6" height="12" rx="1" fill="#0f4c81"/>
+                            <rect x="28" y="18" width="6" height="12" rx="1" fill="#0f4c81"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">2. 複数デバイスの一括管理</h3>
+                    <p class="card-text">
+                        複数のBraveJIGデバイスを一括で制御・監視できるため、大規模な導入環境でも管理コストを抑えられます。
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="20" fill="#0f4c81" opacity="0.1"/>
+                            <rect x="12" y="16" width="8" height="8" rx="1" fill="#0f4c81"/>
+                            <rect x="28" y="16" width="8" height="8" rx="1" fill="#0f4c81"/>
+                            <rect x="20" y="24" width="8" height="8" rx="1" fill="#0f4c81"/>
+                            <line x1="16" y1="24" x2="20" y2="28" stroke="#0f4c81" stroke-width="2"/>
+                            <line x1="32" y1="24" x2="28" y2="28" stroke="#0f4c81" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">3. 他システムとの連携</h3>
+                    <p class="card-text">
+                        Kraken IoTプラットフォームをはじめ、既存の業務システムやワークフローツールとシームレスに連携。データを活用した業務改善を実現します。
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="20" fill="#0f4c81" opacity="0.1"/>
+                            <circle cx="24" cy="24" r="10" stroke="#0f4c81" stroke-width="2"/>
+                            <path d="M24 14v10" stroke="#0f4c81" stroke-width="2"/>
+                            <path d="M24 24l7 4" stroke="#0f4c81" stroke-width="2"/>
+                            <circle cx="32" cy="18" r="4" fill="#00b894"/>
+                            <path d="M30 18l1 1.5 2-3" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">4. 確実な運用</h3>
+                    <p class="card-text">
+                        安定したCLI制御により、24時間365日の無人運用が可能。トラブル時の迅速な対応もコマンドで実行できます。
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="20" fill="#0f4c81" opacity="0.1"/>
+                            <rect x="14" y="28" width="4" height="8" fill="#0f4c81"/>
+                            <rect x="20" y="24" width="4" height="12" fill="#0f4c81"/>
+                            <rect x="26" y="18" width="4" height="18" fill="#0f4c81"/>
+                            <path d="M28 16l4 0 0 4" stroke="#0f4c81" stroke-width="2"/>
+                            <polygon points="32,14 35,16 29,16" fill="#0f4c81"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">5. スケーラブルな拡張</h3>
+                    <p class="card-text">
+                        小規模導入から始めて、ビジネス成長に合わせて段階的に拡張可能。投資を無駄にしません。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Section -->
+    <section id="modules" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">11種類すべてのセンサーモジュールに完全対応。</h2>
+                <p class="section-lead">
+                    BraveJIG CLIは、BraveJIGが提供する11種類すべてのセンサーモジュールに完全対応し、デバイス制御からファームウェア更新まで包括的な機能を提供します。
+                </p>
+            </div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>センサーID</th>
+                            <th>モジュール名</th>
+                            <th>即時アップリンク</th>
+                            <th>パラメータ取得/設定</th>
+                            <th>DFU</th>
+                            <th>制御コマンド</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0x0121</td>
+                            <td>照度センサー</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>0x0122</td>
+                            <td>加速度センサー</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>0x0123</td>
+                            <td>温湿度センサー</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>0x0124</td>
+                            <td>気圧センサー</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>0x0125</td>
+                            <td>距離センサー</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>0x0126</td>
+                            <td>ドライ接点入力</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅ カウントクリア</td>
+                        </tr>
+                        <tr>
+                            <td>0x0127</td>
+                            <td>ウェット接点入力</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅ カウントクリア</td>
+                        </tr>
+                        <tr>
+                            <td>0x0128</td>
+                            <td>接点出力</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅ 出力制御</td>
+                        </tr>
+                        <tr>
+                            <td>0x0129</td>
+                            <td>熱電対</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>0x012A</td>
+                            <td>4-20mA電流</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>0x012B</td>
+                            <td>ADC</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid-auto mt-lg">
+                <div class="card card-alt">
+                    <h3 class="card-title">ルーター制御</h3>
+                    <ul class="check-list is-muted">
+                        <li>バージョン取得、起動/停止、キープアライブ</li>
+                        <li>スキャンモード設定、登録モジュールID取得/削除</li>
+                        <li>ルーターファームウェア更新(DFU)</li>
+                    </ul>
+                </div>
+                <div class="card card-alt">
+                    <h3 class="card-title">モジュール制御</h3>
+                    <ul class="check-list is-muted">
+                        <li>即時アップリンク(センサーデータ即時取得)</li>
+                        <li>パラメータ取得/設定</li>
+                        <li>モジュールファームウェア更新(DFU)</li>
+                        <li>モジュール固有制御(接点クリア、出力制御)</li>
+                    </ul>
+                </div>
+                <div class="card card-alt">
+                    <h3 class="card-title">リアルタイム監視</h3>
+                    <ul class="check-list is-muted">
+                        <li>すべてのセンサーアップリンク通知をNDJSON形式でストリーム出力</li>
+                        <li>バックグラウンド受信対応</li>
+                        <li>jqなどのJSONツールと連携可能</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kraken Integration Section -->
+    <section id="kraken" class="section section-band">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">BraveJIGで集めたデータを、Krakenで活かす。</h2>
+                <p class="section-lead">
+                    BraveJIG CLIは、BathTimeFish提供のKraken IoTプラットフォームとシームレスに統合できます。<br>
+                    BraveJIGセンサーで集めたデータを、BraveJIG CLIを介してKraken Collectorへ接続し、Kraken Brokerで前処理、蓄積、通知、外部連携まで一気通貫で構築できます。
+                </p>
+            </div>
+
+            <div class="kraken-flow">
+                <img src="assets/bjigcli-kraken-flow.svg" alt="BraveJIG × Kraken 統合フロー" class="kraken-flow-img">
+            </div>
+
+            <div class="kraken-benefits">
+                <h3 class="kraken-benefits-title">導入メリット</h3>
+                <div class="kraken-benefits-grid">
+                    <div class="kraken-benefit-item">
+                        <span class="kraken-benefit-icon">✓</span>
+                        <p>センサーデータ収集から業務活用まで、一貫したワークフローで構築できる</p>
+                    </div>
+                    <div class="kraken-benefit-item">
+                        <span class="kraken-benefit-icon">✓</span>
+                        <p>BraveJIG組み込みパートナーであるBathTimeFishが、導入から運用まで一貫して支援</p>
+                    </div>
+                    <div class="kraken-benefit-item">
+                        <span class="kraken-benefit-icon">✓</span>
+                        <p>Krakenのオープンソース基盤により、柔軟なカスタマイズと拡張が可能</p>
+                    </div>
+                    <div class="kraken-benefit-item">
+                        <span class="kraken-benefit-icon">✓</span>
+                        <p>クラウド前提ではなく、オンプレミス・閉域網・現場完結型の構成も選択できる</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kraken-cta">
+                <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener">BraveJIG × Kraken 統合を相談する</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strengths Section -->
+    <section id="strengths" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">BraveJIG CLIが選ばれる理由</h2>
+            </div>
+            <div class="grid-auto">
+                <div class="card card-alt card-accent">
+                    <h3 class="card-title">11種類すべてのセンサーモジュール対応</h3>
+                    <p class="card-text">
+                        BraveJIGが提供するすべてのセンサーモジュールに完全対応。照度、温湿度、加速度、接点など、あらゆる現場ニーズに応えます。
+                    </p>
+                </div>
+                <div class="card card-alt card-accent">
+                    <h3 class="card-title">包括的な機能セット</h3>
+                    <p class="card-text">
+                        デバイス制御、センサーデータ取得、パラメータ設定、ファームウェア更新(DFU)、リアルタイム監視まで、BraveJIG運用に必要なすべての機能を提供します。
+                    </p>
+                </div>
+                <div class="card card-alt card-accent">
+                    <h3 class="card-title">Kraken統合による価値拡大</h3>
+                    <p class="card-text">
+                        BathTimeFish提供のKraken IoTプラットフォームと統合することで、センサーデータ収集から業務ワークフローまで一気通貫で構築できます。
+                    </p>
+                </div>
+                <div class="card card-alt card-accent">
+                    <h3 class="card-title">安定した運用</h3>
+                    <p class="card-text">
+                        確実な動作により、24時間365日の無人運用を実現。ビジネスの信頼性を支えます。
+                    </p>
+                </div>
+                <div class="card card-alt card-accent">
+                    <h3 class="card-title">BathTimeFishによる包括的サポート</h3>
+                    <p class="card-text">
+                        BraveJIG組み込みパートナーであるBathTimeFishが、BraveJIG導入、BraveJIG CLI提供、Kraken統合、運用支援まで一貫してサポートします。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="use-cases" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">こんな現場でBraveJIG CLIは活躍します</h2>
+            </div>
+            <div class="grid-auto grid-auto-lg">
+                <div class="card card-hover">
+                    <div class="card-icon">🏭</div>
+                    <h3 class="card-title">工場設備のリアルタイム監視</h3>
+                    <p class="card-text">
+                        BraveJIGセンサーで設備の温湿度、振動、接点状態をリアルタイム監視し、BraveJIG CLIで異常検知、Krakenで通知・記録まで自動化。
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">🌍</div>
+                    <h3 class="card-title">複数拠点の一括管理</h3>
+                    <p class="card-text">
+                        複数のBraveJIGデバイスを効率的に管理・監視。本社から各拠点の状態を一元的に把握できます。
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">🔧</div>
+                    <h3 class="card-title">定期メンテナンスの自動化</h3>
+                    <p class="card-text">
+                        ファームウェア更新やパラメータ変更を自動化し、メンテナンス作業の負担を軽減。
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">🌙</div>
+                    <h3 class="card-title">24時間監視システム</h3>
+                    <p class="card-text">
+                        無人での24時間365日監視を実現。異常検知時には自動でKrakenを通じて通知を送信。
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">⚡</div>
+                    <h3 class="card-title">接点出力制御による現場機器連動</h3>
+                    <p class="card-text">
+                        BraveJIG接点出力モジュールをBraveJIG CLIで制御し、センサーデータに基づいて現場機器(リレー、警報、制御盤)を自動操作。
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon">🚀</div>
+                    <h3 class="card-title">BraveJIG + Kraken統合によるIoT基盤構築</h3>
+                    <p class="card-text">
+                        BraveJIGで収集したセンサーデータを、BraveJIG CLIを介してKraken Collectorへ接続し、Kraken Brokerで前処理、InfluxDB保存、Slack通知、外部API連携まで含めたワークフローを構築。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deployment Models Section -->
+    <section id="deployment" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">用途と規模に合わせて、柔軟に導入できます</h2>
+            </div>
+            <div class="grid-auto">
+                <div class="card">
+                    <div class="badge">スタンドアロン</div>
+                    <h3 class="card-title">スタンドアロン利用</h3>
+                    <p class="card-text">
+                        BraveJIGデバイス単体の制御・監視に特化。小規模導入や、既存システムとの連携が不要な現場に最適。
+                    </p>
+                </div>
+                <div class="card card-highlight">
+                    <div class="badge">小規模統合</div>
+                    <h3 class="card-title">小規模Kraken統合</h3>
+                    <p class="card-text">
+                        Raspberry Pi / Mini PC 1台でBraveJIG CLI + Kraken Collectorを構築。単拠点でのセンサーデータ収集から業務ワークフローまで、最小構成で開始。
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="badge">大規模統合</div>
+                    <h3 class="card-title">大規模Kraken統合</h3>
+                    <p class="card-text">
+                        複数拠点のBraveJIGデバイスをBraveJIG CLIで収集し、Kraken Brokerで集約・処理。InfluxDB保存、Slack通知、外部システム連携まで含めた本格的なIoT基盤構築。
+                    </p>
+                </div>
+            </div>
+            <p class="section-note">
+                BraveJIG CLIは、単体利用からKraken統合まで、導入規模に応じて柔軟に適用できます。小さく始めて必要に応じて拡張する段階的な導入も可能です。
+            </p>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">有償製品だからこそ、継続的なサポートと品質を提供します</h2>
+            </div>
+            <div class="pricing-content">
+                <div class="pricing-intro">
+                    <p>
+                        BraveJIG CLIは、BathTimeFishが開発・提供する <strong>BraveJIG専用CLIツール</strong> です。<br>
+                        BraveJIG運用の効率化と安定化を実現するために開発されました。
+                    </p>
+                    <p class="notice">
+                        <strong>BraveJIGはBraveridge社の製品です。別途購入いただく必要があります。</strong>
+                    </p>
+                </div>
+                <div class="grid-auto grid-auto-lg pricing-grid">
+                    <div class="card">
+                        <h3 class="card-title pricing-card-title">ライセンスモデル</h3>
+                        <ul class="check-list">
+                            <li><strong>1 BraveJIG USB Routerにつき、1 CLIライセンスが必要です</strong></li>
+                            <li>ライセンス販売のみ(サブスクリプションではありません)</li>
+                        </ul>
+                        <p class="pricing-note-small">
+                            *具体的な価格については、導入相談時にお問い合わせください。
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title pricing-card-title">サポート内容</h3>
+                        <ul class="check-list">
+                            <li>導入支援・技術サポート</li>
+                            <li>バグフィックス・機能追加</li>
+                            <li>ファームウェア更新対応</li>
+                            <li>Kraken統合支援</li>
+                            <li>カスタマイズ開発</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bathtimefish-value">
+                    <h3 class="bathtimefish-value-title">BathTimeFishの提供価値</h3>
+                    <p>BathTimeFishは、BraveJIG組み込みパートナーとして、以下の包括的な支援を提供します。</p>
+                    <div class="value-grid">
+                        <div class="value-item">
+                            <span class="value-icon">✓</span>
+                            <span>BraveJIGデバイス導入支援</span>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">✓</span>
+                            <span>BraveJIG CLI提供・技術サポート</span>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">✓</span>
+                            <span>Kraken統合設計・実装支援</span>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">✓</span>
+                            <span>運用保守・障害対応</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener">導入・購入を相談する</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">よくある質問</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q1. BraveJIG CLIは無料で使えますか?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>いいえ。BraveJIG CLIは、BathTimeFishが提供する <strong>有償CLI製品</strong> です。継続的なサポートと品質を提供するために有償化しています。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q2. BraveJIG本体も購入が必要ですか?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>はい。BraveJIGはBraveridge社の製品です。BraveJIG本体は別途購入いただく必要があります。BathTimeFishはBraveJIG組み込みパートナーとして、導入支援を行っています。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q3. CLIとは何ですか?技術者でなくても使えますか?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>CLI(コマンドラインインターフェース)は、テキスト入力でコンピュータを操作する方式です。スクリプト化や自動化が容易なため、ビジネス自動化に最適です。基本的なコマンド操作の知識があれば使用できます。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q4. どのセンサーモジュールに対応していますか?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>BraveJIGが提供する11種類すべてのセンサーモジュールに完全対応しています。照度、加速度、温湿度、気圧、距離、ドライ接点、ウェット接点、接点出力、熱電対、4-20mA電流、ADCに対応します。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q5. Krakenとの統合は必須ですか?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>いいえ。BraveJIG CLIは、BraveJIGデバイス単体の制御・監視にも利用できます。Kraken統合は、センサーデータを業務ワークフローへ接続したい場合のオプションです。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q6. Krakenとの統合方法を教えてください。</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>BraveJIG CLIのリアルタイム監視機能でセンサーデータをNDJSON形式で出力し、Kraken Collectorへ送信します。Kraken Brokerで前処理、DB保存、通知、外部連携まで含めたワークフローを構築できます。統合設計については、BathTimeFishにご相談ください。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q7. どのプラットフォームで動作しますか?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>macOS、Linux、Windowsで動作します。小型PCや組み込み環境でも安定動作します。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">
+                        <span>Q8. 技術サポートは提供されますか?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>はい。有償製品として、導入支援、技術サポート、バグフィックス、機能追加、ファームウェア更新対応まで継続的にサポートします。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="contact" class="section section-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">BraveJIGを、もっとかしこく、確実に。まずは導入相談から。</h2>
+                <p class="cta-text">
+                    BraveJIG CLIは、BraveJIGを活用したビジネス自動化を実現する有償CLI製品です。<br>
+                    導入相談では、具体的な利用ケースに応じた構成提案、価格見積もり、Kraken統合の可否まで、丁寧にご説明します。
+                </p>
+                <p class="notice notice-inverse">
+                    <strong>BraveJIGはBraveridge社の製品です。別途購入いただく必要があります。</strong>
+                </p>
+                <div class="cta-box">
+                    <h3>導入相談でわかること</h3>
+                    <ul class="check-list">
+                        <li>BraveJIG CLIで実現できるビジネス自動化の具体例</li>
+                        <li>具体的な価格見積もりとライセンスモデル</li>
+                        <li>Kraken統合の可否と進め方</li>
+                        <li>おおまかな導入ステップとサポート内容</li>
+                        <li>BraveJIG本体の購入支援</li>
+                    </ul>
+                </div>
+                <div class="btn-group is-center">
+                    <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary btn-large" target="_blank" rel="noopener">導入・購入を相談する</a>
+                    <a href="#" class="btn btn-secondary btn-large">TOPへもどる</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer-grid">
+      <div class="site-footer-brand">
+        <img src="/bathtimefish.svg" alt="" width="40" height="40">
+        <p class="site-footer-name">株式会社BathTimeFish<span>BathTimeFish, K.K.</span></p>
+        <p class="site-footer-address">兵庫県神戸市長田区西山町3-3-13</p>
+      </div>
+      <div>
+        <h4>製品情報</h4>
+        <ul>
+          <li><a href="/kraken/">Kraken</a></li>
+          <li><a href="/bjigcli/">BraveJIG CLI</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>会社情報</h4>
+        <ul>
+          <li><a href="/company.html">会社概要</a></li>
+          <li><a href="https://zenn.dev/bathtimefish" target="_blank" rel="noopener">Zenn</a></li>
+          <li><a href="https://github.com/bathtimefish" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://forms.gle/X2RKJqLNiJXBfnKW8" target="_blank" rel="noopener">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p>&copy; BathTimeFish, K.K. All rights reserved.</p>
+      <p>BraveJIG is a product of Braveridge Corporation. BraveJIG CLI is a paid product developed by BathTimeFish.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/site.js"></script>
+</body>
+</html>

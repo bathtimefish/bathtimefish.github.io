@@ -2,31 +2,126 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>株式会社BathTimeFish</title>
-<meta name="description" content="株式会社BathTimeFish（BathTimeFish, K.K.）— IoT・現場業務向けソフトウェアの開発。">
-<link rel="shortcut icon" type="image/svg+xml" href="bathtimefish.svg">
-<link rel="alternate icon" type="image/png" href="bathtimefish.png">
-<link rel="stylesheet" href="css/default.css">
+<meta name="description" content="株式会社BathTimeFish（BathTimeFish, K.K.）— IoT・現場業務向けソフトウェアの開発。OSS IoTデータルーター「Kraken」、BraveJIG CLI を提供しています。">
+<link rel="canonical" href="https://www.bathtimefish.com/">
+<link rel="icon" type="image/svg+xml" href="/bathtimefish.svg">
+<link rel="alternate icon" type="image/png" href="/bathtimefish.png">
+<link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
-<main role="main">
-<div id="logo"><a href="company.html"><img src="bathtimefish.svg" alt="BathTimeFish"></a></div>
-<p id="company-name">株式会社BathTimeFish<span>BathTimeFish, K.K.</span></p>
-<nav>
-<a href="company.html">会社概要</a>
-<a href="https://zenn.dev/bathtimefish">Zenn</a>
-</nav>
+
+<header class="site-header">
+  <div class="container site-header-inner">
+    <a class="site-brand" href="/">
+      <img src="/bathtimefish.svg" alt="" width="32" height="32">
+      <span class="site-brand-name">株式会社BathTimeFish</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="サイトナビゲーション">
+      <ul class="site-nav-list">
+        <li>
+          <details class="nav-dropdown">
+            <summary>製品情報</summary>
+            <ul class="nav-dropdown-menu">
+              <li><a href="/kraken/">Kraken<small>OSS IoTデータルーター</small></a></li>
+              <li><a href="/bjigcli/">BraveJIG CLI<small>BraveJIG向けCLIツール</small></a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/company.html">会社概要</a></li>
+        <li><a href="https://zenn.dev/bathtimefish" target="_blank" rel="noopener">Zenn</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="home-hero">
+    <div class="container">
+      <img src="/bathtimefish.svg" alt="BathTimeFish">
+      <h1>株式会社BathTimeFish<span class="home-name-en">BathTimeFish, K.K.</span></h1>
+      <p class="home-lead">IoT・現場業務向けソフトウェアの開発と、ITシステムの企画・設計・開発、導入コンサルティングを行っています。</p>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="products">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">製品情報</h2>
+      </div>
+      <div class="grid-2">
+        <article class="card card-hover product-card">
+          <div class="product-card-head">
+            <img src="/kraken/assets/kraken-logo-300.png" alt="">
+            <h3>Kraken</h3>
+            <span class="badge badge-soft">OSS</span>
+          </div>
+          <p class="product-card-tagline">IoTを、もっと小さく、自由に。</p>
+          <p class="product-card-text">クラウドが重すぎる現場に、ちょうどいい選択肢。Kraken Collector と Kraken Broker を組み合わせて、IoTデータの収集・加工・保存・通知までを柔軟に構築できるオープンソースのIoTデータルーターです。</p>
+          <a class="btn btn-primary" href="/kraken/">Krakenの詳細を見る</a>
+        </article>
+        <article class="card card-hover product-card">
+          <div class="product-card-head">
+            <img src="/bjigcli/assets/bjigcli-logo.png" alt="">
+            <h3>BraveJIG CLI</h3>
+          </div>
+          <p class="product-card-tagline">BraveJIGを、もっとかしこく、確実に。</p>
+          <p class="product-card-text">BraveJIGを活用したビジネス自動化を実現するコマンドラインツールです。11種類すべてのBraveJIGセンサーモジュールに対応し、Krakenとの統合でセンサーデータを業務ワークフローへ接続できます。</p>
+          <a class="btn btn-primary" href="/bjigcli/">BraveJIG CLIの詳細を見る</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section home-company" id="company">
+    <div class="container">
+      <h2 class="section-title">会社情報</h2>
+      <p>兵庫県神戸市を拠点に、ITシステム開発・コンサルティングを行っています。</p>
+      <div class="btn-group is-center">
+        <a class="btn btn-secondary" href="/company.html">会社概要を見る</a>
+        <a class="btn btn-secondary" href="https://forms.gle/X2RKJqLNiJXBfnKW8" target="_blank" rel="noopener">お問い合わせ</a>
+      </div>
+    </div>
+  </section>
+
 </main>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-46831912-1', 'bathtimefish.com');
-  ga('send', 'pageview');
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer-grid">
+      <div class="site-footer-brand">
+        <img src="/bathtimefish.svg" alt="" width="40" height="40">
+        <p class="site-footer-name">株式会社BathTimeFish<span>BathTimeFish, K.K.</span></p>
+        <p class="site-footer-address">兵庫県神戸市長田区西山町3-3-13</p>
+      </div>
+      <div>
+        <h4>製品情報</h4>
+        <ul>
+          <li><a href="/kraken/">Kraken</a></li>
+          <li><a href="/bjigcli/">BraveJIG CLI</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>会社情報</h4>
+        <ul>
+          <li><a href="/company.html">会社概要</a></li>
+          <li><a href="https://zenn.dev/bathtimefish" target="_blank" rel="noopener">Zenn</a></li>
+          <li><a href="https://github.com/bathtimefish" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://forms.gle/X2RKJqLNiJXBfnKW8" target="_blank" rel="noopener">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p>&copy; BathTimeFish, K.K. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
 
-</script>
+<script src="/js/site.js"></script>
 </body>
 </html>

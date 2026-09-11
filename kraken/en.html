@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kraken - IoT, Smaller and Freer.</title>
+    <meta name="description" content="The right choice for environments where cloud IoT feels too heavy. Open-source IoT data router 'Kraken'.">
+    <link rel="canonical" href="https://www.bathtimefish.com/kraken/en.html">
+    <link rel="alternate" hreflang="ja" href="https://www.bathtimefish.com/kraken/">
+    <link rel="alternate" hreflang="en" href="https://www.bathtimefish.com/kraken/en.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.bathtimefish.com/kraken/">
+    <link rel="icon" type="image/svg+xml" href="/bathtimefish.svg">
+    <link rel="alternate icon" type="image/png" href="/bathtimefish.png">
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="kraken.css">
+</head>
+<body>
+    <header class="site-header">
+  <div class="container site-header-inner">
+    <a class="site-brand" href="/">
+      <img src="/bathtimefish.svg" alt="" width="32" height="32">
+      <span class="site-brand-name">BathTimeFish, K.K.</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Site navigation">
+      <ul class="site-nav-list">
+        <li>
+          <details class="nav-dropdown">
+            <summary>Products</summary>
+            <ul class="nav-dropdown-menu">
+              <li><a href="/kraken/">Kraken<small>Open-source IoT data router</small></a></li>
+              <li><a href="/bjigcli/">BraveJIG CLI<small>CLI tool for BraveJIG</small></a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/company.html">Company</a></li>
+        <li><a href="https://zenn.dev/bathtimefish" target="_blank" rel="noopener">Zenn</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-nav">
+  <div class="container page-nav-inner">
+    <a class="page-nav-brand" href="./"><img src="assets/kraken-logo-300.png" alt=""><span>Kraken</span><span class="badge badge-soft">OSS</span></a>
+    <nav class="page-nav-links" aria-label="Kraken">
+      <a href="#about">Features</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#bravejig">BraveJIG</a>
+      <a href="#usecases">Use Cases</a>
+      <a href="#support">Support</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="lang-switch" href="index.html" lang="ja" hreflang="ja">日本語</a>
+  </div>
+</div>
+
+    <main>
+        <!-- 1. Hero -->
+        <section class="hero" id="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1 class="hero-title">IoT, Smaller and Freer.</h1>
+                    <p class="hero-sub">The right choice for environments where cloud IoT feels too heavy.</p>
+                    <p class="hero-text">Kraken is an open-source IoT data router that combines <strong>Kraken Collector</strong> and <strong>Kraken Broker</strong> to flexibly build workflows for IoT data collection, processing, storage, and notification.<br><br>From small environments like Raspberry Pi to scalable container-based deployments, it grows with your needs and budget. While large-scale cloud IoT platforms have their place, Kraken is the practical alternative for teams who want to start smaller and more freely.</p>
+                    <div class="btn-group">
+                        <a href="https://github.com/bathtimefish/kraken_collector" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                        <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Consult regarding Implementation</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <img class="is-photo" src="assets/kraken_archtecture.png" alt="Kraken Architecture">
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Problem -->
+        <section class="section section-alt" id="problem">
+            <div class="container">
+                <h2 class="section-title">For environments where cloud IoT is a bit too much.</h2>
+                <p class="section-lead">You want to start IoT, but the architecture becomes too heavy when including cloud, apps, and operations platforms.<br>This dilemma is common for companies pushing for field-driven IoT or teams looking to start with a small PoC.</p>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>Cost & Lock-in</h3>
+                        <p>Desire to minimize subscription costs. Reluctance to rely solely on cloud-first architectures.</p>
+                    </div>
+                    <div class="card">
+                        <h3>On-Premises Focus</h3>
+                        <p>Need to manage all resources locally within the operational field or closed network.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Minimal Requirements</h3>
+                        <p>Want to start small without over-engineering. Preferring the ability to quickly build necessary functions over having excessive features.</p>
+                    </div>
+                </div>
+                <p class="section-note">Kraken was born from this background. While feature-rich cloud IoT platforms are necessary for some projects, many environments prioritize operational cost, data ownership, and compact configurations. Kraken is developed to let you "start IoT small" in exactly these scenarios.</p>
+            </div>
+        </section>
+
+        <!-- 3. About -->
+        <section class="section" id="about">
+            <div class="container">
+                <h2 class="section-title">Simplifying the IoT data flow from collection to processing.</h2>
+                <p class="section-lead">Kraken is a two-layer IoT backend. The <strong>Collector</strong> receives data from diverse protocols and sources, and the <strong>Broker</strong> connects that data to processing, storage, notifications, and external systems.<br><br>By combining Collector and Broker, data sent from edge IoT sensors can be received in either cloud or on-premises environments and deployed into workflows tailored to your business needs.</p>
+                
+                <div class="flow">
+                    <div class="flow-step">Devices / Sensors</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step flow-step-highlight">Kraken Collector</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">gRPC</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step flow-step-highlight">Kraken Broker</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">DB / Notification / Apps</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Architecture Details -->
+        <section class="section section-alt" id="architecture">
+            <div class="container">
+                <div class="grid-2">
+                    <div class="card card-top">
+                        <h3>Kraken Collector</h3>
+                        <p><strong>A lightweight data collection layer handling diverse inputs.</strong><br><br>An application that collects data from edge IoT sensors and peripheral systems. Implemented in Rust, it runs as a lightweight and scalable gRPC client for Kraken Broker. New collectors can be added as needed to extend functionality.</p>
+                        <div class="tag-list">
+                            <span class="tag">HTTP Webhooks</span>
+                            <span class="tag">MQTT</span>
+                            <span class="tag">WebSocket</span>
+                            <span class="tag">iBeacon (BLE)</span>
+                            <span class="tag">Serial Communication</span>
+                            <span class="tag">TextFile Monitoring</span>
+                            <span class="tag">Camera</span>
+                            <span class="tag">Email</span>
+                            <span class="tag">BraveJIG</span>
+                            <span class="tag">TCP Server</span>
+                        </div>
+                    </div>
+                    <div class="card card-top" style="border-top-color: #2e8b57;">
+                        <h3>Kraken Broker</h3>
+                        <p><strong>A flexible broker layer connecting received data to business logic.</strong><br><br>A data broker that receives data from the Collector and executes custom processing such as transformation, storage, and notifications. Necessary operations can be written as brokers and executed asynchronously via events. Currently available in Python.</p>
+                        <div class="tag-list">
+                            <span class="tag">InfluxDB</span>
+                            <span class="tag">Redis</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">WebSocket</span>
+                            <span class="tag">Slack</span>
+                            <span class="tag">Custom Broker</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. BraveJIG Integration -->
+        <section class="section" id="bravejig">
+            <div class="container">
+                <div class="bravejig-section">
+                    <h2 class="section-title">Field data from BraveJIG, straight into your workflow.</h2>
+                    <p>Leverage data collected by BraveJIG through Kraken's workflows.<br><br>BathTimeFish is the <strong>developer of Kraken and an integration support partner for BraveJIG. We can support you end-to-end, from acquiring field data to building the utilization platform.</strong><br><br>Furthermore, via the <strong>BraveJIG CLI (paid component)</strong> provided by BathTimeFish, you can connect BraveJIG sensor data to <strong>Kraken Collector</strong>, and seamlessly construct pipelines for preprocessing, accumulation, notification, and external integration through <strong>Kraken Broker</strong>.</p>
+                    
+                    <div class="flow flow-on-light">
+                        <div class="flow-step">Collect with BraveJIG</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">Connect via BraveJIG CLI</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">Leverage with Kraken</div>
+                    </div>
+                    
+                    <p>It doesn't end with just connecting a sensor. The acquired data must be structured, stored, notified, and passed to external systems for real business use. BathTimeFish provides comprehensive support from BraveJIG implementation to Kraken integration and operational design.<br>By designing not just the data collection but the subsequent steps, we ensure your IoT adoption goes beyond a PoC into actual operations.</p>
+                    
+                    <div class="bravejig-note">
+                        * BraveJIG is a modular IoT device series designed for the field, capable of starting from a local LAN without internet access. BathTimeFish participates as an integration support partner.
+                    </div>
+                    
+                    <div style="margin-top: 30px; text-align: center;">
+                        <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Consult about BraveJIG × Kraken</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Strengths -->
+        <section class="section section-alt" id="strengths">
+            <div class="container">
+                <h2 class="section-title">Why Choose Kraken</h2>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>Start Small</h3>
+                        <p>Runs on low-resource environments like Raspberry Pi, allowing you to start IoT small on-premises.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Not Cloud-Dependent</h3>
+                        <p>Does not assume cloud dependency, making it suitable for local fields, closed networks, and dedicated environments.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Build Quickly</h3>
+                        <p>Focuses on letting you quickly build the minimum necessary features for an IoT backend, rather than overwhelming you with unused capabilities.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Broad Input Paths</h3>
+                        <p>Supports diverse field inputs including Webhook, MQTT, BLE, serial, files, camera, email, and TCP.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Freely Extensible</h3>
+                        <p>You can add and customize Collectors and Brokers to fit your specific business logic and field requirements.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Free OSS</h3>
+                        <p>Available for free under an open license, allowing you to develop custom implementations and proprietary operations as needed.</p>
+                    </div>
+                    <div class="card card-span card-outline">
+                        <h3 style="color: var(--primary);">Expand Value with BraveJIG Integration</h3>
+                        <p>Through the BraveJIG CLI provided by BathTimeFish, sensor data collected by BraveJIG can be ingested into Kraken, evolving into an IoT platform tailored to customer needs. It maximizes the strengths of BraveJIG, a modular IoT device that can start from a local LAN.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Use Cases -->
+        <section class="section" id="usecases">
+            <div class="container">
+                <h2 class="section-title">Where Kraken Shines</h2>
+                
+                <div class="grid-2" style="margin-bottom: 40px;">
+                    <div class="card" style="background: #f0fdf4; border-color: #bbf7d0;">
+                        <h3 style="color: #166534;">Suitable Cases</h3>
+                        <ul class="bullet-list" style="color: #15803d;">
+                            <li>Want to start from a small scale</li>
+                            <li>Want to operate on-premises or in closed networks</li>
+                            <li>Need to flexibly configure data collection, preprocessing, and storage</li>
+                            <li>Feel that cloud IoT platforms are too grandiose</li>
+                            <li>Want to quickly launch an IoT platform combined with field devices like BraveJIG</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="background: #fef2f2; border-color: #fecaca;">
+                        <h3 style="color: #991b1b;">Cases That Might Not Be a Fit Immediately</h3>
+                        <ul class="bullet-list" style="color: #b91c1c;">
+                            <li>Want to rely on a large-scale managed cloud platform from day one</li>
+                            <li>Want to use a completely ready-made SaaS provided by a vendor</li>
+                            <li>Prefer introducing a finished business app rather than a custom design</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>Factory Equipment Monitoring</h3>
+                        <p>Collect sensor data, evaluate thresholds in the Broker, and connect to InfluxDB storage and Slack notifications.</p>
+                    </div>
+                    <div class="card">
+                        <h3>IoT in Closed Environments</h3>
+                        <p>Build Collector/Broker on-premises in sites where cloud adoption is difficult, completing data workflows locally.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Rapid PoC & Trials</h3>
+                        <p>Create a minimal setup on a Raspberry Pi or Mini PC to quickly start collecting and testing data.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Legacy Equipment Connection</h3>
+                        <p>Gradually ingest data from existing equipment using serial communication, file monitoring, or TCP servers.</p>
+                    </div>
+                    <div class="card">
+                        <h3>BLE Beacons & Email Triggers</h3>
+                        <p>Handle specialized entry points like iBeacon or SMTP to easily build data integrations matching field needs.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Platform via BraveJIG Sensors</h3>
+                        <p>Connect data collected by BraveJIG to Kraken via the BraveJIG CLI to build a full workflow including preprocessing, DB storage, and alerts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Models -->
+        <section class="section section-alt" id="models">
+            <div class="container">
+                <h2 class="section-title">Choose your deployment scale based on needs and budget</h2>
+                <p class="section-lead">Kraken is designed not as a massive initial investment, but as a foundation that can start small and grow as needed.</p>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>Starter</h3>
+                        <p><strong>Minimal Setup</strong><br>Start with a single Raspberry Pi / Mini PC.<br><br>Best for:<br>PoC, validation, and single-site deployments.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Standard</h3>
+                        <p><strong>Standard Setup</strong><br>Stable operation on-premises or VMs.<br><br>Best for:<br>Continuous use involving multiple inputs, DB storage, and notification integration.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Scalable</h3>
+                        <p><strong>Extended Setup</strong><br>Scale Collector/Broker using containers.<br><br>Best for:<br>Multiple sites, diverse data flows, and operations eyeing future growth.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Support -->
+        <section class="section" id="support">
+            <div class="container">
+                <h2 class="section-title">Because it's OSS, rely on pros only where you need to</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>Free to use Open Source</h3>
+                        <p>Kraken is available for free as open source. Within the scope of the license, you can freely deploy and customize it in your own environment.</p>
+                    </div>
+                    <div class="card card-outline">
+                        <h3 style="color: var(--primary);">Paid Support & CLI by BathTimeFish</h3>
+                        <p>In actual implementations, site-specific technical decisions are crucial. As the developer of Kraken, BathTimeFish offers implementation consulting, custom development, and maintenance support.<br><br>Furthermore, if you wish to fully integrate with BraveJIG, introducing the <strong>BraveJIG CLI (paid)</strong> provided by BathTimeFish allows you to seamlessly connect data into your workflow.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px;">
+                    <h3 style="text-align: center; margin-bottom: 20px;">Support Offerings Example</h3>
+                    <div class="tag-list is-center">
+                        <span class="tag">Implementation Consulting</span>
+                        <span class="tag">PoC Launch Support</span>
+                        <span class="tag">Custom Collector Development</span>
+                        <span class="tag">Custom Broker Implementation</span>
+                        <span class="tag">BraveJIG CLI & Integration</span>
+                        <span class="tag">DB/Alert/External Design</span>
+                        <span class="tag">On-Premises Configuration</span>
+                        <span class="tag">Maintenance & Troubleshooting</span>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Consult about Kraken</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. FAQ -->
+        <section class="section section-alt" id="faq">
+            <div class="container">
+                <h2 class="section-title">FAQ</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q1. Is Kraken free to use?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>Yes. Kraken is published as OSS and can be used for free.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q2. What types of inputs are supported?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>It supports HTTP Webhooks, MQTT, WebSocket, iBeacon, serial communication, text file monitoring, Camera, Email, BraveJIG, and TCP Server.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q3. Does it run on a Raspberry Pi?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>Yes. Kraken is designed to allow starting IoT small on low-resource computers like Raspberry Pi.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q4. Can it be used in on-premises environments?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>Yes. Kraken is structured to be utilized in both cloud and on-premises environments.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q5. Does it support data storage and notifications?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>Yes. The Broker can handle data processing, storage, and notifications. Integrations with InfluxDB, Redis, MongoDB, WebSocket, and Slack are possible.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q6. Can it be customized for our company?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>Yes. By adding custom Collectors or Brokers, extensions tailored to your business requirements are possible.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q7. Can it integrate with BraveJIG?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>Yes. Kraken Collector supports BraveJIG integration, and you can ingest sensor data into Kraken via the BraveJIG CLI (paid) provided by BathTimeFish. This allows you to build a complete workflow including preprocessing, DB storage, alerts, and external integration.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q8. Can we consult the developers?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>Yes. BathTimeFish provides implementation consulting, custom development, and operational support, in addition to providing the BraveJIG CLI and BraveJIG integration support.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. Final CTA -->
+        <section class="section section-cta" id="contact">
+            <div class="container">
+                <h2 class="section-title">Try it first as OSS.<br>Consult the developers if needed.</h2>
+                <p class="section-lead">Kraken is a highly flexible open-source platform created for sites wanting to start IoT small. You can try it immediately from GitHub. If you need implementation or scaling for real projects, BathTimeFish is here to support you.</p>
+                
+                <div class="cta-box">
+                    <h3>What you'll learn from consulting</h3>
+                    <ul class="check-list">
+                        <li>Clarification of possible configurations with Kraken</li>
+                        <li>Feasibility and steps for BraveJIG integration</li>
+                        <li>Minimal setup for a PoC</li>
+                        <li>Scope of necessary customizations</li>
+                        <li>Rough implementation roadmap</li>
+                    </ul>
+                </div>
+
+                <div class="btn-group is-center">
+                    <a href="https://github.com/bathtimefish/kraken_collector" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View Kraken on GitHub</a>
+                    <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Consult regarding Implementation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+  <div class="container">
+    <div class="site-footer-grid">
+      <div class="site-footer-brand">
+        <img src="/bathtimefish.svg" alt="" width="40" height="40">
+        <p class="site-footer-name">BathTimeFish, K.K.<span>株式会社BathTimeFish</span></p>
+        <p class="site-footer-address">3-3-13 Nishiyama-cho, Nagata-ku, Kobe, Hyogo, Japan</p>
+      </div>
+      <div>
+        <h4>Products</h4>
+        <ul>
+          <li><a href="/kraken/">Kraken</a></li>
+          <li><a href="/bjigcli/">BraveJIG CLI</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/company.html">Company</a></li>
+          <li><a href="https://zenn.dev/bathtimefish" target="_blank" rel="noopener">Zenn</a></li>
+          <li><a href="https://github.com/bathtimefish" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://forms.gle/X2RKJqLNiJXBfnKW8" target="_blank" rel="noopener">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p>&copy; BathTimeFish, K.K. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/site.js"></script>
+</body>
+</html>
