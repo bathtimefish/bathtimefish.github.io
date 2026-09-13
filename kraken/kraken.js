@@ -14,13 +14,14 @@
     bravejig:  { label: 'BraveJIG',      provider: 'bjig',      payload: '{"module":"0x0123", "temp":25.6, "hum":52.4}' },
     tcp:       { label: 'TCP Server',    provider: 'tcp',       payload: '00 01 02 03 FF  (5 bytes, raw)' }
   };
+  var EN = document.documentElement.lang === 'en';
   var OUTPUTS = {
-    slack:     { label: 'Slack',         action: 'Slack チャンネルへ通知' },
-    influxdb:  { label: 'InfluxDB',      action: 'InfluxDB に時系列データとして保存' },
-    redis:     { label: 'Redis',         action: 'Redis に最新値をキャッシュ' },
-    mongodb:   { label: 'MongoDB',       action: 'MongoDB にドキュメントとして保存' },
-    websocket: { label: 'WebSocket',     action: 'WebSocket でダッシュボードへ配信' },
-    custom:    { label: 'Custom Broker', action: '自作 Broker で業務ロジックを実行' }
+    slack:     { label: 'Slack',         action: EN ? 'Notify a Slack channel' : 'Slack チャンネルへ通知' },
+    influxdb:  { label: 'InfluxDB',      action: EN ? 'Store as time series in InfluxDB' : 'InfluxDB に時系列データとして保存' },
+    redis:     { label: 'Redis',         action: EN ? 'Cache the latest values in Redis' : 'Redis に最新値をキャッシュ' },
+    mongodb:   { label: 'MongoDB',       action: EN ? 'Store as documents in MongoDB' : 'MongoDB にドキュメントとして保存' },
+    websocket: { label: 'WebSocket',     action: EN ? 'Push to dashboards over WebSocket' : 'WebSocket でダッシュボードへ配信' },
+    custom:    { label: 'Custom Broker', action: EN ? 'Run your business logic in a custom Broker' : '自作 Broker で業務ロジックを実行' }
   };
 
   var builder = document.getElementById('builder');
