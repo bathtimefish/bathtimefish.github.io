@@ -352,6 +352,13 @@ strong { font-weight: 700; }
 .product-card { display: flex; flex-direction: column; padding: 32px; }
 .product-card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 .product-card-head img { height: 40px; width: auto; }
+.product-card-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 9px; background: var(--primary); color: #fff; }
+.product-card-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; }
+.product-card-icon svg circle { fill: currentColor; stroke: none; }
+.product-grid .product-card { padding: 26px; }
+.product-grid .product-card-head h3 { font-size: 1.15rem; }
+.product-grid .product-card-tagline { font-size: 0.98rem; }
+.product-grid .product-card .btn { align-self: stretch; padding: 10px 14px; font-size: 0.9rem; }
 .product-card-head h3, .product-card-head .product-card-name { font-size: 1.35rem; color: var(--text-main); margin: 0; }
 .product-card-tagline { font-size: 1.05rem; font-weight: 600; color: var(--primary); margin-bottom: 10px; }
 .product-card-text { flex: 1; margin-bottom: 22px; }
