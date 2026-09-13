@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BraveJIG MCP Server - IoTに”ちょうどいい”AIを。</title>
+    <meta name="description" content="BraveJIG MCP Serverは、AIエージェントがBraveJIGのセンサーデータを読み取り、ルーターとセンサーモジュールの設定を読み書きするためのMCPサーバーです。Claude Code、Codex、OpenClaw、LM Studioに対応。">
+    <link rel="canonical" href="https://www.bathtimefish.com/bjigmcp/">
+    <link rel="alternate" hreflang="ja" href="https://www.bathtimefish.com/bjigmcp/">
+    <link rel="alternate" hreflang="x-default" href="https://www.bathtimefish.com/bjigmcp/">
+    <link rel="icon" type="image/svg+xml" href="/bathtimefish.svg">
+    <link rel="alternate icon" type="image/png" href="/bathtimefish.png">
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="bjigmcp.css">
+</head>
+<body>
+    <header class="site-header">
+  <div class="container site-header-inner">
+    <a class="site-brand" href="/">
+      <img src="/bathtimefish.svg" alt="" width="32" height="32">
+      <span class="site-brand-name">株式会社BathTimeFish</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="サイトナビゲーション">
+      <ul class="site-nav-list">
+        <li>
+          <details class="nav-dropdown">
+            <summary>製品情報</summary>
+            <ul class="nav-dropdown-menu">
+              <li><a href="/kraken/">Kraken<small>OSS IoTデータルーター</small></a></li>
+              <li><a href="/bjigcli/">BraveJIG CLI<small>BraveJIG向けCLIツール</small></a></li>
+              <li><a href="/bjigmcp/">BraveJIG MCP Server<small>AIエージェント向けMCPサーバー</small></a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/company.html">会社概要</a></li>
+        <li><a href="https://zenn.dev/bathtimefish" target="_blank" rel="noopener">Zenn</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-nav">
+  <div class="container page-nav-inner">
+    <a class="page-nav-brand" href="./"><span class="mc-brand-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H9l-4 4v-4H4z"/><circle cx="9" cy="10" r="1.2"/><circle cx="12" cy="10" r="1.2"/><circle cx="15" cy="10" r="1.2"/></svg></span><span>BraveJIG MCP Server</span></a>
+    <nav class="page-nav-links" aria-label="BraveJIG MCP Server">
+      <a href="#capabilities">できること</a>
+      <a href="#connect">使い方</a>
+      <a href="#tools">ツール</a>
+      <a href="#design">設計</a>
+      <a href="#family">製品の関係</a>
+      <a href="#use-cases">ユースケース</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="nav-cta">相談する</a>
+    </nav>
+  </div>
+</div>
+
+    <main>
+        <!-- 1. Hero -->
+        <section class="hero mc-hero" id="hero">
+            <div class="container hero-grid mc-hero-grid">
+                <div class="hero-content">
+                    <p class="mc-eyebrow"><span class="badge">有償 MCP Server</span><span>for BraveJIG</span></p>
+                    <h1 class="hero-title">IoTに”ちょうどいい”<br>AIを。</h1>
+                    <p class="hero-sub">BraveJIGのセンサーを、AIエージェントから読み、設定し、更新する。</p>
+                    <p class="hero-text">BraveJIG MCP Serverは、AIエージェントがBraveJIGのセンサーデータを読み取り、ルーターとセンサーモジュールの設定を読み書きするためのMCP（Model Context Protocol）サーバーです。Claude CodeやCodexなどのエージェントから、現場の温湿度・照度・接点の状態をそのまま扱え、しきい値の変更やファームウェア更新までAIに依頼することができます。</p>
+                    <p class="notice"><strong>BraveJIGはBraveridge社の製品です。BathTimeFishはBraveJIG組み込みパートナーとして本体の販売も行っており、販売から導入、システム構築までを一貫して提供できます。</strong></p>
+                    <div class="btn-group">
+                        <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener">導入・購入を相談する</a>
+                        <a href="#capabilities" class="btn btn-secondary">詳しく見る</a>
+                    </div>
+                    <ul class="mc-trust" aria-label="BraveJIG MCP Serverの基本情報">
+                        <li><span class="mc-trust-k">Protocol</span><span class="mc-trust-v">MCP</span></li>
+                        <li><span class="mc-trust-k">Transport</span><span class="mc-trust-v">stdio / Streamable HTTP</span></li>
+                        <li><span class="mc-trust-k">Clients</span><span class="mc-trust-v">Claude Code · Codex · OpenClaw · LM Studio</span></li>
+                        <li><span class="mc-trust-k">Requires</span><span class="mc-trust-v">BraveJIG CLI 0.8.0+</span></li>
+                    </ul>
+                </div>
+                <div class="hero-visual mc-hero-visual">
+                    <div class="mc-chat" aria-label="AIエージェントがBraveJIGのセンサーを読むデモ">
+                        <div class="mc-chat-bar"><span class="mc-chat-dot"></span><em>agent — bravejig</em></div>
+                        <div class="mc-chat-body" id="chat"></div>
+                    </div>
+                    <p class="mc-chat-caption">エージェントがMCPツールを呼び、BraveJIGの実データをもとに答えます。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. できること -->
+        <section class="section section-alt" id="capabilities">
+            <div class="container">
+                <h2 class="section-title">読む、設定する、更新する。全部AIで。</h2>
+                <p class="section-lead">BraveJIGの運用に必要な操作を、エージェントが呼び出せるツールとして提供します。<br>エージェントは「事務所の照度センサー」のような呼び名でモジュールを扱えます。</p>
+                <div class="mc-pillars">
+                    <div class="mc-pillar">
+                        <span class="mc-pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/></svg></span>
+                        <h3>読む</h3>
+                        <p>センサーを今すぐ読む。バックグラウンドで見張って、あとからまとめて受け取る。ルーターの状態をひと目で確認する。</p>
+                        <ul class="mc-tool-tags"><li>sensor_read</li><li>monitor_start / fetch / stop</li><li>router_status</li><li>get_environment</li></ul>
+                    </div>
+                    <div class="mc-pillar">
+                        <span class="mc-pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></span>
+                        <h3>設定する</h3>
+                        <p>送信間隔やしきい値などのパラメータを取得・変更する。変更後は読み戻して、確かに反映されたことを確認する。接点出力の駆動やカウントのクリアも。</p>
+                        <ul class="mc-tool-tags"><li>module_get_parameters</li><li>module_set_parameters</li><li>module_control</li><li>router_set_scan_mode</li></ul>
+                    </div>
+                    <div class="mc-pillar">
+                        <span class="mc-pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 20h16"/></svg></span>
+                        <h3>更新する</h3>
+                        <p>モジュールとルーターのファームウェア更新をジョブとして実行し、進捗と残り時間を取得する。</p>
+                        <ul class="mc-tool-tags"><li>module_dfu</li><li>router_dfu</li><li>dfu_status</li></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 使い方 -->
+        <section class="section" id="connect">
+            <div class="container">
+                <h2 class="section-title">3ステップで、エージェントにつながる。</h2>
+                <p class="section-lead">BraveJIG CLIを入れ、ルーターをプロファイルとして書き、エージェントに登録する。<br>エージェント側はプロセスを起動するstdioと、ネットワーク越しに接続するStreamable HTTPのどちらでも接続できます。</p>
+
+                <div class="mc-steps">
+                    <div class="mc-step">
+                        <div class="mc-step-head"><span class="mc-step-num">1</span><h3>BraveJIG CLIを用意する</h3></div>
+                        <p>MCP Serverは <strong>bjig</strong> コマンドをサブプロセスとして呼び出します。実機検証済みのCLIをそのまま使うため、動作はCLIと同じです。</p>
+                        <div class="mc-code"><pre><code><span class="c"># bjig の場所は環境変数で指定（未設定なら PATH を探索）</span>
+BJIG_BIN=/usr/local/bin/bjig</code></pre></div>
+                    </div>
+                    <div class="mc-step">
+                        <div class="mc-step-head"><span class="mc-step-num">2</span><h3>ルーターをプロファイルとして書く</h3></div>
+                        <p>エージェントは <code>router: "lab-usb"</code> のような名前でルーターを指定します。シリアルポートのパスを知っている必要はありません。</p>
+                        <div class="mc-code"><pre><code><span class="c"># bjig-mcp.toml</span>
+[[router]]
+name = "lab-usb"
+type = "usb"
+port = "/dev/tty.usbmodem1101"</code></pre></div>
+                    </div>
+                    <div class="mc-step">
+                        <div class="mc-step-head"><span class="mc-step-num">3</span><h3>エージェントに登録する</h3></div>
+                        <p>Claude Code、Codex、OpenClaw、LM Studioは同じ形の設定でMCP Serverを起動します。</p>
+                        <div class="mc-code"><pre><code><span class="c">// .mcp.json</span>
+{
+  "mcpServers": {
+    "bravejig": {
+      "command": "/path/to/bjig-mcp",
+      "env": {
+        "MCP_TRANSPORT": "stdio",
+        "BJIG_BIN": "/usr/local/bin/bjig",
+        "BJIG_MCP_CONFIG": "/path/to/bjig-mcp.toml"
+      }
+    }
+  }
+}</code></pre></div>
+                    </div>
+                </div>
+
+                <div class="mc-transports">
+                    <div class="mc-transport">
+                        <span class="badge badge-soft">stdio</span>
+                        <h3>エージェントがプロセスを起動する</h3>
+                        <p>Claude Code / Codex / OpenClaw / LM Studio の標準的なつなぎ方です。ルーターがつながったPCでそのまま使えます。</p>
+                    </div>
+                    <div class="mc-transport">
+                        <span class="badge badge-soft">Streamable HTTP</span>
+                        <h3>ネットワーク越しに接続する</h3>
+                        <p>ルーターをつないだ小型PCでMCP Serverを常駐させ、LAN上の別のマシンで動くエージェントから接続します。Bearerトークンで認証します。</p>
+                        <div class="mc-code mc-code-sm"><pre><code>MCP_TRANSPORT=http
+MCP_HTTP_HOST=0.0.0.0
+MCP_HTTP_PORT=8720
+BJIG_MCP_TOKEN=...</code></pre></div>
+                    </div>
+                </div>
+
+                <div class="mc-clients" aria-label="対応クライアント">
+                    <span class="mc-clients-label">対応クライアント</span>
+                    <ul>
+                        <li>Claude Code</li>
+                        <li>Codex</li>
+                        <li>OpenClaw</li>
+                        <li>LM Studio</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. ツール -->
+        <section class="section section-alt" id="tools">
+            <div class="container">
+                <h2 class="section-title">エージェントが使えるツール</h2>
+                <p class="section-lead">すべてのツールは、成功時も失敗時も構造化されたJSONを返します。失敗時には原因と「次に試すこと」のヒントが含まれます。</p>
+
+                <div class="mc-tool-groups">
+                    <div class="mc-tool-group">
+                        <h3>まず環境を知る</h3>
+                        <dl>
+                            <dt>get_environment</dt><dd><strong>最初に呼ぶツール。</strong>ルーターにあるすべてのモジュール、それぞれが測るもの、ユーザーがつけた呼び名、受け付けるコマンドを返します。</dd>
+                            <dt>list_routers</dt><dd>設定済みのルーター一覧と、どれが既定か、応答しているか。</dd>
+                            <dt>router_status</dt><dd>ファームウェアバージョン、スキャンモード、登録モジュールを1回で。</dd>
+                        </dl>
+                    </div>
+                    <div class="mc-tool-group">
+                        <h3>センサーを読む</h3>
+                        <dl>
+                            <dt>sensor_read</dt><dd>次の定期送信を待たずに、今すぐ読む。</dd>
+                            <dt>monitor_start / monitor_fetch / monitor_stop</dt><dd>ルーターのアップリンクをバックグラウンドで見張り、あとからまとめて受け取る。</dd>
+                            <dt>module_get_parameters</dt><dd>送信間隔、しきい値、レンジなどモジュールに保存された設定。</dd>
+                        </dl>
+                    </div>
+                    <div class="mc-tool-group">
+                        <h3>設定・制御する</h3>
+                        <dl>
+                            <dt>module_set_parameters</dt><dd>設定を変更し、読み戻して反映を確認する。</dd>
+                            <dt>module_control</dt><dd>接点カウントのクリア、接点出力の駆動など、モジュール固有の操作。</dd>
+                            <dt>module_restart</dt><dd>モジュールを再起動する。</dd>
+                            <dt>router_start / router_stop / router_keep_alive / router_set_scan_mode / router_remove_module</dt><dd>ルーターの起動・停止、時刻同期、スキャンモード、モジュール登録解除。</dd>
+                        </dl>
+                    </div>
+                    <div class="mc-tool-group">
+                        <h3>ファームウェアを更新する</h3>
+                        <dl>
+                            <dt>module_dfu / router_dfu</dt><dd>更新をジョブとして開始し、<code>dfu_id</code> を返す。</dd>
+                            <dt>dfu_status</dt><dd>送信済みブロック数、進捗率、経過時間、残り時間の見込み。</dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <div class="mc-extras">
+                    <div class="mc-extra">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><code>bjig://catalog/sensors</code><span>対応するセンサー種別と、それぞれが受け付けるコマンド</span></li>
+                            <li><code>bjig://config/modules</code><span>ユーザー定義のモジュール名マッピング</span></li>
+                            <li><code>bjig://routers</code><span>設定済みルーターのプロファイル</span></li>
+                        </ul>
+                    </div>
+                    <div class="mc-extra">
+                        <h3>Prompts</h3>
+                        <ul>
+                            <li><code>diagnose_connectivity</code><span>ルーターやモジュールが応答しないときに、原因を安いものから順に切り分ける手順。あなたの設定をもとに、ルーター名やポートを名指しで案内します。</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mc-mapping">
+                    <div class="mc-mapping-text">
+                        <h3>モジュールに、現場の呼び名をつける</h3>
+                        <p>ルーターはモジュールIDを報告しますが、センサーの種類までは教えてくれません。BraveJIG CLIと同じ <code>module-config.yml</code> に種類と呼び名を書いておくと、エージェントは「リビングの照度センサー」のような言葉でモジュールを扱えます。</p>
+                    </div>
+                    <div class="mc-code"><pre><code><span class="c"># module-config.yml</span>
+modules:
+  - module_id: "2468800203400004"
+    sensor_id: "0x0121"
+    description: "リビングの照度センサー"</code></pre></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 設計 -->
+        <section class="section" id="design">
+            <div class="container">
+                <h2 class="section-title">エージェントに任せるための設計</h2>
+                <p class="section-lead">AIに現場の機器を触らせるからこそ、動作の確実さを設計で担保しています。</p>
+                <ul class="mc-design">
+                    <li>
+                        <h3>ルーター1台に、同時に1コマンド</h3>
+                        <p>ルーターごとにコマンドを直列化します。複数のエージェントが同じルーターを使っても、応答が混ざることはありません。使用中のルーターは「busy」として報告されます。</p>
+                    </li>
+                    <li>
+                        <h3>書いたら、読み戻す</h3>
+                        <p>パラメータの変更後は必ず読み戻し、モジュールに確かに反映されたことを確認してから結果を返します。</p>
+                    </li>
+                    <li>
+                        <h3>重要な操作は confirm 付き</h3>
+                        <p>ファームウェア更新のような長時間の操作は <code>confirm: true</code> を明示しないと開始しません。エージェントが勝手に始めることはありません。</p>
+                    </li>
+                    <li>
+                        <h3>実機検証済みのCLIをそのまま使う</h3>
+                        <p>BraveJIG CLIをサブプロセスとして呼び出すため、実機で検証された動作をそのまま引き継ぎます。応答しない処理は監視タイマーで打ち切られ、サーバー全体は止まりません。</p>
+                    </li>
+                    <li>
+                        <h3>秘密情報をコマンドラインに出さない</h3>
+                        <p>認証情報は環境変数でCLIに渡し、プロセス一覧に現れません。HTTPモードはBearerトークンで保護します。</p>
+                    </li>
+                    <li>
+                        <h3>困ったときの手順も、ツールに</h3>
+                        <p><code>diagnose_connectivity</code> プロンプトが、あなたの構成に合わせた切り分け手順をエージェントに渡します。</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 6. 製品の関係 -->
+        <section class="section mc-family" id="family">
+            <div class="container">
+                <div class="mc-family-grid">
+                    <div class="mc-family-text">
+                        <p class="mc-eyebrow"><span class="badge mc-badge-accent">BathTimeFishのBraveJIG製品</span></p>
+                        <h2 class="section-title">対話はMCP Server、<br>ワークフローはKraken。</h2>
+                        <p>BraveJIG MCP ServerとKrakenは、どちらも <strong>BraveJIG CLI</strong> の上に載る製品です。人やエージェントが現場に「話しかける」用途にはMCP Serverを、センサーデータを蓄積・通知・外部連携へ流し続ける用途にはKrakenを使います。両方を同じルーターで併用できます。</p>
+                        <div class="btn-group">
+                            <a href="/bjigcli/" class="btn btn-secondary">BraveJIG CLIを見る</a>
+                            <a href="/kraken/" class="btn btn-secondary">Krakenを見る</a>
+                        </div>
+                    </div>
+                    <div class="mc-family-diagram" aria-label="製品の関係図">
+                        <div class="mc-fd-node mc-fd-device">BraveJIG<small>Braveridge社製品</small></div>
+                        <div class="mc-fd-link"></div>
+                        <div class="mc-fd-node mc-fd-cli">BraveJIG CLI<small>BathTimeFish・有償</small></div>
+                        <div class="mc-fd-fork"></div>
+                        <div class="mc-fd-branches">
+                            <div class="mc-fd-branch">
+                                <div class="mc-fd-node mc-fd-mcp">BraveJIG MCP Server<small>BathTimeFish・有償</small></div>
+                                <div class="mc-fd-link"></div>
+                                <div class="mc-fd-node mc-fd-out">AIエージェント<small>Claude Code / Codex / OpenClaw / LM Studio</small></div>
+                            </div>
+                            <div class="mc-fd-branch">
+                                <div class="mc-fd-node mc-fd-kraken">Kraken<small>BathTimeFish・OSS</small></div>
+                                <div class="mc-fd-link"></div>
+                                <div class="mc-fd-node mc-fd-out">DB / 通知 / 業務システム</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. ユースケース -->
+        <section class="section section-alt" id="use-cases">
+            <div class="container">
+                <h2 class="section-title">こんな使い方ができます</h2>
+                <div class="mc-cases">
+                    <article class="mc-case">
+                        <span class="mc-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H9l-4 4v-4H4z"/></svg></span>
+                        <h3>現場への問い合わせをチャットで</h3>
+                        <p>「倉庫の照明は消えている？」「3号機の温度は？」に、エージェントがセンサーを読んで答える。</p>
+                        <p class="mc-case-flow">get_environment → sensor_read</p>
+                    </article>
+                    <article class="mc-case">
+                        <span class="mc-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3h14v18H5z"/><path d="M9 7h6M9 11h6M9 15h3"/></svg></span>
+                        <h3>朝の点検レポートを自動で</h3>
+                        <p>全モジュールを読み、前日と比べて異常のあるものだけを要約した報告をエージェントが作る。</p>
+                        <p class="mc-case-flow">monitor_fetch → 要約</p>
+                    </article>
+                    <article class="mc-case">
+                        <span class="mc-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></span>
+                        <h3>しきい値や送信間隔を会話で調整</h3>
+                        <p>「夜間は送信間隔を10分にして」と伝えるだけで、パラメータを変更し、反映を確認して報告する。</p>
+                        <p class="mc-case-flow">module_set_parameters</p>
+                    </article>
+                    <article class="mc-case">
+                        <span class="mc-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="4"/><circle cx="15" cy="12" r="2.5"/></svg></span>
+                        <h3>現場機器の操作をエージェントに</h3>
+                        <p>センサー値をもとに、接点出力でリレーや警報を操作する。実行前の確認をエージェントに組み込める。</p>
+                        <p class="mc-case-flow">module_control</p>
+                    </article>
+                    <article class="mc-case">
+                        <span class="mc-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 20h16"/></svg></span>
+                        <h3>ファームウェア更新の段取りを任せる</h3>
+                        <p>ファイルの検証から更新の開始、進捗の報告まで、エージェントが手順どおりに進める。</p>
+                        <p class="mc-case-flow">module_dfu → dfu_status</p>
+                    </article>
+                    <article class="mc-case mc-case-kraken">
+                        <span class="mc-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></span>
+                        <h3>Krakenと併用する</h3>
+                        <p>データの蓄積と通知はKrakenに流し続け、人からの問い合わせや設定変更はMCP Server経由でエージェントに任せる。</p>
+                        <p class="mc-case-flow">MCP Server + Kraken</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. FAQ -->
+        <section class="section" id="faq">
+            <div class="container">
+                <h2 class="section-title">よくある質問</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q1. BraveJIG MCP Serverは無料で使えますか?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>いいえ。BraveJIG MCP Serverは、BathTimeFishが提供する有償製品です。導入相談時にご案内します。</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q2. BraveJIG CLIは必要ですか?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>はい。MCP ServerはBraveJIG CLI（0.8.0以上）をサブプロセスとして呼び出します。CLIは同梱されないため、別途ご用意ください。</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q3. BraveJIG本体も購入が必要ですか?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>はい。BraveJIGはBraveridge社の製品ですが、BathTimeFishはBraveJIG組み込みパートナーとして本体の販売も行っています。BraveJIG CLIとMCP Serverをあわせて、本体の販売から導入、システム構築までを一貫してご提供できます。</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q4. どのAIエージェントで使えますか?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>Claude Code、Codex、OpenClaw、LM Studioに対応しています。いずれもstdioでMCP Serverを起動する同じ形の設定で利用できます。</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q5. インターネット接続は必要ですか?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>MCP Server自体はインターネットに接続しません。ルーターをつないだPCやLAN内で完結します。</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q6. 別のマシンで動くエージェントから使えますか?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>はい。Streamable HTTPモードで起動すると、LAN上の別のマシンからBearerトークン認証で接続できます。</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q7. Krakenとは何が違いますか?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>MCP Serverは人やAIエージェントが対話的にセンサーを読み、設定するためのものです。Krakenはセンサーデータを蓄積・通知・外部連携へ流し続けるワークフロー基盤です。どちらもBraveJIG CLIの上で動き、併用できます。</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q8. 技術サポートは提供されますか?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>はい。有償製品として、導入支援と技術サポートを継続的に提供します。</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. 最終CTA -->
+        <section class="section section-cta" id="contact">
+            <div class="container">
+                <h2 class="section-title">IoTに”ちょうどいい”AIを。<br>まずは導入相談から。</h2>
+                <p class="section-lead">BraveJIG MCP Serverは、AIエージェントからBraveJIGを扱うための有償製品です。導入相談では、お使いのエージェント環境に合わせた構成、必要なコンポーネント、Krakenとの併用まで、丁寧にご説明します。</p>
+                <div class="cta-box">
+                    <h3>導入相談でわかること</h3>
+                    <ul class="check-list mc-cta-list">
+                        <li>お使いのエージェント環境での接続構成</li>
+                        <li>必要なコンポーネント（BraveJIG CLIとMCP Server）</li>
+                        <li>Krakenとの併用の可否と進め方</li>
+                        <li>おおまかな導入ステップとサポート内容</li>
+                        <li>BraveJIG本体の販売・購入のご相談</li>
+                    </ul>
+                </div>
+                <p class="mc-cta-notice">BraveJIGはBraveridge社の製品です。BathTimeFishはBraveJIG組み込みパートナーとして本体の販売も行っており、販売から導入、システム構築までを一貫して提供できます。</p>
+                <div class="btn-group is-center">
+                    <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary mc-btn-on-dark" target="_blank" rel="noopener">導入・購入を相談する</a>
+                    <a href="#capabilities" class="btn btn-secondary">詳しく見る</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+  <div class="container">
+    <div class="site-footer-grid">
+      <div class="site-footer-brand">
+        <img src="/bathtimefish.svg" alt="" width="40" height="40">
+        <p class="site-footer-name">株式会社BathTimeFish<span>BathTimeFish, K.K.</span></p>
+        <p class="site-footer-address">兵庫県神戸市長田区西山町3-3-13</p>
+      </div>
+      <div>
+        <h4>製品情報</h4>
+        <ul>
+          <li><a href="/kraken/">Kraken</a></li>
+          <li><a href="/bjigcli/">BraveJIG CLI</a></li>
+          <li><a href="/bjigmcp/">BraveJIG MCP Server</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>会社情報</h4>
+        <ul>
+          <li><a href="/company.html">会社概要</a></li>
+          <li><a href="https://zenn.dev/bathtimefish" target="_blank" rel="noopener">Zenn</a></li>
+          <li><a href="https://github.com/bathtimefish" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://forms.gle/X2RKJqLNiJXBfnKW8" target="_blank" rel="noopener">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p>&copy; BathTimeFish, K.K. All rights reserved.</p>
+      <p>BraveJIG is a product of Braveridge Corporation. BraveJIG MCP Server and BraveJIG CLI are paid products developed by BathTimeFish, a BraveJIG integration partner that also sells BraveJIG hardware.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/site.js"></script>
+<script src="bjigmcp.js"></script>
+</body>
+</html>
