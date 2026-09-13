@@ -236,7 +236,7 @@
                     <div class="card card-top kr-card-broker">
                         <div class="kr-layer-head"><h3>Kraken Broker</h3><span class="kr-lang kr-lang-python">Python</span></div>
                         <p><strong>受信データを業務処理へつなぐ、柔軟なブローカーレイヤー。</strong></p>
-                        <p>Collectorからのデータを受信し、加工、保存、通知などのカスタム処理を実行するデータブローカーです。業務に必要な処理はbrokerとして記述・追加でき、イベントドリブンで非同期に実行されます。現状はPython版が提供されています。</p>
+                        <p>Collectorからのデータを受信し、加工、保存、通知などのカスタム処理を実行するデータブローカーです。業務に必要な処理はbrokerとして記述・追加でき、イベントドリブンで非同期に実行されます。現状はPython版が提供されています。機械学習をはじめとするデータ分析系のライブラリが豊富で、処理を簡潔に記述できることからPythonを採用しています。</p>
                     </div>
                 </div>
             </div>
@@ -317,7 +317,7 @@ RUST_LOG=error,main=debug cargo run --bin main</code></pre>
                         <h2 class="section-title">BraveJIGの現場データを、<br>すぐ業務フローへ。</h2>
                         <p>BathTimeFishは、<strong>Krakenの開発元であり、BraveJIGの導入支援パートナーです。</strong>現場データの取得から、その後の活用基盤づくりまで一貫して支援できます。</p>
                         <p>BathTimeFish提供の <strong>BraveJIG CLI（有償）</strong> を介して、BraveJIGのセンサーデータを <strong>Kraken Collector</strong> に接続し、<strong>Kraken Broker</strong> を通じて前処理、蓄積、通知、外部連携まで一気通貫で構築できます。</p>
-                        <p>センサーをつないで終わりではなく、取得したデータを実際の業務で使える形に整え、保存し、通知し、外部システムへ渡す。<strong>現場でデータを取れる状態を作るだけでなく、その先の保存・通知・外部連携まで設計することで、IoT導入をPoCで終わらせず実運用につなげやすくします。</strong></p>
+                        <p>センサーをつないで終わりではなく、取得したデータを実際の業務で使える形に整え、保存し、通知し、外部システムへ渡す。BraveJIGと自社システムとのデータ連携や、BraveJIGのセンサー値をもとに機器を動かすデータドリブンな制御の自動化も、Kraken Brokerの処理として実装できます。<strong>現場でデータを取れる状態を作るだけでなく、その先の保存・通知・外部連携まで設計することで、IoT導入をPoCで終わらせず実運用につなげやすくします。</strong></p>
                         <div class="btn-group">
                             <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener noreferrer">BraveJIG × Kraken の導入を相談する</a>
                             <a href="/bjigcli/" class="btn btn-secondary">BraveJIG CLIを見る</a>
