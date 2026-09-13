@@ -46,12 +46,14 @@
   <div class="container page-nav-inner">
     <a class="page-nav-brand" href="./"><img src="assets/kraken-logo-300.png" alt=""><span>Kraken</span><span class="badge badge-soft">OSS</span></a>
     <nav class="page-nav-links" aria-label="Kraken">
-      <a href="#about">Krakenとは</a>
-      <a href="#architecture">機能</a>
+      <a href="#architecture">構成</a>
+      <a href="#quickstart">クイックスタート</a>
       <a href="#bravejig">BraveJIG連携</a>
       <a href="#usecases">ユースケース</a>
+      <a href="#models">導入モデル</a>
       <a href="#support">サポート</a>
       <a href="#faq">FAQ</a>
+      <a href="#contact" class="nav-cta">相談する</a>
     </nav>
     <a class="lang-switch" href="en.html" lang="en" hreflang="en">English</a>
   </div>
@@ -59,19 +61,88 @@
 
     <main>
         <!-- 1. Hero -->
-        <section class="hero" id="hero">
-            <div class="container hero-grid">
+        <section class="hero kr-hero" id="hero">
+            <div class="container hero-grid kr-hero-grid">
                 <div class="hero-content">
-                    <h1 class="hero-title">IoTを、もっと小さく、自由に。</h1>
+                    <p class="kr-eyebrow"><span class="badge badge-soft">Open Source</span><span>IoT Data Router</span></p>
+                    <h1 class="hero-title">IoTを、もっと小さく、<br>自由に。</h1>
                     <p class="hero-sub">クラウドが重すぎる現場に、ちょうどいい選択肢。</p>
-                    <p class="hero-text">Krakenは、<strong>Kraken Collector</strong> と <strong>Kraken Broker</strong> を組み合わせて、IoTデータの収集・加工・保存・通知までを柔軟に構築できるオープンソースのIoTデータルーターです。<br><br>Raspberry Piのような小さな環境から、コンテナベースのスケーラブルな構成まで、用途とコストに応じて育てられます。大規模クラウドIoT基盤が必要な案件もある一方で、Krakenは、より小さく、より自由に始めたい現場のための選択肢です。</p>
+                    <p class="hero-text">Krakenは、<strong>Kraken Collector</strong> と <strong>Kraken Broker</strong> を組み合わせて、IoTデータの収集・加工・保存・通知までを柔軟に構築できるオープンソースのIoTデータルーターです。</p>
+                    <p class="hero-note">Raspberry Piのような小さな環境から、コンテナベースのスケーラブルな構成まで、用途とコストに応じて育てられます。大規模クラウドIoT基盤が必要な案件もある一方で、Krakenは、より小さく、より自由に始めたい現場のための選択肢です。</p>
                     <div class="btn-group">
                         <a href="https://github.com/bathtimefish/kraken_collector" class="btn btn-primary" target="_blank" rel="noopener noreferrer">GitHubで見る</a>
                         <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">導入・カスタマイズを相談する</a>
                     </div>
+                    <ul class="kr-trust" aria-label="Krakenの基本情報">
+                        <li><span class="kr-trust-k">License</span><span class="kr-trust-v">MIT</span></li>
+                        <li><span class="kr-trust-k">Collector</span><span class="kr-trust-v">Rust</span></li>
+                        <li><span class="kr-trust-k">Broker</span><span class="kr-trust-v">Python</span></li>
+                        <li><span class="kr-trust-k">Transport</span><span class="kr-trust-v">gRPC</span></li>
+                        <li><span class="kr-trust-k">Runs on</span><span class="kr-trust-v">Raspberry Pi 〜 Container</span></li>
+                    </ul>
                 </div>
-                <div class="hero-visual">
-                    <img class="is-photo" src="assets/kraken_archtecture.png" alt="Kraken Architecture">
+                <div class="hero-visual kr-hero-visual">
+                    <svg class="kr-diagram" viewBox="0 0 660 320" role="img" aria-labelledby="kr-diagram-title">
+                        <title id="kr-diagram-title">Sensors / Devices / Apps から Kraken Collector へ、gRPC で Kraken Broker へ、そして DB / Notification / Apps へデータが流れる構成図</title>
+                        <defs>
+                            <marker id="kr-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                                <path d="M0 0 L10 5 L0 10 z" fill="#9fb3c8"/>
+                            </marker>
+                        </defs>
+                        <!-- input nodes -->
+                        <g class="kr-node kr-node-in">
+                            <rect x="16" y="52" width="112" height="44" rx="8"/><text x="72" y="79">Sensors</text>
+                        </g>
+                        <g class="kr-node kr-node-in">
+                            <rect x="16" y="138" width="112" height="44" rx="8"/><text x="72" y="165">Devices</text>
+                        </g>
+                        <g class="kr-node kr-node-in">
+                            <rect x="16" y="224" width="112" height="44" rx="8"/><text x="72" y="251">External Apps</text>
+                        </g>
+                        <!-- paths -->
+                        <path id="kr-p-in1" class="kr-path" d="M128 74 C 160 74, 160 160, 190 160"/>
+                        <path id="kr-p-in2" class="kr-path" d="M128 160 L 190 160"/>
+                        <path id="kr-p-in3" class="kr-path" d="M128 246 C 160 246, 160 160, 190 160"/>
+                        <path id="kr-p-core" class="kr-path kr-path-core" d="M300 160 L 360 160" marker-end="url(#kr-arrow)"/>
+                        <path id="kr-p-out1" class="kr-path" d="M470 160 C 500 160, 500 74, 532 74"/>
+                        <path id="kr-p-out2" class="kr-path" d="M470 160 L 532 160"/>
+                        <path id="kr-p-out3" class="kr-path" d="M470 160 C 500 160, 500 246, 532 246"/>
+                        <text class="kr-path-label" x="330" y="148">gRPC</text>
+                        <!-- core nodes -->
+                        <g class="kr-node kr-node-collector">
+                            <rect x="190" y="118" width="110" height="84" rx="10"/>
+                            <text x="245" y="152" class="kr-node-name">Kraken</text>
+                            <text x="245" y="172" class="kr-node-name">Collector</text>
+                            <text x="245" y="192" class="kr-node-sub">Rust</text>
+                        </g>
+                        <g class="kr-node kr-node-broker">
+                            <rect x="360" y="118" width="110" height="84" rx="10"/>
+                            <text x="415" y="152" class="kr-node-name">Kraken</text>
+                            <text x="415" y="172" class="kr-node-name">Broker</text>
+                            <text x="415" y="192" class="kr-node-sub">Python</text>
+                        </g>
+                        <!-- output nodes -->
+                        <g class="kr-node kr-node-out">
+                            <rect x="532" y="52" width="112" height="44" rx="8"/><text x="588" y="79">DB</text>
+                        </g>
+                        <g class="kr-node kr-node-out">
+                            <rect x="532" y="138" width="112" height="44" rx="8"/><text x="588" y="165">Notification</text>
+                        </g>
+                        <g class="kr-node kr-node-out">
+                            <rect x="532" y="224" width="112" height="44" rx="8"/><text x="588" y="251">Apps</text>
+                        </g>
+                        <!-- moving packets -->
+                        <g class="kr-packets">
+                            <circle r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="0s"><mpath href="#kr-p-in1"/></animateMotion></circle>
+                            <circle r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="0.9s"><mpath href="#kr-p-in2"/></animateMotion></circle>
+                            <circle r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="1.8s"><mpath href="#kr-p-in3"/></animateMotion></circle>
+                            <circle r="4" class="kr-packet-core"><animateMotion dur="1.3s" repeatCount="indefinite" begin="0s"><mpath href="#kr-p-core"/></animateMotion></circle>
+                            <circle r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="0.4s"><mpath href="#kr-p-out1"/></animateMotion></circle>
+                            <circle r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="1.3s"><mpath href="#kr-p-out2"/></animateMotion></circle>
+                            <circle r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="2.2s"><mpath href="#kr-p-out3"/></animateMotion></circle>
+                        </g>
+                    </svg>
+                    <p class="kr-diagram-caption">Devices / Sensors → Kraken Collector → gRPC → Kraken Broker → DB / Notification / Apps</p>
                 </div>
             </div>
         </section>
@@ -81,16 +152,19 @@
             <div class="container">
                 <h2 class="section-title">クラウドIoTが、少し大きすぎる現場へ。</h2>
                 <p class="section-lead">IoTを始めたいのに、クラウド、アプリケーション、運用基盤まで含めると構成が大掛かりになりすぎる。<br>そんな悩みは、現場主導でIoTを導入したい企業や、小規模PoCから始めたいチームほど強くなります。</p>
-                <div class="grid-3">
-                    <div class="card">
+                <div class="kr-pains">
+                    <div class="kr-pain">
+                        <span class="kr-pain-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 8h9a3 3 0 0 1 0 6H8a3 3 0 0 0 0 6h11"/></svg></span>
                         <h3>コスト・専有性</h3>
                         <p>サブスクリプションコストをできるだけ抑えたい。クラウド前提の構成に不安がある。</p>
                     </div>
-                    <div class="card">
+                    <div class="kr-pain">
+                        <span class="kr-pain-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="10" width="18" height="11" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg></span>
                         <h3>オンプレミス志向</h3>
                         <p>すべてのリソースを作業現場内（閉域網など）で管理したい。</p>
                     </div>
-                    <div class="card">
+                    <div class="kr-pain">
+                        <span class="kr-pain-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 12h6"/></svg></span>
                         <h3>ミニマルな要件</h3>
                         <p>まずは小さく始めたいのに構成がtoo muchになりやすい。多機能さより、必要な機能をすぐ組めることを重視したい。</p>
                     </div>
@@ -99,124 +173,196 @@
             </div>
         </section>
 
-        <!-- 3. Krakenとは -->
-        <section class="section" id="about">
+        <!-- 3. 構成（Krakenとは + Collector / Broker） -->
+        <section class="section" id="architecture">
             <div class="container">
                 <h2 class="section-title">収集から処理まで、IoTデータの流れをシンプルに。</h2>
-                <p class="section-lead">Krakenは、<strong>Collector</strong> が多様なプロトコルやデータソースからデータを受け取り、<strong>Broker</strong> がそのデータを加工・保存・通知・外部連携へつなぐ、2層構成のIoTバックエンドです。<br><br>Collector/Brokerを組み合わせることで、エッジIoTセンサから送られるデータを、クラウドまたはオンプレミス環境で受け取り、業務に応じた処理へ展開できます。</p>
-                
-                <div class="flow">
-                    <div class="flow-step">Devices / Sensors</div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-step flow-step-highlight">Kraken Collector</div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-step">gRPC</div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-step flow-step-highlight">Kraken Broker</div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-step">DB / Notification / Apps</div>
+                <p class="section-lead">Krakenは、<strong>Collector</strong> が多様なプロトコルやデータソースからデータを受け取り、<strong>Broker</strong> がそのデータを加工・保存・通知・外部連携へつなぐ、2層構成のIoTバックエンドです。<br>入力と出力を選んで、あなたの現場の構成を組んでみてください。</p>
+
+                <div class="kr-builder" id="builder">
+                    <div class="kr-builder-col">
+                        <h3 class="kr-builder-heading"><span class="kr-step-num">1</span>入力を選ぶ<small>Collector</small></h3>
+                        <div class="kr-chips" role="group" aria-label="入力">
+                            <button type="button" class="kr-chip is-active" data-in="webhook">HTTP Webhooks</button>
+                            <button type="button" class="kr-chip" data-in="mqtt">MQTT</button>
+                            <button type="button" class="kr-chip" data-in="websocket">WebSocket</button>
+                            <button type="button" class="kr-chip" data-in="ibeacon">iBeacon (BLE)</button>
+                            <button type="button" class="kr-chip" data-in="serial">Serial</button>
+                            <button type="button" class="kr-chip" data-in="textfile">TextFile</button>
+                            <button type="button" class="kr-chip" data-in="camera">Camera</button>
+                            <button type="button" class="kr-chip" data-in="email">Email (SMTP)</button>
+                            <button type="button" class="kr-chip kr-chip-paid" data-in="bravejig">BraveJIG<span>有償</span></button>
+                            <button type="button" class="kr-chip" data-in="tcp">TCP Server</button>
+                        </div>
+                    </div>
+                    <div class="kr-builder-core" aria-hidden="true">
+                        <div class="kr-core-node kr-core-collector"><span>Kraken</span>Collector<small>Rust</small></div>
+                        <div class="kr-core-link"><span>gRPC</span></div>
+                        <div class="kr-core-node kr-core-broker"><span>Kraken</span>Broker<small>Python</small></div>
+                    </div>
+                    <div class="kr-builder-col">
+                        <h3 class="kr-builder-heading"><span class="kr-step-num">2</span>出力を選ぶ<small>Broker</small></h3>
+                        <div class="kr-chips" role="group" aria-label="出力">
+                            <button type="button" class="kr-chip is-active" data-out="slack">Slack</button>
+                            <button type="button" class="kr-chip" data-out="influxdb">InfluxDB</button>
+                            <button type="button" class="kr-chip" data-out="redis">Redis</button>
+                            <button type="button" class="kr-chip" data-out="mongodb">MongoDB</button>
+                            <button type="button" class="kr-chip" data-out="websocket">WebSocket</button>
+                            <button type="button" class="kr-chip" data-out="custom">Custom Broker</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kr-trace" aria-live="polite">
+                    <div class="kr-trace-line">
+                        <span class="kr-trace-node kr-trace-in" id="trace-in">HTTP Webhooks</span>
+                        <span class="kr-trace-arrow">→</span>
+                        <span class="kr-trace-node kr-trace-collector">Collector</span>
+                        <span class="kr-trace-arrow">→</span>
+                        <span class="kr-trace-node kr-trace-broker">Broker</span>
+                        <span class="kr-trace-arrow">→</span>
+                        <span class="kr-trace-node kr-trace-out" id="trace-out">Slack</span>
+                    </div>
+                    <pre class="kr-log" id="trace-log"></pre>
+                    <p class="kr-trace-note">※ データの流れのイメージです。入力・出力はそれぞれ複数を同時に構成できます。</p>
+                </div>
+
+                <div class="grid-2 kr-layers">
+                    <div class="card card-top">
+                        <div class="kr-layer-head"><h3>Kraken Collector</h3><span class="kr-lang kr-lang-rust">Rust</span></div>
+                        <p><strong>多様な入力を受け止める、軽量データ収集レイヤー。</strong></p>
+                        <p>エッジIoTセンサや周辺システムからデータを収集するアプリケーションです。Rustで実装されており、Kraken Brokerに対応するgRPCクライアントとして軽量かつスケーラブルに動作します。必要に応じて新しいcollectorを追加して拡張できます。</p>
+                    </div>
+                    <div class="card card-top kr-card-broker">
+                        <div class="kr-layer-head"><h3>Kraken Broker</h3><span class="kr-lang kr-lang-python">Python</span></div>
+                        <p><strong>受信データを業務処理へつなぐ、柔軟なブローカーレイヤー。</strong></p>
+                        <p>Collectorからのデータを受信し、加工、保存、通知などのカスタム処理を実行するデータブローカーです。業務に必要な処理はbrokerとして記述・追加でき、イベントドリブンで非同期に実行されます。現状はPython版が提供されています。機械学習をはじめとするデータ分析系のライブラリが豊富で、処理を簡潔に記述できることからPythonを採用しています。</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 4. Collector / Broker -->
-        <section class="section section-alt" id="architecture">
+        <!-- 4. クイックスタート -->
+        <section class="section kr-quickstart" id="quickstart">
             <div class="container">
-                <div class="grid-2">
-                    <div class="card card-top">
-                        <h3>Kraken Collector</h3>
-                        <p><strong>多様な入力を受け止める、軽量データ収集レイヤー。</strong><br><br>エッジIoTセンサや周辺システムからデータを収集するアプリケーションです。Rustで実装されており、Kraken Brokerに対応するgRPCクライアントとして軽量かつスケーラブルに動作します。必要に応じて新しいcollectorを追加して拡張できます。</p>
-                        <div class="tag-list">
-                            <span class="tag">HTTP Webhooks</span>
-                            <span class="tag">MQTT</span>
-                            <span class="tag">WebSocket</span>
-                            <span class="tag">iBeacon (BLE)</span>
-                            <span class="tag">Serial Communication</span>
-                            <span class="tag">TextFile Monitoring</span>
-                            <span class="tag">Camera</span>
-                            <span class="tag">Email</span>
-                            <span class="tag">BraveJIG</span>
-                            <span class="tag">TCP Server</span>
+                <h2 class="section-title">3ステップで、最初のデータが届く。</h2>
+                <p class="section-lead">Brokerを起動し、Collectorを起動し、curlで1件送る。それだけでSlackに通知が届きます。<br>READMEの手順をそのまま抜粋しています。</p>
+
+                <div class="kr-steps">
+                    <div class="kr-step">
+                        <div class="kr-step-head"><span class="kr-step-num">1</span><h3>Brokerを起動する</h3><span class="kr-lang kr-lang-python">Python</span></div>
+                        <p>Slack通知を行うBrokerとして起動します。Webhook URLはご自身のSlackのものに置き換えてください。</p>
+                        <div class="kr-code">
+                            <button type="button" class="kr-copy" aria-label="コードをコピー">Copy</button>
+<pre><code><span class="c"># clone</span>
+git clone https://github.com/bathtimefish/kraken_broker_python
+cd kraken_broker_python
+
+<span class="c"># Slack broker として設定</span>
+export PYTHONDONTWRITEBYTECODE=1
+export KRAKENB_DEBUG=1
+export KRAKENB_GRPC_HOST=[::]:50051
+export KRAKENB_SLACK_URL=[YOUR_SLACK_WEBHOOK_URL]
+
+python ./src/main.py</code></pre>
                         </div>
+                        <div class="kr-output"><span class="kr-output-label">起動ログ</span><pre>INFO:root:gRPC server was started on `[::]:50051`
+INFO:root:KRAKEN BROKER is running as debug mode.</pre></div>
                     </div>
-                    <div class="card card-top" style="border-top-color: #2e8b57;">
-                        <h3>Kraken Broker</h3>
-                        <p><strong>受信データを業務処理へつなぐ、柔軟なブローカーレイヤー。</strong><br><br>Collectorからのデータを受信し、加工、保存、通知などのカスタム処理を実行するデータブローカーです。業務に必要な処理はbrokerとして記述・追加でき、イベントドリブンで非同期に実行されます。現状はPython版が提供されています。</p>
-                        <div class="tag-list">
-                            <span class="tag">InfluxDB</span>
-                            <span class="tag">Redis</span>
-                            <span class="tag">MongoDB</span>
-                            <span class="tag">WebSocket</span>
-                            <span class="tag">Slack</span>
-                            <span class="tag">Custom Broker</span>
+
+                    <div class="kr-step">
+                        <div class="kr-step-head"><span class="kr-step-num">2</span><h3>Collectorを起動する</h3><span class="kr-lang kr-lang-rust">Rust</span></div>
+                        <p>HTTP Webhookを受け付けるCollectorとしてビルド・起動します。</p>
+                        <div class="kr-code">
+                            <button type="button" class="kr-copy" aria-label="コードをコピー">Copy</button>
+<pre><code><span class="c"># clone &amp; build</span>
+git clone https://github.com/bathtimefish/kraken_collector
+cd kraken_collector
+cargo build
+
+<span class="c"># Webhook receiver として設定</span>
+export KRKNC_BROKER_HOST=http://[::1]:50051
+export KRKNC_WEBHOOK_PATH=webhook
+export KRKNC_WEBHOOK_PORT=3000
+
+RUST_LOG=error,main=debug cargo run --bin main</code></pre>
                         </div>
+                        <div class="kr-output"><span class="kr-output-label">起動ログ</span><pre>[INFO  main] KRAKEN Collector -- The Highlevel Data Collector -- boot sequence start.
+[DEBUG main::collectors::webhook] Webhook server was started and is listening on http://0.0.0.0:3000</pre></div>
+                    </div>
+
+                    <div class="kr-step">
+                        <div class="kr-step-head"><span class="kr-step-num">3</span><h3>データを送る</h3></div>
+                        <p>センサーの代わりにcurlで1件POSTします。</p>
+                        <div class="kr-code">
+                            <button type="button" class="kr-copy" aria-label="コードをコピー">Copy</button>
+<pre><code>curl -X POST -H "Content-Type: application/json" \
+  -d '{"id":"101", "name":"env-sensor", "temp":"25.6", "hum":"52.4"}' \
+  http://localhost:3000/webhook</code></pre>
+                        </div>
+                        <div class="kr-output kr-output-slack"><span class="kr-output-label">Slackに届くメッセージ</span><pre>kind=collector, provider=webhook, payload={"id":"101", "name":"env-sensor", "temp":"25.6", "hum":"52.4"}</pre></div>
                     </div>
                 </div>
+
+                <p class="section-note">ビルドにはRust（cargo）とPython、およびREADME記載のパッケージ（protobuf-compiler など）が必要です。詳細は <a href="https://github.com/bathtimefish/kraken_collector#getting-started" target="_blank" rel="noopener noreferrer">GitHubのGetting Started</a> をご覧ください。</p>
             </div>
         </section>
 
         <!-- 5. BraveJIG連携 -->
-        <section class="section" id="bravejig">
+        <section class="section kr-bravejig" id="bravejig">
             <div class="container">
-                <div class="bravejig-section">
-                    <h2 class="section-title">BraveJIGの現場データを、すぐ業務フローへ。</h2>
-                    <p>BraveJIGで集めたデータを、Krakenで業務フローへ。<br><br>BathTimeFishは、<strong>Krakenの開発元であり、BraveJIGの導入支援パートナーです。現場データの取得から、その後の活用基盤づくりまで一貫して支援できます。</strong><br><br>さらに、BathTimeFish提供の <strong>BraveJIG CLI（有償）</strong> を介して、BraveJIGのセンサーデータを <strong>Kraken Collector</strong> に接続し、<strong>Kraken Broker</strong> を通じて前処理、蓄積、通知、外部連携まで一気通貫で構築できます。</p>
-                    
-                    <div class="flow flow-on-light">
-                        <div class="flow-step">BraveJIGで集める</div>
-                        <div class="flow-arrow">→</div>
-                        <div class="flow-step">BraveJIG CLIでつなぐ</div>
-                        <div class="flow-arrow">→</div>
-                        <div class="flow-step">Krakenで活かす</div>
+                <div class="kr-bravejig-grid">
+                    <div class="kr-bravejig-text">
+                        <p class="kr-eyebrow"><span class="badge">BathTimeFish ならでは</span></p>
+                        <h2 class="section-title">BraveJIGの現場データを、<br>すぐ業務フローへ。</h2>
+                        <p>BathTimeFishは、<strong>Krakenの開発元であり、BraveJIGの導入支援パートナーです。</strong>現場データの取得から、その後の活用基盤づくりまで一貫して支援できます。</p>
+                        <p>BathTimeFish提供の <strong>BraveJIG CLI（有償）</strong> を介して、BraveJIGのセンサーデータを <strong>Kraken Collector</strong> に接続し、<strong>Kraken Broker</strong> を通じて前処理、蓄積、通知、外部連携まで一気通貫で構築できます。</p>
+                        <p>センサーをつないで終わりではなく、取得したデータを実際の業務で使える形に整え、保存し、通知し、外部システムへ渡す。BraveJIGと自社システムとのデータ連携や、BraveJIGのセンサー値をもとに機器を動かすデータドリブンな制御の自動化も、Kraken Brokerの処理として実装できます。<strong>現場でデータを取れる状態を作るだけでなく、その先の保存・通知・外部連携まで設計することで、IoT導入をPoCで終わらせず実運用につなげやすくします。</strong></p>
+                        <div class="btn-group">
+                            <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener noreferrer">BraveJIG × Kraken の導入を相談する</a>
+                            <a href="/bjigcli/" class="btn btn-secondary">BraveJIG CLIを見る</a>
+                        </div>
                     </div>
-                    
-                    <p>センサーをつないで終わりではなく、取得したデータを実際の業務で使える形に整え、保存し、通知し、外部システムへ渡す。BathTimeFishは、BraveJIG導入からKraken連携、運用設計までをまとめて支援できます。<br>現場でデータを取れる状態を作るだけでなく、その先の保存・通知・外部連携まで設計することで、IoT導入をPoCで終わらせず実運用につなげやすくします。</p>
-                    
-                    <div class="bravejig-note">
-                        ※ BraveJIGは、インターネットに繋がずLANからスタートでき、モジュール構成で導入しやすい現場向けのIoTデバイスシリーズとして案内されています。BathTimeFishは導入支援パートナーとして参画しています。
-                    </div>
-                    
-                    <div style="margin-top: 30px; text-align: center;">
-                        <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener noreferrer">BraveJIG × Kraken の導入を相談する</a>
+                    <div class="kr-bravejig-side">
+                        <ol class="kr-bj-steps">
+                            <li>
+                                <span class="kr-bj-step-tag">BraveJIG</span>
+                                <strong>集める</strong>
+                                <span>LANから始められるモジュラー型IoTデバイス</span>
+                            </li>
+                            <li>
+                                <span class="kr-bj-step-tag kr-bj-step-tag-paid">BraveJIG CLI・有償</span>
+                                <strong>つなぐ</strong>
+                                <span>BathTimeFish提供。センサーデータをKraken Collectorへ</span>
+                            </li>
+                            <li>
+                                <span class="kr-bj-step-tag kr-bj-step-tag-oss">Kraken・OSS</span>
+                                <strong>活かす</strong>
+                                <span>前処理・蓄積・通知・外部連携まで一気通貫</span>
+                            </li>
+                        </ol>
+                        <div class="kr-bj-support">
+                            <strong>導入支援</strong>
+                            <span>BraveJIG導入からKraken連携、運用設計までBathTimeFishがまとめて支援します。</span>
+                        </div>
+                        <p class="kr-bj-note">※ BraveJIGは、インターネットに繋がずLANからスタートでき、モジュール構成で導入しやすい現場向けのIoTデバイスシリーズとして案内されています。BathTimeFishは導入支援パートナーとして参画しています。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 6. Krakenの強み -->
+        <!-- 6. 強み -->
         <section class="section section-alt" id="strengths">
             <div class="container">
                 <h2 class="section-title">Krakenが選ばれる理由</h2>
-                <div class="grid-3">
-                    <div class="card">
-                        <h3>小さく始められる</h3>
-                        <p>Raspberry Piのような低リソース環境でも動作し、オンプレミスで小さくIoTをスタートできます。</p>
-                    </div>
-                    <div class="card">
-                        <h3>クラウド前提ではない</h3>
-                        <p>クラウド依存を前提とせず、現場内・閉域網・専有環境での運用にも向いています。</p>
-                    </div>
-                    <div class="card">
-                        <h3>必要な機能を迅速に構築</h3>
-                        <p>多機能性よりも、IoTバックグラウンドシステムに必要最低限の機能を素早く構築できることにフォーカスしています。</p>
-                    </div>
-                    <div class="card">
-                        <h3>入力経路が広い</h3>
-                        <p>Webhook、MQTT、BLE、シリアル、ファイル、カメラ、メール、TCPなど、多様な現場入力に対応できます。</p>
-                    </div>
-                    <div class="card">
-                        <h3>自由に拡張できる</h3>
-                        <p>CollectorやBrokerを追加・カスタマイズすることで、自社業務や現場要件に合わせた拡張が可能です。</p>
-                    </div>
-                    <div class="card">
-                        <h3>無料で使えるOSS</h3>
-                        <p>オープンライセンスのため無料で利用でき、必要に応じて独自実装・独自運用へ発展できます。</p>
-                    </div>
-                    <div class="card card-span card-outline">
-                        <h3 style="color: var(--primary);">BraveJIGと組み合わせて価値を広げられる</h3>
-                        <p>BathTimeFish提供のBraveJIG CLIを通じて、BraveJIGで収集したセンサーデータをKrakenへ取り込み、顧客要件に応じたIoT基盤へ発展させられます。LANから始められるモジュラー型IoTデバイスであるBraveJIGの強みを最大限に活かします。</p>
-                    </div>
-                </div>
+                <ul class="kr-strengths">
+                    <li><h3>小さく始められる</h3><p>Raspberry Piのような低リソース環境でも動作し、オンプレミスで小さくIoTをスタートできます。</p></li>
+                    <li><h3>クラウド前提ではない</h3><p>クラウド依存を前提とせず、現場内・閉域網・専有環境での運用にも向いています。</p></li>
+                    <li><h3>必要な機能を迅速に構築</h3><p>多機能性よりも、IoTバックグラウンドシステムに必要最低限の機能を素早く構築できることにフォーカスしています。</p></li>
+                    <li><h3>入力経路が広い</h3><p>Webhook、MQTT、BLE、シリアル、ファイル、カメラ、メール、TCPなど、多様な現場入力に対応できます。</p></li>
+                    <li><h3>自由に拡張できる</h3><p>CollectorやBrokerを追加・カスタマイズすることで、自社業務や現場要件に合わせた拡張が可能です。</p></li>
+                    <li><h3>無料で使えるOSS</h3><p>オープンライセンスのため無料で利用でき、必要に応じて独自実装・独自運用へ発展できます。</p></li>
+                </ul>
             </div>
         </section>
 
@@ -224,11 +370,49 @@
         <section class="section" id="usecases">
             <div class="container">
                 <h2 class="section-title">こんな現場でKrakenは活躍します</h2>
-                
-                <div class="grid-2" style="margin-bottom: 40px;">
-                    <div class="card" style="background: #f0fdf4; border-color: #bbf7d0;">
-                        <h3 style="color: #166534;">向いているケース</h3>
-                        <ul class="bullet-list" style="color: #15803d;">
+                <div class="kr-cases">
+                    <article class="kr-case">
+                        <span class="kr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21V9l6 4V9l6 4V9l6 4v8z"/><path d="M7 21v-4M12 21v-4M17 21v-4"/></svg></span>
+                        <h3>工場設備の監視と通知</h3>
+                        <p>センサーデータを収集し、Brokerで閾値判定や整形を行い、InfluxDBへの保存やSlack通知につなげる。</p>
+                        <p class="kr-case-flow">Serial / MQTT → InfluxDB + Slack</p>
+                    </article>
+                    <article class="kr-case">
+                        <span class="kr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 4v6"/></svg></span>
+                        <h3>閉域環境でのIoT導入</h3>
+                        <p>クラウド前提にしづらい現場で、Collector/Brokerをオンプレミスに構築し、データ収集から処理までを完結させる。</p>
+                        <p class="kr-case-flow">閉域網内で完結</p>
+                    </article>
+                    <article class="kr-case">
+                        <span class="kr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3h14v18H5z"/><path d="M9 7h6M9 11h6M9 15h3"/></svg></span>
+                        <h3>PoC・実証実験</h3>
+                        <p>Raspberry PiやMini PC上で最小構成を作り、まずデータを集めて試すところから素早く始められる。</p>
+                        <p class="kr-case-flow">Raspberry Pi 1台から</p>
+                    </article>
+                    <article class="kr-case">
+                        <span class="kr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 12h.01M11 12h.01M15 12h.01M3 12h-1M22 12h-1"/></svg></span>
+                        <h3>レガシー設備との接続</h3>
+                        <p>シリアル通信、テキストファイル監視、TCP Serverなどを使い、既存設備のデータを段階的に取り込む。</p>
+                        <p class="kr-case-flow">Serial / TextFile / TCP</p>
+                    </article>
+                    <article class="kr-case">
+                        <span class="kr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M6.3 6.3a8 8 0 0 0 0 11.4M17.7 6.3a8 8 0 0 1 0 11.4M3.5 3.5a12 12 0 0 0 0 17M20.5 3.5a12 12 0 0 1 0 17"/></svg></span>
+                        <h3>BLEビーコンやメール起点</h3>
+                        <p>iBeaconやSMTP受信といった少し特殊な入口も扱え、現場要件に応じたデータ連携を組みやすい。</p>
+                        <p class="kr-case-flow">iBeacon / Email</p>
+                    </article>
+                    <article class="kr-case kr-case-bj">
+                        <span class="kr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></span>
+                        <h3>BraveJIGを活用した基盤構築</h3>
+                        <p>BraveJIGで収集したデータを、BraveJIG CLI経由でKrakenへ接続し、前処理、DB蓄積、通知まで含めたワークフローを構築する。</p>
+                        <p class="kr-case-flow">BraveJIG → CLI → Kraken</p>
+                    </article>
+                </div>
+
+                <div class="kr-fit">
+                    <div class="kr-fit-col kr-fit-yes">
+                        <h3>向いているケース</h3>
+                        <ul>
                             <li>小規模から始めたい</li>
                             <li>オンプレミスや閉域網で運用したい</li>
                             <li>センサーデータの収集から前処理・蓄積までを柔軟に組みたい</li>
@@ -236,40 +420,13 @@
                             <li>BraveJIGなどの現場デバイスと組み合わせて、短期間でIoT基盤を立ち上げたい</li>
                         </ul>
                     </div>
-                    <div class="card" style="background: #fef2f2; border-color: #fecaca;">
-                        <h3 style="color: #991b1b;">最初から向いているとは限らないケース</h3>
-                        <ul class="bullet-list" style="color: #b91c1c;">
+                    <div class="kr-fit-col kr-fit-no">
+                        <h3>最初から向いているとは限らないケース</h3>
+                        <ul>
                             <li>最初から大規模なマネージドクラウド基盤を前提にしたい</li>
                             <li>ベンダー提供の完成済みSaaSをそのまま使いたい</li>
                             <li>独自設計よりも、すぐに完成済みの業務アプリを導入したい</li>
                         </ul>
-                    </div>
-                </div>
-
-                <div class="grid-3">
-                    <div class="card">
-                        <h3>工場設備の監視と通知</h3>
-                        <p>センサーデータを収集し、Brokerで閾値判定や整形を行い、InfluxDBへの保存やSlack通知につなげる。</p>
-                    </div>
-                    <div class="card">
-                        <h3>閉域環境でのIoT導入</h3>
-                        <p>クラウド前提にしづらい現場で、Collector/Brokerをオンプレミスに構築し、データ収集から処理までを完結させる。</p>
-                    </div>
-                    <div class="card">
-                        <h3>PoC・実証実験</h3>
-                        <p>Raspberry PiやMini PC上で最小構成を作り、まずデータを集めて試すところから素早く始められる。</p>
-                    </div>
-                    <div class="card">
-                        <h3>レガシー設備との接続</h3>
-                        <p>シリアル通信、テキストファイル監視、TCP Serverなどを使い、既存設備のデータを段階的に取り込む。</p>
-                    </div>
-                    <div class="card">
-                        <h3>BLEビーコンやメール起点</h3>
-                        <p>iBeaconやSMTP受信といった少し特殊な入口も扱え、現場要件に応じたデータ連携を組みやすい。</p>
-                    </div>
-                    <div class="card">
-                        <h3>BraveJIGを活用した基盤構築</h3>
-                        <p>BraveJIGで収集したデータを、BraveJIG CLI経由でKrakenへ接続し、前処理、DB蓄積、通知まで含めたワークフローを構築する。</p>
                     </div>
                 </div>
             </div>
@@ -280,20 +437,31 @@
             <div class="container">
                 <h2 class="section-title">用途と予算に合わせて、導入規模を選べます</h2>
                 <p class="section-lead">Krakenは、最初から大きく作るための基盤ではなく、小さく始めて必要に応じて育てていける基盤として設計されています。</p>
-                <div class="grid-3">
-                    <div class="card">
+                <div class="kr-rail">
+                    <div class="kr-rail-line" aria-hidden="true"></div>
+                    <div class="kr-rail-node">
+                        <span class="kr-rail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8" cy="12" r="2"/><path d="M13 9h5M13 12h5M13 15h3"/></svg></span>
                         <h3>Starter</h3>
-                        <p><strong>最小構成</strong><br>Raspberry Pi / Mini PC 1台から始める。<br><br>向いている用途：<br>PoC、検証、単拠点導入に最適。</p>
+                        <p class="kr-rail-sub">最小構成</p>
+                        <p>Raspberry Pi / Mini PC 1台から始める。</p>
+                        <p class="kr-rail-fit"><strong>向いている用途</strong>PoC、検証、単拠点導入</p>
                     </div>
-                    <div class="card">
+                    <div class="kr-rail-node">
+                        <span class="kr-rail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="8" rx="2"/><rect x="3" y="13" width="18" height="8" rx="2"/><path d="M7 7h.01M7 17h.01"/></svg></span>
                         <h3>Standard</h3>
-                        <p><strong>標準構成</strong><br>オンプレミスまたはVM上で安定運用する。<br><br>向いている用途：<br>複数入力、DB保存、通知連携まで視野に入れた継続利用向け。</p>
+                        <p class="kr-rail-sub">標準構成</p>
+                        <p>オンプレミスまたはVM上で安定運用する。</p>
+                        <p class="kr-rail-fit"><strong>向いている用途</strong>複数入力、DB保存、通知連携まで視野に入れた継続利用</p>
                     </div>
-                    <div class="card">
+                    <div class="kr-rail-node">
+                        <span class="kr-rail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="6" height="6" rx="1"/><rect x="9" y="4" width="6" height="6" rx="1"/><rect x="16" y="4" width="6" height="6" rx="1"/><rect x="2" y="14" width="6" height="6" rx="1"/><rect x="9" y="14" width="6" height="6" rx="1"/><rect x="16" y="14" width="6" height="6" rx="1"/></svg></span>
                         <h3>Scalable</h3>
-                        <p><strong>拡張構成</strong><br>コンテナベースでCollector/Brokerを拡張する。<br><br>向いている用途：<br>複数拠点、複数データフロー、将来的な成長を見据えた運用向け。</p>
+                        <p class="kr-rail-sub">拡張構成</p>
+                        <p>コンテナベースでCollector/Brokerを拡張する。</p>
+                        <p class="kr-rail-fit"><strong>向いている用途</strong>複数拠点、複数データフロー、将来的な成長を見据えた運用</p>
                     </div>
                 </div>
+                <p class="section-note">どの規模でも、同じCollector / Brokerの構成のまま育てられます。</p>
             </div>
         </section>
 
@@ -301,40 +469,40 @@
         <section class="section" id="support">
             <div class="container">
                 <h2 class="section-title">OSSだからこそ、必要なところだけプロに頼めます</h2>
-                <div class="grid-2">
-                    <div class="card">
-                        <h3>無料で使えるオープンソース</h3>
-                        <p>Krakenはオープンソースとして無料で利用できます。ライセンスの範囲内で、自社環境へ自由にデプロイし、カスタマイズを行うことが可能です。</p>
+                <p class="section-lead">Krakenはオープンソースとして無料で利用できます。一方で、実際の導入では、要件整理、既存設備との接続、Collector追加開発、Broker実装、保存先設計、通知設計、運用監視、障害対応など、現場ごとの技術判断が重要になります。</p>
+                <div class="kr-support">
+                    <div class="kr-support-col">
+                        <span class="badge badge-soft">無料・OSS</span>
+                        <h3>自分たちで進められること</h3>
+                        <ul class="check-list">
+                            <li>Collector / Brokerの利用（MIT License）</li>
+                            <li>HTTP、MQTT、Serialなど標準入力の利用</li>
+                            <li>InfluxDB、Redis、MongoDB、WebSocket、Slack連携</li>
+                            <li>独自Collector / Brokerの実装と運用</li>
+                        </ul>
                     </div>
-                    <div class="card card-outline">
-                        <h3 style="color: var(--primary);">BathTimeFishによる有償支援・CLI提供</h3>
-                        <p>実際の導入では、現場ごとの技術判断が重要になります。BathTimeFishはKrakenの開発元として、導入支援・カスタマイズ開発・保守サポートを提供しています。<br><br>また、BraveJIGと本格連携したい場合は、BathTimeFishが提供する <strong>BraveJIG CLI（有償）</strong> を導入することで、データをシームレスにワークフローへ接続できます。</p>
+                    <div class="kr-support-col kr-support-paid">
+                        <span class="badge">有償・BathTimeFish</span>
+                        <h3>開発元に頼めること</h3>
+                        <ul class="check-list">
+                            <li>導入相談・PoC立ち上げ支援</li>
+                            <li>Collectorの新規追加開発・Brokerのカスタム処理実装</li>
+                            <li>BraveJIG CLI提供・BraveJIG連携支援</li>
+                            <li>DB / 通知 / 外部システム連携設計</li>
+                            <li>オンプレミス構成支援・コンテナ化 / スケール設計</li>
+                            <li>運用保守 / 障害調査</li>
+                        </ul>
+                        <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener noreferrer">BathTimeFishに相談する</a>
                     </div>
                 </div>
-                
-                <div style="margin-top: 40px;">
-                    <h3 style="text-align: center; margin-bottom: 20px;">提供メニュー例</h3>
-                    <div class="tag-list is-center">
-                        <span class="tag">導入相談</span>
-                        <span class="tag">PoC立ち上げ支援</span>
-                        <span class="tag">Collectorの新規追加開発</span>
-                        <span class="tag">Brokerのカスタム処理実装</span>
-                        <span class="tag">BraveJIG CLI提供・BraveJIG連携支援</span>
-                        <span class="tag">DB/通知/外部連携設計</span>
-                        <span class="tag">オンプレミス構成支援</span>
-                        <span class="tag">運用保守・障害調査</span>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 40px;">
-                    <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Krakenについて相談する</a>
-                </div>
+                <p class="section-note">BathTimeFishでは、Krakenの開発元として、導入支援・カスタマイズ開発・保守サポートを提供しています。OSSの自由さを保ちながら、必要な部分だけ実装支援を受けられます。</p>
             </div>
         </section>
 
         <!-- 10. FAQ -->
         <section class="section section-alt" id="faq">
             <div class="container">
-                <h2 class="section-title">FAQ</h2>
+                <h2 class="section-title">よくある質問</h2>
                 <div class="faq-list">
                     <div class="faq-item">
                         <button class="faq-q" type="button"><span>Q1. Krakenは無料で使えますか？</span><span class="faq-icon" aria-hidden="true">+</span></button>
@@ -377,10 +545,9 @@
             <div class="container">
                 <h2 class="section-title">まずはOSSとして試す。<br>必要なら、開発元に相談する。</h2>
                 <p class="section-lead">Krakenは、IoTを小さく始めたい現場のために作られた、自由度の高いオープンソース基盤です。GitHubからすぐに試せます。実案件での導入や拡張が必要なら、BathTimeFishが支援します。</p>
-                
                 <div class="cta-box">
                     <h3>導入相談でわかること</h3>
-                    <ul class="check-list">
+                    <ul class="check-list kr-cta-list">
                         <li>Krakenで実現できる構成の整理</li>
                         <li>BraveJIG連携の可否と進め方</li>
                         <li>PoCの最小構成</li>
@@ -388,9 +555,8 @@
                         <li>おおまかな導入ステップ</li>
                     </ul>
                 </div>
-
                 <div class="btn-group is-center">
-                    <a href="https://github.com/bathtimefish/kraken_collector" class="btn btn-primary" target="_blank" rel="noopener noreferrer">GitHubでKrakenを見る</a>
+                    <a href="https://github.com/bathtimefish/kraken_collector" class="btn btn-primary kr-btn-on-dark" target="_blank" rel="noopener noreferrer">GitHubでKrakenを見る</a>
                     <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">導入・カスタマイズを相談する</a>
                 </div>
             </div>
@@ -429,5 +595,6 @@
 </footer>
 
 <script src="/js/site.js"></script>
+<script src="kraken.js"></script>
 </body>
 </html>
