@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mrag - RAGを、もっと小さく、手元に。</title>
+    <meta name="description" content="mrag（Micro RAG）は、手元のPCに小規模なRAGナレッジベースを作り、Claude CodeやDifyなどの生成AIから検索できるようにするオープンソースのCLIツールです。文書・インデックス・検索のすべてがローカルで完結します。BathTimeFishはmragを使った社内RAG導入・システム化を支援しています。">
+    <link rel="canonical" href="https://www.bathtimefish.com/mrag/">
+    <link rel="alternate" hreflang="ja" href="https://www.bathtimefish.com/mrag/">
+    <link rel="alternate" hreflang="x-default" href="https://www.bathtimefish.com/mrag/">
+    <link rel="icon" type="image/svg+xml" href="/bathtimefish.svg">
+    <link rel="alternate icon" type="image/png" href="/bathtimefish.png">
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="mrag.css">
+</head>
+<body>
+    <header class="site-header">
+  <div class="container site-header-inner">
+    <a class="site-brand" href="/">
+      <img src="/bathtimefish.svg" alt="" width="32" height="32">
+      <span class="site-brand-name">株式会社BathTimeFish</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="サイトナビゲーション">
+      <ul class="site-nav-list">
+        <li>
+          <details class="nav-dropdown">
+            <summary>製品情報</summary>
+            <ul class="nav-dropdown-menu">
+              <li><a href="/kraken/">Kraken<small>OSS IoTデータルーター</small></a></li>
+              <li><a href="/mrag/">mrag<small>OSS ローカルRAG構築ツール</small></a></li>
+              <li><a href="/bjigcli/">BraveJIG CLI<small>BraveJIG向けCLIツール</small></a></li>
+              <li><a href="/bjigmcp/">BraveJIG MCP Server<small>AIエージェント向けMCPサーバー</small></a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/company.html">会社概要</a></li>
+        <li><a href="https://zenn.dev/bathtimefish" target="_blank" rel="noopener">Zenn</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-nav">
+  <div class="container page-nav-inner">
+    <a class="page-nav-brand" href="./"><span class="mr-brand-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v6"/><path d="M14 3v4h4"/><path d="M7 3v12"/><path d="M4 7v12h8"/><path d="M19.7 16.5a3.2 3.2 0 1 1-6.4 0 3.2 3.2 0 0 1 6.4 0z"/><path d="M19 19l2.5 2.5"/></svg></span><span>mrag</span></a>
+    <nav class="page-nav-links" aria-label="mrag">
+      <a href="#why">特長</a>
+      <a href="#architecture">仕組み</a>
+      <a href="#quickstart">クイックスタート</a>
+      <a href="#quality">検索品質</a>
+      <a href="#agents">エージェント連携</a>
+      <a href="#use-cases">ユースケース</a>
+      <a href="#consulting">導入支援</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="nav-cta">相談する</a>
+    </nav>
+  </div>
+</div>
+
+    <main>
+        <!-- 1. Hero -->
+        <section class="hero mr-hero" id="hero">
+            <div class="container hero-grid mr-hero-grid">
+                <div class="hero-content">
+                    <p class="mr-eyebrow"><span class="badge badge-soft">Open Source</span><span>Local-first RAG</span></p>
+                    <h1 class="hero-title">RAGを、もっと小さく、<br>手元に。</h1>
+                    <p class="hero-sub">PC1台で完結する、ローカルファーストのRAG構築ツール。</p>
+                    <p class="hero-text">mragは、手元のPCに小規模なRAGナレッジベースを作り、運用するためのオープンソースのコマンドラインツールです。社内規程やマニュアル、仕様書などの業務文書を取り込んでインデックスを作り、Claude CodeやDifyなどの生成AIから検索できるようにします。文書もインデックスも検索処理もすべてローカルで完結し、クラウドにデータを送りません。</p>
+                    <div class="btn-group">
+                        <a href="https://github.com/bathtimefish/mrag" class="btn btn-primary" target="_blank" rel="noopener noreferrer">GitHubで見る</a>
+                        <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">導入・構築を相談する</a>
+                    </div>
+                    <ul class="mr-trust" aria-label="mragの基本情報">
+                        <li><span class="mr-trust-k">License</span><span class="mr-trust-v">MIT</span></li>
+                        <li><span class="mr-trust-k">Runtime</span><span class="mr-trust-v">Python 3.11+</span></li>
+                        <li><span class="mr-trust-k">Models</span><span class="mr-trust-v">Ollama（bge-m3 ほか）</span></li>
+                        <li><span class="mr-trust-k">Index</span><span class="mr-trust-v">SQLite FTS5 + Qdrant</span></li>
+                        <li><span class="mr-trust-k">Inputs</span><span class="mr-trust-v">Markdown / Text</span></li>
+                        <li><span class="mr-trust-k">Interfaces</span><span class="mr-trust-v">CLI · HTTP API · MCP</span></li>
+                    </ul>
+                </div>
+                <div class="hero-visual mr-hero-visual">
+                    <div class="mr-term" aria-label="mragでナレッジベースを作って検索するデモ">
+                        <div class="mr-term-bar"><span></span><span></span><span></span><em>mrag — my-kb</em></div>
+                        <pre class="mr-term-body" id="term"><span id="term-out"></span><span class="mr-term-input"><span class="mr-term-prompt">$ </span><span class="mr-term-cmd" id="term-cmd"></span><span class="mr-term-cursor" id="term-cursor"></span></span></pre>
+                    </div>
+                    <p class="mr-term-caption">プロジェクトを作り、文書を入れ、インデックスを作り、検索する。4つのコマンドで動きます。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 業務に必要なだけ、ナレッジ化 -->
+        <section class="section section-alt" id="why">
+            <div class="container">
+                <h2 class="section-title">業務に必要なだけ、ナレッジ化。</h2>
+                <p class="section-lead">全社基盤を待たなくても、いま担当している業務の文書からナレッジベースは作れます。<br>mragは、必要な文書を必要な分だけ、手元のPCで小さく素早くナレッジ化するためのツールです。</p>
+
+                <div class="mr-compare" aria-label="これまでとmragの比較">
+                    <div class="mr-compare-head">
+                        <span class="mr-compare-before">これまで</span>
+                        <span class="mr-compare-after">mragなら</span>
+                    </div>
+                    <div class="mr-compare-row">
+                        <div class="mr-compare-before">ナレッジ化したい文書があっても、ベクトルDBやEmbedding APIの契約・基盤構築から始まり、試すまでに時間がかかる。</div>
+                        <div class="mr-compare-after"><code>mrag init → add → index → search</code><span>4つのコマンドで、その日のうちに検索できる。</span></div>
+                    </div>
+                    <div class="mr-compare-row">
+                        <div class="mr-compare-before">全社向けの大きなRAG基盤に、部門やチームの小さな文書群を載せるのは大げさで、順番待ちになる。</div>
+                        <div class="mr-compare-after"><code>mrag init kb-manual / kb-spec / kb-rules</code><span>部門・チーム・個人の単位で、必要な文書だけの小さなKBを手元に作れる。KBは増やして束ねられる。</span></div>
+                    </div>
+                    <div class="mr-compare-row">
+                        <div class="mr-compare-before">「なぜこの回答になったのか」がブラックボックスで、精度を上げる手がかりがない。</div>
+                        <div class="mr-compare-after"><code>mrag inspect chunk &lt;id&gt; / mrag eval "query"</code><span>チャンクと文脈、ヒット理由を確認して調整できる。</span></div>
+                    </div>
+                </div>
+
+                <div class="mr-pillars">
+                    <div class="mr-pillar">
+                        <span class="mr-pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>
+                        <h3>小さく、すぐ作れる</h3>
+                        <p>覚えるコマンドは4つ。担当業務のマニュアルや仕様書のフォルダから、その日のうちに検索できるナレッジベースができます。</p>
+                    </div>
+                    <div class="mr-pillar">
+                        <span class="mr-pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M9.5 10.5l1.8 1.8L14.5 8.5"/></svg></span>
+                        <h3>PC1台で完結し、社外に出ない</h3>
+                        <p>Python、SQLite、Qdrant、Ollamaだけで動きます。既定ではQdrantもプロセス内で動くため、サーバーやコンテナは不要です。文書・インデックス・検索処理はすべて手元のPC上で、Embeddingも文脈生成もローカルのモデルを使います。</p>
+                    </div>
+                    <div class="mr-pillar">
+                        <span class="mr-pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20V10M6 20v-4M18 20V4"/><path d="M3 20h18"/></svg></span>
+                        <h3>必要に応じて、育てて、束ねる</h3>
+                        <p>どう分割され、どんな文脈が付き、なぜヒットしたのかを <code>mrag inspect</code> と <code>mrag eval</code> で確認し、YAMLで検索戦略やチャンク方法を切り替えられます。KBが増えたら <code>mrag registry</code> で束ねてエージェントに選ばせます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 仕組み -->
+        <section class="section" id="architecture">
+            <div class="container">
+                <h2 class="section-title">手元で完結する、RAGのパイプライン。</h2>
+                <p class="section-lead">文書を取り込み、分割し、文脈を付け、ベクトル化して、検索する。<br>破線の外側（文書の変換と、検索を使うエージェント）以外は、すべてmragとOllamaです。</p>
+
+                <div class="mr-arch" aria-label="mragの処理の流れ">
+                    <div class="mr-arch-row">
+                        <div class="mr-node mr-node-ext">
+                            <strong>Documents</strong>
+                            <span>PDF / Office / Markdown / Text</span>
+                        </div>
+                        <div class="mr-arrow" aria-hidden="true"></div>
+                        <div class="mr-node mr-node-ext mr-node-dashed">
+                            <strong>docling / MarkItDown</strong>
+                            <span>Markdownへ変換（外部ツール）</span>
+                        </div>
+                        <div class="mr-arrow" aria-hidden="true"></div>
+                        <div class="mr-node mr-node-core">
+                            <strong>mrag add</strong>
+                            <span>文書を登録</span>
+                        </div>
+                        <div class="mr-arrow" aria-hidden="true"></div>
+                        <div class="mr-node mr-node-core">
+                            <strong>mrag index</strong>
+                            <span>チャンク分割 → 文脈付与 → Embedding</span>
+                        </div>
+                    </div>
+                    <div class="mr-arch-row mr-arch-row-2">
+                        <div class="mr-node mr-node-store">
+                            <strong>SQLite FTS5</strong>
+                            <span>正本・キーワード索引</span>
+                        </div>
+                        <div class="mr-node mr-node-store">
+                            <strong>Qdrant</strong>
+                            <span>ベクトル索引（プロセス内）</span>
+                        </div>
+                        <div class="mr-arrow" aria-hidden="true"></div>
+                        <div class="mr-node mr-node-core">
+                            <strong>mrag search</strong>
+                            <span>ハイブリッド検索 → リランク</span>
+                        </div>
+                        <div class="mr-arrow" aria-hidden="true"></div>
+                        <div class="mr-node mr-node-iface">
+                            <strong>CLI / REST API / Dify API / MCP</strong>
+                            <span>mrag serve · mrag mcp</span>
+                        </div>
+                        <div class="mr-arrow" aria-hidden="true"></div>
+                        <div class="mr-node mr-node-ext mr-node-dashed">
+                            <strong>AIエージェント</strong>
+                            <span>Claude Code · Codex · Dify · LM Studio</span>
+                        </div>
+                    </div>
+                    <div class="mr-arch-ollama">
+                        <span class="mr-node mr-node-ollama"><strong>Ollama</strong><span>bge-m3（Embedding）· gemma4（文脈生成）· ローカルで実行</span></span>
+                    </div>
+                </div>
+                <p class="section-note">SQLiteが正本で、Qdrantは再構築できるベクトル索引です。既定の <code>local</code> モードではQdrantもプロセス内で動くため、別途サーバーを立てる必要はありません。</p>
+            </div>
+        </section>
+
+        <!-- 4. クイックスタート -->
+        <section class="section section-alt mr-quickstart" id="quickstart">
+            <div class="container">
+                <h2 class="section-title">4つのコマンドで、ナレッジベースができる。</h2>
+                <p class="section-lead">プロジェクトを作り、文書を入れ、インデックスを作り、検索する。それだけです。</p>
+
+                <div class="mr-qs-grid">
+                    <div class="mr-code">
+                        <button type="button" class="mr-copy" aria-label="コードをコピー">Copy</button>
+<pre><code>mrag init my-kb --non-interactive
+cd my-kb
+mrag add /path/to/documents --recursive --include '**/*.md'
+mrag index
+mrag search "クエリ"</code></pre>
+                    </div>
+                    <ol class="mr-qs-steps">
+                        <li>
+                            <span class="mr-step-num">1</span>
+                            <div><strong>init — プロジェクトを作る</strong><span><code>mrag.yaml</code>、検索プロファイル、<code>kb_information.yaml</code>、<code>mrag.db</code> を生成します。日本語トークナイザーは自動検出されます。</span></div>
+                        </li>
+                        <li>
+                            <span class="mr-step-num">2</span>
+                            <div><strong>add — 文書を登録する</strong><span>Markdownやテキストをファイル単位、またはディレクトリごと登録します。<code>--dry-run</code> で対象を先に確認できます。この時点ではまだ検索できません。</span></div>
+                        </li>
+                        <li>
+                            <span class="mr-step-num">3</span>
+                            <div><strong>index — インデックスを作る</strong><span>チャンクに分割し、Ollamaで Embedding を計算して、Qdrant と SQLite FTS5 に書き込みます。2回目以降は追加分だけを処理します。</span></div>
+                        </li>
+                        <li>
+                            <span class="mr-step-num">4</span>
+                            <div><strong>search — 検索する</strong><span>既定はキーワード検索とベクトル検索を融合したハイブリッド検索。<code>--strategy</code> で切り替え、<code>--json</code> でエージェントに渡せます。</span></div>
+                        </li>
+                    </ol>
+                </div>
+
+                <p class="section-note">PDFやOffice文書は、docling や MarkItDown で Markdown に変換してから取り込みます。インストール手順は <a href="https://github.com/bathtimefish/mrag/blob/main/README-ja.md" target="_blank" rel="noopener noreferrer">GitHubのREADME</a> を、Claude Codeなどのエージェントに任せる場合は同梱の SETUP.md をご覧ください。</p>
+            </div>
+        </section>
+
+        <!-- 5. 検索品質 -->
+        <section class="section" id="quality">
+            <div class="container">
+                <h2 class="section-title">精度は、設定で育てる。</h2>
+                <p class="section-lead">文書の種類と用途に合わせて、分割方法と検索方法を選べます。設定はプロファイル（YAML）にまとまり、切り替えて比べられます。</p>
+                <div class="mr-tiles">
+                    <div class="mr-tile">
+                        <h3>チャンキング 4種</h3>
+                        <p>汎用の <code>recursive</code>、見出し構造を尊重する <code>markdown_recursive</code>、表やコードを壊さない <code>block_aware</code>、子で当てて親で返す <code>parent_child</code>。</p>
+                    </div>
+                    <div class="mr-tile">
+                        <h3>検索ストラテジー 4種</h3>
+                        <p>キーワード（BM25）、ベクトル（意味検索）、両者を融合する <code>hybrid</code>（既定）、そして <code>parent_child</code>。用途に応じて <code>--strategy</code> で切り替えます。</p>
+                    </div>
+                    <div class="mr-tile">
+                        <h3>コンテキスチュアル検索</h3>
+                        <p>各チャンクに文書全体の文脈をローカルLLMで付与してから Embedding します。断片だけでは拾えない検索を拾う、Anthropic の Contextual Retrieval 方式です。</p>
+                    </div>
+                    <div class="mr-tile">
+                        <h3>リランキング</h3>
+                        <p>CrossEncoder で上位候補を並べ替えます。「ヒットはしているが順位が低い」場合に効きます。</p>
+                    </div>
+                    <div class="mr-tile">
+                        <h3>評価と調査</h3>
+                        <p><code>mrag eval</code> で検索品質を測り、<code>mrag inspect</code> でチャンク本文、生成された文脈、セクション階層を覗けます。</p>
+                    </div>
+                    <div class="mr-tile">
+                        <h3>日本語に強い</h3>
+                        <p>sqlite-vaporetto による形態素解析トークナイザーに対応。未検出時は trigram に自動フォールバックします。Embedding は多言語対応の bge-m3 が既定です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. エージェント連携 -->
+        <section class="section section-alt" id="agents">
+            <div class="container">
+                <h2 class="section-title">作るのも、使うのも、エージェントで。</h2>
+                <p class="section-lead">mragはAIエージェントが操作することを前提に設計されています。</p>
+                <div class="mr-agents">
+                    <div class="mr-agent">
+                        <h3>SKILL.md で、エージェントが構築する</h3>
+                        <p>同梱の SKILL.md / SETUP.md を Claude Code などに読ませると、インストールからKB作成、精度チューニングまで自律的に進めます。</p>
+                        <div class="mr-code mr-code-sm"><pre><code><span class="c"># Claude Code へのプロンプト例</span>
+&gt; ./documents/ のMarkdownをもとに ./my-kb という
+  mragプロジェクトを作成してください</code></pre></div>
+                    </div>
+                    <div class="mr-agent">
+                        <h3>MCP server として公開する</h3>
+                        <p><code>mrag mcp</code> で read-only の MCP server になります。Claude Code や LM Studio などから、検索をツールとして呼び出せます。stdio と Streamable HTTP に対応。</p>
+                        <div class="mr-code mr-code-sm"><pre><code><span class="c"># index 済みのプロジェクト内で</span>
+mrag mcp
+<span class="c"># tools: search / list_documents / inspect_*</span></code></pre></div>
+                    </div>
+                    <div class="mr-agent">
+                        <h3>Dify の外部ナレッジに</h3>
+                        <p><code>mrag serve</code> は Dify External Knowledge API 互換エンドポイントを持ち、Dify のチャットボットからローカルのKBを参照できます。ネイティブ REST API も提供します。</p>
+                        <div class="mr-code mr-code-sm"><pre><code>mrag serve --host 0.0.0.0 --port 8000
+<span class="c"># POST /retrieval  (Dify External Knowledge API)</span></code></pre></div>
+                    </div>
+                    <div class="mr-agent">
+                        <h3>複数のKBを束ねる</h3>
+                        <p><code>mrag registry</code> で複数のKBを <code>knowledge_registry.yaml</code> にまとめます。エージェントは「どのKBを検索すべきか」を判断してから検索します。Agentic RAG の土台です。</p>
+                        <div class="mr-code mr-code-sm"><pre><code>mrag registry generate ./knowledges
+<span class="c"># knowledges/kb-manual, kb-spec, kb-rules ...</span></code></pre></div>
+                    </div>
+                </div>
+                <div class="mr-clients" aria-label="対応クライアント">
+                    <span class="mr-clients-label">つながるクライアント</span>
+                    <ul>
+                        <li>Claude Code</li>
+                        <li>Codex</li>
+                        <li>Gemini CLI</li>
+                        <li>LM Studio</li>
+                        <li>Dify</li>
+                        <li>MCP対応クライアント</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. 使いどころ -->
+        <section class="section" id="fit">
+            <div class="container">
+                <h2 class="section-title">mragの使いどころ</h2>
+                <ul class="mr-fits">
+                    <li><h3>部門・チーム単位のナレッジ</h3><p>全社基盤に載せるほどではない、担当業務のマニュアル・規程・仕様書をまずナレッジ化したいとき。</p></li>
+                    <li><h3>手元ですぐ試したい</h3><p>基盤の契約や構築を待たず、今日フォルダにある文書でRAGを動かして効果を確かめたいとき。</p></li>
+                    <li><h3>社外に出せない文書</h3><p>機密性の高い文書を、PCやオンプレミスのサーバーの中だけで生成AIから使いたいとき。</p></li>
+                    <li><h3>エージェントに業務知識を持たせたい</h3><p>Claude Code や Dify、LM Studio などのエージェントに、自分の業務に特化した知識を MCP や API で渡したいとき。</p></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 8. ユースケース -->
+        <section class="section section-alt" id="use-cases">
+            <div class="container">
+                <h2 class="section-title">こんな使い方ができます</h2>
+                <div class="mr-cases">
+                    <article class="mr-case">
+                        <span class="mr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3h14v18H5z"/><path d="M9 7h6M9 11h6M9 15h3"/></svg></span>
+                        <h3>社内規程・マニュアルの問い合わせ</h3>
+                        <p>「出張旅費の上限は？」に、規程を検索して根拠の箇所つきで答える。</p>
+                        <p class="mr-case-flow">規程 .md → mrag → Claude Code</p>
+                    </article>
+                    <article class="mr-case">
+                        <span class="mr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 4v6"/></svg></span>
+                        <h3>製品仕様書・設計書のQA</h3>
+                        <p>開発中のエージェントに自社製品の仕様を持たせ、実装や問い合わせ対応の根拠にする。</p>
+                        <p class="mr-case-flow">仕様書 → mrag mcp → エージェント</p>
+                    </article>
+                    <article class="mr-case">
+                        <span class="mr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2"/></svg></span>
+                        <h3>保守・運用手順書</h3>
+                        <p>現場の手順書をKBにして、作業者のエージェントから該当手順を引く。</p>
+                        <p class="mr-case-flow">手順書 → mrag → LM Studio</p>
+                    </article>
+                    <article class="mr-case">
+                        <span class="mr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 2v4M16 2v4M4 10h16"/></svg></span>
+                        <h3>議事録・ナレッジの蓄積</h3>
+                        <p>日々のMarkdownを追加して index し続ける。古くなった文書は <code>exclusions</code> で正本を残したまま検索から外す。</p>
+                        <p class="mr-case-flow">add → index → exclusions</p>
+                    </article>
+                    <article class="mr-case">
+                        <span class="mr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H9l-4 4v-4H4z"/><circle cx="9" cy="10" r="1.2"/><circle cx="12" cy="10" r="1.2"/><circle cx="15" cy="10" r="1.2"/></svg></span>
+                        <h3>Difyチャットボットのローカルナレッジ</h3>
+                        <p>既存のDifyボットの外部ナレッジをmragにして、文書を社内に置いたまま回答させる。</p>
+                        <p class="mr-case-flow">mrag serve → Dify External Knowledge</p>
+                    </article>
+                    <article class="mr-case mr-case-accent">
+                        <span class="mr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20V10M6 20v-4M18 20V4"/><path d="M3 20h18"/></svg></span>
+                        <h3>RAGの実験環境</h3>
+                        <p>チャンク方法や検索戦略を切り替えて、自社文書での精度を比べる。本番のRAG設計の根拠づくりに。</p>
+                        <p class="mr-case-flow">profiles → eval → inspect</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. 置き場所 -->
+        <section class="section" id="scale">
+            <div class="container">
+                <h2 class="section-title">用途に合わせて、置き場所を選べます</h2>
+                <p class="section-lead">mragは、最初から大きく作るための基盤ではなく、手元で小さく始めて必要に応じて共有・組み込みへ広げていけるように設計されています。</p>
+                <div class="mr-rail">
+                    <div class="mr-rail-line" aria-hidden="true"></div>
+                    <div class="mr-rail-node">
+                        <span class="mr-rail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
+                        <h3>Personal</h3>
+                        <p class="mr-rail-sub">まずは自分のPCで</p>
+                        <p>個人の調査ノートや担当業務の文書をKBにして、Claude Code や LM Studio から使う。</p>
+                        <p class="mr-rail-fit"><strong>接続</strong>mrag mcp（stdio）/ mrag search --json</p>
+                    </div>
+                    <div class="mr-rail-node">
+                        <span class="mr-rail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="8" rx="2"/><rect x="3" y="13" width="18" height="8" rx="2"/><path d="M7 7h.01M7 17h.01"/></svg></span>
+                        <h3>Team</h3>
+                        <p class="mr-rail-sub">チームで共有する</p>
+                        <p>社内サーバーや小型PCでmragを常駐させ、LAN内のエージェントやDifyから参照する。</p>
+                        <p class="mr-rail-fit"><strong>接続</strong>mrag serve / mrag mcp（Streamable HTTP）</p>
+                    </div>
+                    <div class="mr-rail-node">
+                        <span class="mr-rail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="6" height="6" rx="1"/><rect x="9" y="4" width="6" height="6" rx="1"/><rect x="16" y="4" width="6" height="6" rx="1"/><rect x="2" y="14" width="6" height="6" rx="1"/><rect x="9" y="14" width="6" height="6" rx="1"/><rect x="16" y="14" width="6" height="6" rx="1"/></svg></span>
+                        <h3>System</h3>
+                        <p class="mr-rail-sub">業務システムに組み込む</p>
+                        <p>REST API経由で自社アプリに検索を組み込み、複数KBをregistryで束ね、更新・除外の運用を設計する。</p>
+                        <p class="mr-rail-fit"><strong>接続</strong>REST API / registry / 運用設計</p>
+                    </div>
+                </div>
+                <p class="section-note">どの置き場所でも、同じプロジェクト構成のまま育てられます。チーム共有から先は、BathTimeFishの導入支援の範囲です。</p>
+            </div>
+        </section>
+
+        <!-- 10. 導入支援 -->
+        <section class="section section-alt" id="consulting">
+            <div class="container">
+                <p class="mr-eyebrow is-center"><span class="badge">BathTimeFish ならでは</span></p>
+                <h2 class="section-title">OSSだからこそ、必要なところだけプロに頼めます</h2>
+                <p class="section-lead">mragはオープンソースとして無料で利用できます。一方で、社内での本格利用では、対象文書の選定と変換、チャンクと検索の設計、精度の評価、エージェントや既存システムとの接続、更新と除外の運用など、文書と業務ごとの判断が重要になります。BathTimeFishは、mragを使った社内RAGナレッジの導入とシステム化を支援しています。</p>
+                <div class="mr-support">
+                    <div class="mr-support-col">
+                        <span class="badge badge-soft">無料・OSS</span>
+                        <h3>自分たちで進められること</h3>
+                        <ul class="check-list">
+                            <li>mragの利用（MIT License）</li>
+                            <li>手元のPCでのKB作成・検索</li>
+                            <li>プロファイルによるチャンク・検索戦略の切り替え</li>
+                            <li>MCP / REST API / Dify互換APIでの公開</li>
+                            <li>SKILL.mdを使ったエージェントによる構築</li>
+                        </ul>
+                    </div>
+                    <div class="mr-support-col mr-support-paid">
+                        <span class="badge">有償・BathTimeFish</span>
+                        <h3>開発元に頼めること</h3>
+                        <ul class="check-list">
+                            <li><strong>PoC（小規模検証）</strong> — 対象文書の選定・変換、KB構築、検索品質の評価</li>
+                            <li><strong>精度チューニング</strong> — チャンキング／検索戦略／文脈付与／リランキングの設計</li>
+                            <li><strong>業務システムへの組み込み</strong> — Claude Codeなどのエージェント連携、Dify連携、MCP／REST API経由でのアプリ接続</li>
+                            <li><strong>運用設計</strong> — 文書の更新・除外の運用、複数KBの構成、オンプレミス／社内サーバーでの常駐</li>
+                            <li><strong>社内展開の支援</strong> — 利用ガイド作成、担当者向けハンズオン</li>
+                        </ul>
+                        <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener noreferrer">BathTimeFishに相談する</a>
+                    </div>
+                </div>
+                <p class="section-note">BathTimeFishは、mragの開発元として、導入支援・精度設計・システム化・運用設計を提供しています。小さく作って精度を確かめ、業務に組み込むところまでを一緒に進めます。</p>
+            </div>
+        </section>
+
+        <!-- 11. FAQ -->
+        <section class="section" id="faq">
+            <div class="container">
+                <h2 class="section-title">よくある質問</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q1. mragは無料で使えますか?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>はい。MITライセンスのオープンソースソフトウェアです。商用利用も可能です。</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q2. インターネット接続は必要ですか?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>通常の利用では不要です。Embeddingや文脈生成はOllama上のローカルモデルで行います。モデルの初回ダウンロード時のみネットワークが必要です。</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q3. PDFやWord文書は取り込めますか?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>mragが取り込むのはMarkdownとプレーンテキストです。PDFはdocling、Office文書はMarkItDownなどでMarkdownに変換してから取り込んでください。</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q4. 必要な環境は?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>Python 3.11以上と、Ollama（<code>ollama serve</code> が起動済み）です。Qdrantは既定でプロセス内で動くため、別途のサーバーは不要です。</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q5. 日本語の文書でも精度は出ますか?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>日本語に対応したEmbeddingモデル（bge-m3）と、形態素解析トークナイザー（sqlite-vaporetto）に対応しています。精度は文書と設定に依存するため、<code>mrag eval</code> で確かめながら調整します。</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q6. どのAIエージェントから使えますか?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p><code>mrag mcp</code> により、Claude Code、Codex、LM StudioなどのMCP対応クライアントから検索できます。DifyからはExternal Knowledge APIで接続できます。REST APIも提供しています。</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q7. 大規模なナレッジベースにも使えますか?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>mragは小規模なナレッジベースをローカルで運用することを目的に設計されています。文書が多い場合は、業務やテーマごとに複数のKBに分けて <code>mrag registry</code> で束ねる構成を推奨します。</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q8. 導入支援は受けられますか?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>はい。BathTimeFishは、mragを使った社内RAGの導入・システム化コンサルティングを提供しています。お問い合わせフォームからご相談ください。</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12. 最終CTA -->
+        <section class="section section-cta" id="contact">
+            <div class="container">
+                <h2 class="section-title">RAGを、もっと小さく、手元に。<br>まずは手元で試すところから。</h2>
+                <p class="section-lead">mragはオープンソースです。GitHubからすぐに試せます。社内への導入やシステム化が必要なら、BathTimeFishが支援します。</p>
+                <div class="cta-box">
+                    <h3>導入相談でわかること</h3>
+                    <ul class="check-list mr-cta-list">
+                        <li>対象文書に合ったKBの分け方</li>
+                        <li>必要な環境（PC・Ollama・モデル）</li>
+                        <li>お使いのエージェントやDifyとの接続方法</li>
+                        <li>精度検証の進め方</li>
+                        <li>運用と社内展開のステップ</li>
+                    </ul>
+                </div>
+                <div class="btn-group is-center">
+                    <a href="https://github.com/bathtimefish/mrag" class="btn btn-primary mr-btn-on-dark" target="_blank" rel="noopener noreferrer">GitHubでmragを見る</a>
+                    <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">導入・構築を相談する</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+  <div class="container">
+    <div class="site-footer-grid">
+      <div class="site-footer-brand">
+        <img src="/bathtimefish.svg" alt="" width="40" height="40">
+        <p class="site-footer-name">株式会社BathTimeFish<span>BathTimeFish, K.K.</span></p>
+        <p class="site-footer-address">兵庫県神戸市長田区西山町3-3-13</p>
+      </div>
+      <div>
+        <h4>製品情報</h4>
+        <ul>
+          <li><a href="/kraken/">Kraken</a></li>
+          <li><a href="/mrag/">mrag</a></li>
+          <li><a href="/bjigcli/">BraveJIG CLI</a></li>
+          <li><a href="/bjigmcp/">BraveJIG MCP Server</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>会社情報</h4>
+        <ul>
+          <li><a href="/company.html">会社概要</a></li>
+          <li><a href="https://zenn.dev/bathtimefish" target="_blank" rel="noopener">Zenn</a></li>
+          <li><a href="https://github.com/bathtimefish" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://forms.gle/X2RKJqLNiJXBfnKW8" target="_blank" rel="noopener">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p>&copy; BathTimeFish, K.K. All rights reserved.</p>
+      <p>mrag is an open-source project developed by BathTimeFish and released under the MIT License.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/site.js"></script>
+<script src="mrag.js"></script>
+</body>
+</html>
