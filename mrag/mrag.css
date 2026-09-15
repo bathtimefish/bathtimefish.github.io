@@ -210,6 +210,8 @@
   .mr-compare-row .mr-compare-before::before, .mr-compare-row .mr-compare-after::before { display: block; margin-bottom: 4px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; }
   .mr-compare-row .mr-compare-before::before { content: "これまで"; color: #9a3b3b; }
   .mr-compare-row .mr-compare-after::before { content: "mragなら"; color: var(--primary); }
+  html[lang="en"] .mr-compare-row .mr-compare-before::before { content: "Before"; }
+  html[lang="en"] .mr-compare-row .mr-compare-after::before { content: "With mrag"; }
   .mr-arch-row { flex-direction: column; align-items: stretch; }
   .mr-node { max-width: none; flex-basis: auto; }
   .mr-arrow { align-self: center; width: 2px; height: 18px; flex-basis: 18px; }

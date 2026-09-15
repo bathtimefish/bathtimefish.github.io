@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mrag - RAG, Smaller and Closer to Hand.</title>
+    <meta name="description" content="mrag (Micro RAG) is an open-source CLI that builds a small RAG knowledge base on your own PC and makes it searchable from generative AI such as Claude Code and Dify. Documents, index and retrieval all stay local. BathTimeFish also helps companies adopt and systematize in-house RAG knowledge with mrag.">
+    <link rel="canonical" href="https://www.bathtimefish.com/mrag/en.html">
+    <link rel="alternate" hreflang="ja" href="https://www.bathtimefish.com/mrag/">
+    <link rel="alternate" hreflang="en" href="https://www.bathtimefish.com/mrag/en.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.bathtimefish.com/mrag/">
+    <link rel="icon" type="image/svg+xml" href="/bathtimefish.svg">
+    <link rel="alternate icon" type="image/png" href="/bathtimefish.png">
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="mrag.css">
+</head>
+<body>
+    <header class="site-header">
+  <div class="container site-header-inner">
+    <a class="site-brand" href="/">
+      <img src="/bathtimefish.svg" alt="" width="32" height="32">
+      <span class="site-brand-name">BathTimeFish, K.K.</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Site navigation">
+      <ul class="site-nav-list">
+        <li>
+          <details class="nav-dropdown">
+            <summary>Products</summary>
+            <ul class="nav-dropdown-menu">
+              <li><a href="/kraken/en.html">Kraken<small>Open-source IoT data router</small></a></li>
+              <li><a href="/mrag/en.html">mrag<small>Open-source local RAG toolkit</small></a></li>
+              <li><a href="/bjigcli/en.html">BraveJIG CLI<small>CLI tool for BraveJIG</small></a></li>
+              <li><a href="/bjigmcp/">BraveJIG MCP Server<small>MCP server for AI agents</small></a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/company.html">Company</a></li>
+        <li><a href="https://zenn.dev/bathtimefish" target="_blank" rel="noopener">Zenn</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-nav">
+  <div class="container page-nav-inner">
+    <a class="page-nav-brand" href="en.html"><span class="mr-brand-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v6"/><path d="M14 3v4h4"/><path d="M7 3v12"/><path d="M4 7v12h8"/><path d="M19.7 16.5a3.2 3.2 0 1 1-6.4 0 3.2 3.2 0 0 1 6.4 0z"/><path d="M19 19l2.5 2.5"/></svg></span><span>mrag</span></a>
+    <nav class="page-nav-links" aria-label="mrag">
+      <a href="#why">Why</a>
+      <a href="#architecture">How it works</a>
+      <a href="#quickstart">Quick Start</a>
+      <a href="#quality">Retrieval</a>
+      <a href="#agents">Agents</a>
+      <a href="#use-cases">Use Cases</a>
+      <a href="#consulting">Services</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+    <a class="lang-switch" href="index.html" lang="ja" hreflang="ja">日本語</a>
+  </div>
+</div>
+
+    <main>
+        <!-- 1. Hero -->
+        <section class="hero mr-hero" id="hero">
+            <div class="container hero-grid mr-hero-grid">
+                <div class="hero-content">
+                    <p class="mr-eyebrow"><span class="badge badge-soft">Open Source</span><span>Local-first RAG</span></p>
+                    <h1 class="hero-title">RAG, Smaller<br>and Closer to Hand.</h1>
+                    <p class="hero-sub">A local-first RAG toolkit that runs entirely on one PC.</p>
+                    <p class="hero-text">mrag is an open-source command-line tool for building and operating a small RAG knowledge base on your own PC. Ingest business documents such as internal rules, manuals and specifications, build an index, and make them searchable from generative AI such as Claude Code and Dify. Documents, index and retrieval all stay local. Nothing is sent to the cloud.</p>
+                    <div class="btn-group">
+                        <a href="https://github.com/bathtimefish/mrag" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                        <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Talk to us about adoption</a>
+                    </div>
+                    <ul class="mr-trust" aria-label="mrag at a glance">
+                        <li><span class="mr-trust-k">License</span><span class="mr-trust-v">MIT</span></li>
+                        <li><span class="mr-trust-k">Runtime</span><span class="mr-trust-v">Python 3.11+</span></li>
+                        <li><span class="mr-trust-k">Models</span><span class="mr-trust-v">Ollama (bge-m3 and others)</span></li>
+                        <li><span class="mr-trust-k">Index</span><span class="mr-trust-v">SQLite FTS5 + Qdrant</span></li>
+                        <li><span class="mr-trust-k">Inputs</span><span class="mr-trust-v">Markdown / Text</span></li>
+                        <li><span class="mr-trust-k">Interfaces</span><span class="mr-trust-v">CLI · HTTP API · MCP</span></li>
+                    </ul>
+                </div>
+                <div class="hero-visual mr-hero-visual">
+                    <div class="mr-term" aria-label="Demo: building and searching a knowledge base with mrag">
+                        <div class="mr-term-bar"><span></span><span></span><span></span><em>mrag — my-kb</em></div>
+                        <pre class="mr-term-body" id="term"><span id="term-out"></span><span class="mr-term-input"><span class="mr-term-prompt">$ </span><span class="mr-term-cmd" id="term-cmd"></span><span class="mr-term-cursor" id="term-cursor"></span></span></pre>
+                    </div>
+                    <p class="mr-term-caption">Create a project, add documents, build the index, search. Four commands.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Why -->
+        <section class="section section-alt" id="why">
+            <div class="container">
+                <h2 class="section-title">Turn just what your work needs into knowledge.</h2>
+                <p class="section-lead">You don't have to wait for a company-wide platform to build a knowledge base from the documents you work with today.<br>mrag is a tool for turning the documents you need, and only those, into a small knowledge base on your own PC, fast.</p>
+
+                <div class="mr-compare" aria-label="Before and with mrag">
+                    <div class="mr-compare-head">
+                        <span class="mr-compare-before">Before</span>
+                        <span class="mr-compare-after">With mrag</span>
+                    </div>
+                    <div class="mr-compare-row">
+                        <div class="mr-compare-before">You have documents worth indexing, but first you need a vector database contract and an embedding API, and it takes a while before you can even try.</div>
+                        <div class="mr-compare-after"><code>mrag init → add → index → search</code><span>Four commands, and you are searching the same day.</span></div>
+                    </div>
+                    <div class="mr-compare-row">
+                        <div class="mr-compare-before">Loading a department's small set of documents onto a large company-wide RAG platform is overkill, and you end up waiting in line.</div>
+                        <div class="mr-compare-after"><code>mrag init kb-manual / kb-spec / kb-rules</code><span>Build small knowledge bases per department, team or person, with only the documents you need. Add more and bundle them later.</span></div>
+                    </div>
+                    <div class="mr-compare-row">
+                        <div class="mr-compare-before">"Why did it answer that?" is a black box, with no clues for improving accuracy.</div>
+                        <div class="mr-compare-after"><code>mrag inspect chunk &lt;id&gt; / mrag eval "query"</code><span>See the chunks, the added context and why something matched, then tune.</span></div>
+                    </div>
+                </div>
+
+                <div class="mr-pillars">
+                    <div class="mr-pillar">
+                        <span class="mr-pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>
+                        <h3>Small, and quick to build</h3>
+                        <p>Four commands to learn. A folder of manuals or specifications for your own work becomes a searchable knowledge base the same day.</p>
+                    </div>
+                    <div class="mr-pillar">
+                        <span class="mr-pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M9.5 10.5l1.8 1.8L14.5 8.5"/></svg></span>
+                        <h3>One PC, nothing leaves the building</h3>
+                        <p>Runs on Python, SQLite, Qdrant and Ollama alone. Qdrant runs in-process by default, so there is no server or container to set up. Documents, index and retrieval all stay on your PC, and embeddings and context generation use local models.</p>
+                    </div>
+                    <div class="mr-pillar">
+                        <span class="mr-pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20V10M6 20v-4M18 20V4"/><path d="M3 20h18"/></svg></span>
+                        <h3>Grow it and bundle it when you need to</h3>
+                        <p>Check how documents were split, what context was added and why a result matched with <code>mrag inspect</code> and <code>mrag eval</code>, and switch retrieval strategies and chunking in YAML. When knowledge bases multiply, bundle them with <code>mrag registry</code> and let agents pick.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Architecture -->
+        <section class="section" id="architecture">
+            <div class="container">
+                <h2 class="section-title">A RAG pipeline that runs entirely on your machine.</h2>
+                <p class="section-lead">Ingest, split, add context, embed, search.<br>Everything inside the dashed boxes (document conversion and the agents that use the results) is external; everything else is mrag and Ollama.</p>
+
+                <div class="mr-arch" aria-label="How mrag processes documents">
+                    <div class="mr-arch-row">
+                        <div class="mr-node mr-node-ext">
+                            <strong>Documents</strong>
+                            <span>PDF / Office / Markdown / Text</span>
+                        </div>
+                        <div class="mr-arrow" aria-hidden="true"></div>
+                        <div class="mr-node mr-node-ext mr-node-dashed">
+                            <strong>docling / MarkItDown</strong>
+                            <span>Convert to Markdown (external tools)</span>
+                        </div>
+                        <div class="mr-arrow" aria-hidden="true"></div>
+                        <div class="mr-node mr-node-core">
+                            <strong>mrag add</strong>
+                            <span>Register documents</span>
+                        </div>
+                        <div class="mr-arrow" aria-hidden="true"></div>
+                        <div class="mr-node mr-node-core">
+                            <strong>mrag index</strong>
+                            <span>Chunk → add context → embed</span>
+                        </div>
+                    </div>
+                    <div class="mr-arch-row mr-arch-row-2">
+                        <div class="mr-node mr-node-store">
+                            <strong>SQLite FTS5</strong>
+                            <span>Source of truth · keyword index</span>
+                        </div>
+                        <div class="mr-node mr-node-store">
+                            <strong>Qdrant</strong>
+                            <span>Vector index (in-process)</span>
+                        </div>
+                        <div class="mr-arrow" aria-hidden="true"></div>
+                        <div class="mr-node mr-node-core">
+                            <strong>mrag search</strong>
+                            <span>Hybrid retrieval → rerank</span>
+                        </div>
+                        <div class="mr-arrow" aria-hidden="true"></div>
+                        <div class="mr-node mr-node-iface">
+                            <strong>CLI / REST API / Dify API / MCP</strong>
+                            <span>mrag serve · mrag mcp</span>
+                        </div>
+                        <div class="mr-arrow" aria-hidden="true"></div>
+                        <div class="mr-node mr-node-ext mr-node-dashed">
+                            <strong>AI agents</strong>
+                            <span>Claude Code · Codex · Dify · LM Studio</span>
+                        </div>
+                    </div>
+                    <div class="mr-arch-ollama">
+                        <span class="mr-node mr-node-ollama"><strong>Ollama</strong><span>bge-m3 (embeddings) · gemma4 (context generation) · runs locally</span></span>
+                    </div>
+                </div>
+                <p class="section-note">SQLite is the source of truth; Qdrant is a rebuildable vector index. In the default <code>local</code> mode Qdrant runs in-process, so no separate server is needed.</p>
+            </div>
+        </section>
+
+        <!-- 4. Quick start -->
+        <section class="section section-alt mr-quickstart" id="quickstart">
+            <div class="container">
+                <h2 class="section-title">Four commands to a knowledge base.</h2>
+                <p class="section-lead">Create a project, add documents, build the index, search. That's all.</p>
+
+                <div class="mr-qs-grid">
+                    <div class="mr-code">
+                        <button type="button" class="mr-copy" aria-label="Copy code">Copy</button>
+<pre><code>mrag init my-kb --non-interactive
+cd my-kb
+mrag add /path/to/documents --recursive --include '**/*.md'
+mrag index
+mrag search "your query"</code></pre>
+                    </div>
+                    <ol class="mr-qs-steps">
+                        <li>
+                            <span class="mr-step-num">1</span>
+                            <div><strong>init — create a project</strong><span>Generates <code>mrag.yaml</code>, a retrieval profile, <code>kb_information.yaml</code> and <code>mrag.db</code>. The Japanese tokenizer is detected automatically.</span></div>
+                        </li>
+                        <li>
+                            <span class="mr-step-num">2</span>
+                            <div><strong>add — register documents</strong><span>Register Markdown or text files one at a time or by directory. Preview the selection with <code>--dry-run</code>. Nothing is searchable yet at this point.</span></div>
+                        </li>
+                        <li>
+                            <span class="mr-step-num">3</span>
+                            <div><strong>index — build the index</strong><span>Splits documents into chunks, computes embeddings with Ollama and writes them to Qdrant and SQLite FTS5. Later runs process only what was added.</span></div>
+                        </li>
+                        <li>
+                            <span class="mr-step-num">4</span>
+                            <div><strong>search — query it</strong><span>Hybrid retrieval, fusing keyword and vector search, is the default. Switch with <code>--strategy</code>, and hand results to an agent with <code>--json</code>.</span></div>
+                        </li>
+                    </ol>
+                </div>
+
+                <p class="section-note">Convert PDF and Office documents to Markdown with docling or MarkItDown before adding them. See an integration example <a href="https://github.com/bathtimefish/mrag_dify_docker" target="_blank" rel="noopener noreferrer">here</a>. For installation, see the <a href="https://github.com/bathtimefish/mrag" target="_blank" rel="noopener noreferrer">README on GitHub</a>; to let an agent such as Claude Code do it, point it at the bundled SETUP.md.</p>
+            </div>
+        </section>
+
+        <!-- 5. Retrieval quality -->
+        <section class="section" id="quality">
+            <div class="container">
+                <h2 class="section-title">Accuracy grows with configuration.</h2>
+                <p class="section-lead">Choose how documents are split and how they are searched to fit the content and the use. Settings live in a profile (YAML), so you can switch and compare.</p>
+                <div class="mr-tiles">
+                    <div class="mr-tile">
+                        <h3>Four chunking strategies</h3>
+                        <p>General-purpose <code>recursive</code>, heading-aware <code>markdown_recursive</code>, <code>block_aware</code> to keep tables and code intact, and <code>parent_child</code> to match on children and return parents.</p>
+                    </div>
+                    <div class="mr-tile">
+                        <h3>Four retrieval strategies</h3>
+                        <p>Keyword (BM25), vector (semantic), <code>hybrid</code> fusing the two (default), and <code>parent_child</code>. Switch per query with <code>--strategy</code>.</p>
+                    </div>
+                    <div class="mr-tile">
+                        <h3>Contextual retrieval</h3>
+                        <p>Each chunk gets document-level context from a local LLM before embedding, so searches that a bare fragment would miss are found. Follows Anthropic's <a href="https://www.anthropic.com/news/contextual-retrieval" target="_blank" rel="noopener noreferrer">Contextual Retrieval</a> approach.</p>
+                    </div>
+                    <div class="mr-tile">
+                        <h3>Reranking</h3>
+                        <p>A CrossEncoder reorders the top candidates. Helps when the right passage is retrieved but ranked too low.</p>
+                    </div>
+                    <div class="mr-tile">
+                        <h3>Evaluation and inspection</h3>
+                        <p>Measure retrieval quality with <code>mrag eval</code>, and look at chunk bodies, generated context and section hierarchy with <code>mrag inspect</code>.</p>
+                    </div>
+                    <div class="mr-tile">
+                        <h3>Strong in Japanese</h3>
+                        <p>Supports a Japanese morphological tokenizer. The multilingual bge-m3 model is the default for embeddings.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Agents -->
+        <section class="section section-alt" id="agents">
+            <div class="container">
+                <h2 class="section-title">Built by agents, used by agents.</h2>
+                <p class="section-lead">mrag is designed to be operated by AI agents.</p>
+                <div class="mr-agents">
+                    <div class="mr-agent">
+                        <h3>Agents build it, guided by SKILL.md</h3>
+                        <p>Point Claude Code or a similar agent at the bundled SKILL.md and SETUP.md and it handles installation, knowledge-base creation and accuracy tuning on its own.</p>
+                        <div class="mr-code mr-code-sm"><pre><code><span class="c"># Example prompt for Claude Code</span>
+&gt; Create an mrag project at ./my-kb from the
+  Markdown files under ./documents/</code></pre></div>
+                    </div>
+                    <div class="mr-agent">
+                        <h3>Expose it as an MCP server</h3>
+                        <p><code>mrag mcp</code> turns a project into a read-only MCP server, so Claude Code, LM Studio and other clients can call search as a tool. Supports stdio and Streamable HTTP.</p>
+                        <div class="mr-code mr-code-sm"><pre><code><span class="c"># inside an indexed project</span>
+mrag mcp
+<span class="c"># tools: search / list_documents / inspect_*</span></code></pre></div>
+                    </div>
+                    <div class="mr-agent">
+                        <h3>External knowledge for Dify</h3>
+                        <p><code>mrag serve</code> provides an endpoint compatible with the Dify External Knowledge API, so a Dify chatbot can query a local knowledge base. A native REST API is also available.</p>
+                        <div class="mr-code mr-code-sm"><pre><code>mrag serve --host 0.0.0.0 --port 8000
+<span class="c"># POST /retrieval  (Dify External Knowledge API)</span></code></pre></div>
+                    </div>
+                    <div class="mr-agent">
+                        <h3>Bundle multiple knowledge bases</h3>
+                        <p><code>mrag registry</code> gathers several knowledge bases into <code>knowledge_registry.yaml</code>. Agents decide which base to search before searching. A foundation for agentic RAG.</p>
+                        <div class="mr-code mr-code-sm"><pre><code>mrag registry generate ./knowledges
+<span class="c"># knowledges/kb-manual, kb-spec, kb-rules ...</span></code></pre></div>
+                    </div>
+                </div>
+                <div class="mr-clients" aria-label="Clients">
+                    <span class="mr-clients-label">Connects to</span>
+                    <ul>
+                        <li>Claude Code</li>
+                        <li>Codex</li>
+                        <li>Gemini CLI</li>
+                        <li>LM Studio</li>
+                        <li>Dify</li>
+                        <li>Any MCP client</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Where mrag fits -->
+        <section class="section" id="fit">
+            <div class="container">
+                <h2 class="section-title">Where mrag fits</h2>
+                <ul class="mr-fits">
+                    <li><h3>Knowledge for a department or team</h3><p>When the manuals, rules and specifications of your own work are worth indexing but not worth a company-wide platform.</p></li>
+                    <li><h3>Trying it right now</h3><p>When you want to run RAG on the documents in a folder today and see whether it helps, without waiting for contracts or infrastructure.</p></li>
+                    <li><h3>Documents that can't leave the company</h3><p>When confidential documents must stay on a PC or an on-premises server while still being usable by generative AI.</p></li>
+                    <li><h3>Giving agents domain knowledge</h3><p>When you want Claude Code, Dify, LM Studio or another agent to have knowledge specific to your work, delivered over MCP or an API.</p></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 8. Use cases -->
+        <section class="section section-alt" id="use-cases">
+            <div class="container">
+                <h2 class="section-title">What you can do with it</h2>
+                <div class="mr-cases">
+                    <article class="mr-case">
+                        <span class="mr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3h14v18H5z"/><path d="M9 7h6M9 11h6M9 15h3"/></svg></span>
+                        <h3>Questions about internal rules and manuals</h3>
+                        <p>"What is the cap on travel expenses?" — answered by searching the rules, with the supporting passage.</p>
+                        <p class="mr-case-flow">rules .md → mrag → Claude Code</p>
+                    </article>
+                    <article class="mr-case">
+                        <span class="mr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 4v6"/></svg></span>
+                        <h3>Q&amp;A over product specs and design docs</h3>
+                        <p>Give your development agent your own product's specifications as the basis for implementation and support answers.</p>
+                        <p class="mr-case-flow">specs → mrag mcp → agent</p>
+                    </article>
+                    <article class="mr-case">
+                        <span class="mr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2"/></svg></span>
+                        <h3>Maintenance and operations procedures</h3>
+                        <p>Turn field procedures into a knowledge base and let an operator's agent pull up the right step.</p>
+                        <p class="mr-case-flow">procedures → mrag → LM Studio</p>
+                    </article>
+                    <article class="mr-case">
+                        <span class="mr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 2v4M16 2v4M4 10h16"/></svg></span>
+                        <h3>Accumulating minutes and notes</h3>
+                        <p>Keep adding and indexing daily Markdown. Retire outdated documents from search with <code>exclusions</code> while keeping the originals.</p>
+                        <p class="mr-case-flow">add → index → exclusions</p>
+                    </article>
+                    <article class="mr-case">
+                        <span class="mr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H9l-4 4v-4H4z"/><circle cx="9" cy="10" r="1.2"/><circle cx="12" cy="10" r="1.2"/><circle cx="15" cy="10" r="1.2"/></svg></span>
+                        <h3>Local knowledge for a Dify chatbot</h3>
+                        <p>Use mrag as the external knowledge of an existing Dify bot and answer with documents that stay in-house.</p>
+                        <p class="mr-case-flow">mrag serve → Dify External Knowledge</p>
+                    </article>
+                    <article class="mr-case mr-case-accent">
+                        <span class="mr-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20V10M6 20v-4M18 20V4"/><path d="M3 20h18"/></svg></span>
+                        <h3>A RAG test bench</h3>
+                        <p>Switch chunking and retrieval strategies and compare accuracy on your own documents. Evidence for designing your production RAG.</p>
+                        <p class="mr-case-flow">profiles → eval → inspect</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Where it runs -->
+        <section class="section" id="scale">
+            <div class="container">
+                <h2 class="section-title">Run it where it fits</h2>
+                <p class="section-lead">mrag is not a platform you build big from day one. Start small on your own machine and extend to sharing and system integration as the need arises.</p>
+                <div class="mr-rail">
+                    <div class="mr-rail-line" aria-hidden="true"></div>
+                    <div class="mr-rail-node">
+                        <span class="mr-rail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
+                        <h3>Personal</h3>
+                        <p class="mr-rail-sub">On your own PC first</p>
+                        <p>Turn your research notes or the documents of your own work into a knowledge base and use it from Claude Code or LM Studio.</p>
+                        <p class="mr-rail-fit"><strong>Connect via</strong>mrag mcp (stdio) / mrag search --json</p>
+                    </div>
+                    <div class="mr-rail-node">
+                        <span class="mr-rail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="8" rx="2"/><rect x="3" y="13" width="18" height="8" rx="2"/><path d="M7 7h.01M7 17h.01"/></svg></span>
+                        <h3>Team</h3>
+                        <p class="mr-rail-sub">Share with your team</p>
+                        <p>Keep mrag running on an in-house server or a small PC and let agents and Dify on the LAN query it.</p>
+                        <p class="mr-rail-fit"><strong>Connect via</strong>mrag serve / mrag mcp (Streamable HTTP)</p>
+                    </div>
+                    <div class="mr-rail-node">
+                        <span class="mr-rail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="6" height="6" rx="1"/><rect x="9" y="4" width="6" height="6" rx="1"/><rect x="16" y="4" width="6" height="6" rx="1"/><rect x="2" y="14" width="6" height="6" rx="1"/><rect x="9" y="14" width="6" height="6" rx="1"/><rect x="16" y="14" width="6" height="6" rx="1"/></svg></span>
+                        <h3>System</h3>
+                        <p class="mr-rail-sub">Embed in business systems</p>
+                        <p>Add search to your own applications through the REST API, bundle several knowledge bases with the registry, and design update and exclusion operations.</p>
+                        <p class="mr-rail-fit"><strong>Connect via</strong>REST API / registry / operations design</p>
+                    </div>
+                </div>
+                <p class="section-note">The same project layout grows with you wherever it runs. From team sharing onward is where BathTimeFish's services come in.</p>
+            </div>
+        </section>
+
+        <!-- 10. Services -->
+        <section class="section section-alt" id="consulting">
+            <div class="container">
+                <p class="mr-eyebrow is-center"><span class="badge">Only from BathTimeFish</span></p>
+                <h2 class="section-title">Because it's OSS, rely on pros only where you need to</h2>
+                <p class="section-lead">mrag is free to use as open source. Serious in-house use, though, calls for judgment specific to your documents and your work: choosing and converting source documents, designing chunking and retrieval, evaluating accuracy, connecting agents and existing systems, and operating updates and exclusions. BathTimeFish helps companies adopt and systematize in-house RAG knowledge with mrag.</p>
+                <div class="mr-support">
+                    <div class="mr-support-col">
+                        <span class="badge badge-soft">Free · OSS</span>
+                        <h3>What you can do yourselves</h3>
+                        <ul class="check-list">
+                            <li>Use mrag (MIT License)</li>
+                            <li>Build and search knowledge bases on your PC</li>
+                            <li>Switch chunking and retrieval strategies via profiles</li>
+                            <li>Publish over MCP, the REST API or the Dify-compatible API</li>
+                            <li>Let agents build it with SKILL.md</li>
+                        </ul>
+                    </div>
+                    <div class="mr-support-col mr-support-paid">
+                        <span class="badge">Paid · BathTimeFish</span>
+                        <h3>What you can ask the developers for</h3>
+                        <ul class="check-list">
+                            <li><strong>Proof of concept</strong> — selecting and converting source documents, building the knowledge base, evaluating retrieval quality</li>
+                            <li><strong>Accuracy tuning</strong> — designing chunking, retrieval strategies, contextual augmentation and reranking</li>
+                            <li><strong>Integration with business systems</strong> — connecting agents such as Claude Code, Dify integration, application access over MCP or the REST API</li>
+                            <li><strong>Operations design</strong> — document update and exclusion workflows, multi-knowledge-base layout, running on-premises or on in-house servers</li>
+                            <li><strong>Internal rollout</strong> — user guides and hands-on sessions for your staff</li>
+                        </ul>
+                        <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Contact BathTimeFish</a>
+                    </div>
+                </div>
+                <p class="section-note">As the developer of mrag, BathTimeFish provides adoption support, accuracy design, system integration and operations design. We work with you from building small and confirming accuracy through to embedding it in your work.</p>
+            </div>
+        </section>
+
+        <!-- 11. FAQ -->
+        <section class="section" id="faq">
+            <div class="container">
+                <h2 class="section-title">FAQ</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q1. Is mrag free?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>Yes. mrag is open-source software under the MIT License, and commercial use is allowed.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q2. Does it need an internet connection?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>Not for normal use. Embeddings and context generation run on local models through Ollama. A network connection is needed only to download the models the first time.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q3. Can it ingest PDF or Word documents?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>mrag ingests Markdown and plain text. Convert PDFs with docling and Office documents with MarkItDown or a similar tool to Markdown first.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q4. What does it require?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>Python 3.11 or later and Ollama (with <code>ollama serve</code> running). Qdrant runs in-process by default, so no separate server is required.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q5. How well does it work with Japanese documents?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>It supports a Japanese-capable embedding model (bge-m3) and a Japanese morphological tokenizer (sqlite-vaporetto). Accuracy depends on the documents and the configuration, so tune while checking with <code>mrag eval</code>.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q6. Which AI agents can use it?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>Through <code>mrag mcp</code>, any MCP client such as Claude Code, Codex or LM Studio can search it. Dify connects through the External Knowledge API. A REST API is also provided.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q7. Does it scale to large knowledge bases?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>mrag is designed for operating small knowledge bases locally. For larger document sets we recommend splitting them into several knowledge bases by business area or topic and bundling them with <code>mrag registry</code>.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button"><span>Q8. Do you offer adoption support?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+                        <div class="faq-a"><p>Yes. BathTimeFish provides consulting for adopting and systematizing in-house RAG with mrag. Please reach out through the contact form.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12. Final CTA -->
+        <section class="section section-cta" id="contact">
+            <div class="container">
+                <h2 class="section-title">RAG, smaller and closer to hand.<br>Start by trying it on your own machine.</h2>
+                <p class="section-lead">mrag is open source and ready to try from GitHub. When you need to bring it into your company or build a system around it, BathTimeFish can help.</p>
+                <div class="cta-box">
+                    <h3>What a consultation clarifies</h3>
+                    <ul class="check-list mr-cta-list">
+                        <li>How to split knowledge bases to fit your documents</li>
+                        <li>What you need (PC, Ollama, models)</li>
+                        <li>How to connect your agents or Dify</li>
+                        <li>How to verify accuracy</li>
+                        <li>Steps for operations and internal rollout</li>
+                    </ul>
+                </div>
+                <div class="btn-group is-center">
+                    <a href="https://github.com/bathtimefish/mrag" class="btn btn-primary mr-btn-on-dark" target="_blank" rel="noopener noreferrer">View mrag on GitHub</a>
+                    <a href="https://forms.gle/X2RKJqLNiJXBfnKW8" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Talk to us about adoption</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+  <div class="container">
+    <div class="site-footer-grid">
+      <div class="site-footer-brand">
+        <img src="/bathtimefish.svg" alt="" width="40" height="40">
+        <p class="site-footer-name">BathTimeFish, K.K.<span>株式会社BathTimeFish</span></p>
+        <p class="site-footer-address">3-3-13 Nishiyama-cho, Nagata-ku, Kobe, Hyogo, Japan</p>
+      </div>
+      <div>
+        <h4>Products</h4>
+        <ul>
+          <li><a href="/kraken/en.html">Kraken</a></li>
+          <li><a href="/mrag/en.html">mrag</a></li>
+          <li><a href="/bjigcli/en.html">BraveJIG CLI</a></li>
+          <li><a href="/bjigmcp/">BraveJIG MCP Server</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/company.html">Company</a></li>
+          <li><a href="https://zenn.dev/bathtimefish" target="_blank" rel="noopener">Zenn</a></li>
+          <li><a href="https://github.com/bathtimefish" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://forms.gle/X2RKJqLNiJXBfnKW8" target="_blank" rel="noopener">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p>&copy; BathTimeFish, K.K. All rights reserved.</p>
+      <p>mrag is an open-source project developed by BathTimeFish and released under the MIT License.</p>
+      <p>All company, product and service names mentioned are trademarks or registered trademarks of their respective owners. Their mention does not imply any partnership with, or endorsement by, those companies.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/site.js"></script>
+<script src="mrag.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@ Source of https://www.bathtimefish.com/ (GitHub Pages, plain static HTML).
 | `index.html` | Top page |
 | `company.html` | Company profile |
 | `kraken/` | Kraken product page (`index.html` = ja, `en.html` = en) |
-| `mrag/` | mrag product page (`index.html` = ja) |
+| `mrag/` | mrag product page (`index.html` = ja, `en.html` = en) |
 | `bjigcli/` | BraveJIG CLI product page (`index.html` = ja, `en.html` = en) |
 | `bjigmcp/` | BraveJIG MCP Server product page (`index.html` = ja) |
 | `kraken-by-bathtimefish/`, `bjigcli-by-bathtimefish/` | Redirect stubs for the old product-site URLs |

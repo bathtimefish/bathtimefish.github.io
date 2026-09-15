@@ -43,6 +43,19 @@
       '<span class="dim">  rules/travel-expense.md   ████████████████████ 3</span>'
     ] }
   ];
+  if (document.documentElement.lang === 'en') {
+    STEPS[4] = { cmd: 'mrag search "hotel expense limit on business trips"', out: [
+      '[1] score=<span class="n">6.39</span>  doc=<span class="k">rules/travel-expense.md</span>  chunk=<span class="dim">eb0495d2...</span>',
+      '    <span class="q">Hotel expenses on domestic trips are reimbursed at cost, up to the nightly limit…</span>',
+      '',
+      '[2] score=<span class="n">5.81</span>  doc=<span class="k">rules/travel-expense.md</span>  chunk=<span class="dim">3fa12c11...</span>',
+      '    <span class="q">Amounts above the limit require prior approval from the department head…</span>',
+      '',
+      '<span class="dim">Score stats:  min=5.81  max=6.39  mean=6.10</span>',
+      '<span class="dim">Document distribution:</span>',
+      '<span class="dim">  rules/travel-expense.md   ████████████████████ 3</span>'
+    ] };
+  }
   var MAX_LINES = 14;
 
   function addLine(html, isCmd) {
