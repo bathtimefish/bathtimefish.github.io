@@ -51,6 +51,9 @@
     span.innerHTML = html + '\n';
     outEl.appendChild(span);
     while (outEl.children.length > MAX_LINES) outEl.removeChild(outEl.firstChild);
+    // Never clip a partial line at the top: drop old lines until everything fits.
+    var body = outEl.parentNode;
+    while (outEl.children.length > 1 && body.scrollHeight > body.clientHeight) outEl.removeChild(outEl.firstChild);
   }
 
   if (cmdEl && outEl) {
